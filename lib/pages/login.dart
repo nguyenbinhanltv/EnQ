@@ -1,5 +1,7 @@
+import 'package:EnQ/const/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_signin_button/flutter_signin_button.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -14,35 +16,22 @@ class _LoginState extends State<Login> {
       child: Stack(
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.only(
-              left: 70.0, // will replace later
-              top: 75.0, // will replace later
-            ),
-            child: Text(
-              'EnQ',
-              style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.normal,
-                decoration: TextDecoration.none,
-                fontSize: 60.0,
-              ),
+            padding: const EdgeInsets.all(70.0),
+            child: Container(
+              child: Text('EnQ', style: TitleStyle),
             ),
           ),
           Padding(
             padding: const EdgeInsets.only(
-              left: 40.0, // will replace later
-              top: 200.0, // will replace later
-              right: 120.0, // will replace later
+              left: 10.0,
+              top: 200.0,
+              right: 130.0,
             ),
-            child: Text(
-              'Welcome to EnQ, it will help you improve your English',
-              style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.normal,
-                decoration: TextDecoration.none,
-                fontSize: 20.0, // will replace later
-              ),
-              textAlign: TextAlign.left,
+            child: Container(
+              margin: EdgeInsets.symmetric(horizontal: 20.0),
+              child: Text(
+                  'Welcome to EnQ, it will help you improve your English',
+                  style: ScriptStyle),
             ),
           ),
           Align(
@@ -52,6 +41,21 @@ class _LoginState extends State<Login> {
               alignment: Alignment.center,
               width: MediaQuery.of(context).size.width,
               // color: Colors.indigo,
+            ),
+          ),
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SignInButton(
+                  Buttons.Google,
+                  onPressed: () {},
+                ),
+                SignInButton(
+                  Buttons.Facebook,
+                  onPressed: () {},
+                ),
+              ],
             ),
           ),
         ],
