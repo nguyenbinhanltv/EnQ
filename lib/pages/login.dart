@@ -16,7 +16,7 @@ class _LoginState extends State<Login> {
       child: Stack(
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.all(70.0),
+            padding: const EdgeInsets.all(60.0),
             child: Container(
               child: Text('EnQ', style: TitleStyle),
             ),
