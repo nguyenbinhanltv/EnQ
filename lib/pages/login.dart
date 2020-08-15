@@ -1,3 +1,4 @@
+import 'package:EnQ/const/size_config.dart';
 import 'package:EnQ/const/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -11,12 +12,13 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Container(
       color: Colors.white,
       child: Stack(
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.all(DefaultPaddin * 3),
+            padding: const EdgeInsets.all(DefaultPaddin * 3 / 100),
             child: Container(
               child: Text('EnQ', style: TitleStyle),
             ),
