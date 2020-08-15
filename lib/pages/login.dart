@@ -18,14 +18,17 @@ class _LoginState extends State<Login> {
       child: Stack(
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.all(DefaultPaddin * 3 / 100),
+            padding: const EdgeInsets.only(
+              left: DefaultPaddin * 1.5,
+              top: DefaultPaddin * 4,
+            ),
             child: Container(
               child: Text('EnQ', style: TitleStyle),
             ),
           ),
           Padding(
             padding: const EdgeInsets.only(
-              left: DefaultPaddin / 2,
+              left: DefaultPaddin * 0.8,
               top: DefaultPaddin * 10,
               right: DefaultPaddin * 6,
             ),
@@ -42,6 +45,7 @@ class _LoginState extends State<Login> {
               'assets/background-login.svg',
               alignment: Alignment.center,
               width: MediaQuery.of(context).size.width,
+              // height: MediaQuery.of(context).size.height,
               // color: Colors.indigo,
             ),
           ),
@@ -49,13 +53,25 @@ class _LoginState extends State<Login> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SignInButton(
-                  Buttons.Google,
-                  onPressed: () {},
-                ),
-                SignInButton(
-                  Buttons.Facebook,
-                  onPressed: () {},
+                Container(
+                  width: SizeConfig.screenWidth * 0.7,
+                  height: SizeConfig.screenHeight * 0.08,
+                  child: FlatButton(
+                    onPressed: () {},
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(25),
+                        side: BorderSide(color: Colors.black)),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Icon(Icons.ac_unit),
+                        Text(
+                          'Sign in with Google',
+                          style: TextStyle(fontSize: MediumText),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ],
             ),
