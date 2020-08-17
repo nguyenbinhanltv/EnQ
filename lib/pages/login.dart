@@ -18,25 +18,26 @@ class _LoginState extends State<Login> {
       child: Stack(
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.only(
-              left: DefaultPaddin * 1.5,
-              top: DefaultPaddin * 4,
-            ),
-            child: Container(
-              child: Text('EnQ', style: TitleStyle),
-            ),
-          ),
+              padding: const EdgeInsets.only(
+                right: DefaultPaddin * 7.0,
+                bottom: DefaultPaddin * 25.0,
+              ),
+              child: SvgPicture.asset(
+                'assets/images/logo-noname.svg',
+                width: MediaQuery.of(context).size.width,
+              )),
           Padding(
             padding: const EdgeInsets.only(
               left: DefaultPaddin * 0.8,
-              top: DefaultPaddin * 10,
-              right: DefaultPaddin * 6,
+              top: DefaultPaddin * 12.0,
+              right: DefaultPaddin * 6.0,
             ),
             child: Container(
               margin: EdgeInsets.symmetric(horizontal: DefaultPaddin),
               child: Text(
-                  'Welcome to EnQ, it will help you improve your English',
-                  style: ScriptStyle),
+                'Welcome to EnQ, it will help you improve your English',
+                style: ScriptStyle,
+              ),
             ),
           ),
           Align(
@@ -46,11 +47,11 @@ class _LoginState extends State<Login> {
               alignment: Alignment.center,
               width: MediaQuery.of(context).size.width,
               // height: MediaQuery.of(context).size.height,
-              // color: Colors.indigo,
+              color: Colors.indigo,
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: DefaultPaddin * 8.0),
+            padding: const EdgeInsets.only(top: DefaultPaddin * 12.0),
             child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -66,7 +67,11 @@ class _LoginState extends State<Login> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Icon(Icons.ac_unit),
+                          SvgPicture.asset(
+                            'assets/images/brands-and-logotypes.svg',
+                            width: 24.0,
+                            height: 24.0,
+                          ),
                           Text(
                             'Sign in with Google',
                             style: TextStyle(fontSize: SmallText),
@@ -77,7 +82,7 @@ class _LoginState extends State<Login> {
                     ),
                   ),
                   SizedBox(
-                    height: DefaultPaddin / 2,
+                    height: DefaultPaddin,
                   ),
                   Container(
                     width: SizeConfig.screenWidth * 0.7,
