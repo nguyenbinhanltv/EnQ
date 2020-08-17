@@ -42,38 +42,70 @@ class _LoginState extends State<Login> {
           Align(
             alignment: Alignment.bottomCenter,
             child: SvgPicture.asset(
-              'assets/background-login.svg',
+              'assets/images/background-login.svg',
               alignment: Alignment.center,
               width: MediaQuery.of(context).size.width,
               // height: MediaQuery.of(context).size.height,
               // color: Colors.indigo,
             ),
           ),
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  width: SizeConfig.screenWidth * 0.7,
-                  height: SizeConfig.screenHeight * 0.08,
-                  child: FlatButton(
-                    onPressed: () {},
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(25),
-                        side: BorderSide(color: Colors.black)),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Icon(Icons.ac_unit),
-                        Text(
-                          'Sign in with Google',
-                          style: TextStyle(fontSize: MediumText),
-                        ),
-                      ],
+          Padding(
+            padding: const EdgeInsets.only(top: DefaultPaddin * 8.0),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: SizeConfig.screenWidth * 0.7,
+                    height: SizeConfig.screenHeight * 0.08,
+                    child: FlatButton(
+                      onPressed: () {},
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(25),
+                          side: BorderSide(color: Colors.black)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Icon(Icons.ac_unit),
+                          Text(
+                            'Sign in with Google',
+                            style: TextStyle(fontSize: SmallText),
+                          ),
+                          Icon(Icons.arrow_forward),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ],
+                  SizedBox(
+                    height: DefaultPaddin / 2,
+                  ),
+                  Container(
+                    width: SizeConfig.screenWidth * 0.7,
+                    height: SizeConfig.screenHeight * 0.08,
+                    child: FlatButton(
+                      onPressed: () {},
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(25),
+                          side: BorderSide(color: Colors.black)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          SvgPicture.asset(
+                            'assets/images/facebook.svg',
+                            width: 24.0,
+                            height: 24.0,
+                          ),
+                          Text(
+                            'Sign in with Facebook',
+                            style: TextStyle(fontSize: SmallText),
+                          ),
+                          Icon(Icons.arrow_forward),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ],
