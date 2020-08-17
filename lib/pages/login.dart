@@ -25,10 +25,11 @@ class _LoginState extends State<Login> {
               child: SvgPicture.asset(
                 'assets/images/logo-noname.svg',
                 width: MediaQuery.of(context).size.width,
+                color: Colors.brown,
               )),
           Padding(
             padding: const EdgeInsets.only(
-              left: DefaultPaddin * 0.8,
+              left: DefaultPaddin * 2.0,
               top: DefaultPaddin * 12.0,
               right: DefaultPaddin * 6.0,
             ),
