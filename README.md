@@ -7,6 +7,17 @@
 
 A new Flutter project.
 
+# Members
+### 1.[Nguyen Binh An](https://github.com/nguyenbinhanltv)
+
+### 2.[Nguyen Hoai Gia Linh](https://github.com/linhsol26)
+
+### 3.[Ho Huynh Duc](https://github.com/duca7)
+
+### 4.[Luu Nguyen Quoc Thang](https://github.com/thangluu93)
+
+### 5.[Nguyen Van Minh Tuan](https://github.com/tuannvmk18)
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
