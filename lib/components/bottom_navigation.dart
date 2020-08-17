@@ -37,12 +37,18 @@ class _BottomNavigation extends State<BottomNavigation> {
   }
 
   Widget buildButton(int index) {
-    return FlatButton(
-      onPressed: () {},
-      child: Column(
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(
+          DefaultPaddin, DefaultPaddin, DefaultPaddin, DefaultPaddin),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Icon(items[index].icon),
-          Text(items[index].title),
+          Column(
+            children: [
+              Icon(items[index].icon),
+              Text(items[index].title),
+            ],
+          )
         ],
       ),
     );
