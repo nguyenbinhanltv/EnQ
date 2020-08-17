@@ -1,3 +1,4 @@
+import 'package:EnQ/pages/home.dart';
 import 'package:flutter/material.dart';
 
 import 'const/size_config.dart';
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Login(),
+      home: Home(),
     );
   }
 }

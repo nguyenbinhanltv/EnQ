@@ -4,7 +4,7 @@ const LargerText = 60.0;
 const MediumText = 20.0;
 const SmallText = 16.0;
 
-const String _FontName = '';
+const String FontName = 'Monda';
 
 const DefaultPaddin = 20.0;
 
@@ -20,4 +20,5 @@ const ScriptStyle = TextStyle(
   fontWeight: FontWeight.normal,
   decoration: TextDecoration.none,
   fontSize: MediumText,
+  fontFamily: FontName,
 );
