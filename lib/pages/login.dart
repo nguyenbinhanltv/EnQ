@@ -57,64 +57,50 @@ class _LoginState extends State<Login> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
-                    width: SizeConfig.screenWidth * 0.7,
-                    height: SizeConfig.screenHeight * 0.08,
-                    child: FlatButton(
-                      onPressed: () {},
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(25),
-                          side: BorderSide(color: Colors.black)),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          SvgPicture.asset(
-                            'assets/images/brands-and-logotypes.svg',
-                            width: 24.0,
-                            height: 24.0,
-                          ),
-                          Text(
-                            'Sign in with Google',
-                            style: TextStyle(fontSize: SmallText),
-                          ),
-                          Icon(Icons.arrow_forward),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: DefaultPaddin,
-                  ),
-                  Container(
-                    width: SizeConfig.screenWidth * 0.7,
-                    height: SizeConfig.screenHeight * 0.08,
-                    child: FlatButton(
-                      onPressed: () {},
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(25),
-                          side: BorderSide(color: Colors.black)),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          SvgPicture.asset(
-                            'assets/images/facebook.svg',
-                            width: 24.0,
-                            height: 24.0,
-                          ),
-                          Text(
-                            'Sign in with Facebook',
-                            style: TextStyle(fontSize: SmallText),
-                          ),
-                          Icon(Icons.arrow_forward),
-                        ],
-                      ),
-                    ),
-                  ),
+                  LoginButton('Sign in with Google',
+                      'assets/images/brands-and-logotypes.svg'),
+                  SizedBox(height: DefaultPaddin),
+                  LoginButton(
+                      'Sign in with Facebook', 'assets/images/facebook.svg'),
                 ],
               ),
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class LoginButton extends StatelessWidget {
+  final String _title;
+  final String _imgUrl;
+  LoginButton(this._title, this._imgUrl);
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: SizeConfig.screenWidth * 0.7,
+      height: SizeConfig.screenHeight * 0.08,
+      child: FlatButton(
+        onPressed: () {},
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(25),
+            side: BorderSide(color: Colors.black)),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            SvgPicture.asset(
+              this._imgUrl,
+              width: 24.0,
+              height: 24.0,
+            ),
+            Text(
+              this._title,
+              style: TextStyle(fontSize: SmallText),
+            ),
+            Icon(Icons.arrow_forward),
+          ],
+        ),
       ),
     );
   }
