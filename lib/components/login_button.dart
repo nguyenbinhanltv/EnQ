@@ -1,5 +1,6 @@
 import 'package:EnQ/const/size_config.dart';
 import 'package:EnQ/const/style.dart';
+import 'package:EnQ/utils/app_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -13,7 +14,9 @@ class LoginButton extends StatelessWidget {
       width: SizeConfig.screenWidth * 0.7,
       height: SizeConfig.screenHeight * 0.08,
       child: FlatButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).popAndPushNamed(AppRouting.home);
+        },
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(25),
             side: BorderSide(color: Colors.black)),
