@@ -1,56 +1,67 @@
-import 'package:EnQ/const/style.dart';
-import 'package:flutter/material.dart';
+// import 'package:EnQ/const/style.dart';
+// import 'package:flutter/material.dart';
 
-class Item {
-  final IconData icon;
-  final String title;
-  Item({this.icon, this.title});
-}
+// class Item {
+//   final IconData icon;
+//   final String title;
+//   Item({this.icon, this.title});
+// }
 
-class BottomNavigation extends StatefulWidget {
-  @override
-  _BottomNavigation createState() => _BottomNavigation();
-}
+// class BottomNavigation extends StatefulWidget {
+//   Function(int) indexCallBack;
+//   BottomNavigation({this.indexCallBack});
 
-class _BottomNavigation extends State<BottomNavigation> {
-  List<Item> items = [
-    Item(icon: Icons.home, title: "Home"),
-    Item(icon: Icons.equalizer, title: 'Leader'),
-    Item(icon: Icons.view_list, title: 'Quiz'),
-    Item(icon: Icons.history, title: 'History'),
-    Item(icon: Icons.account_circle, title: 'Profile'),
-  ];
-  @override
-  Widget build(BuildContext context) {
-    int selectedIndex = 0;
+//   @override
+//   _BottomNavigation createState() => _BottomNavigation();
+// }
 
-    return Padding(
-      padding: const EdgeInsets.only(top: DefaultPaddin * 20),
-      child: SizedBox(
-        child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: items.length,
-          itemBuilder: (context, index) => buildButton(index),
-        ),
-      ),
-    );
-  }
+// class _BottomNavigation extends State<BottomNavigation> {
+//   List<Item> items = [
+//     Item(icon: Icons.home, title: 'Home'),
+//     Item(icon: Icons.equalizer, title: 'Leader'),
+//     Item(icon: Icons.view_list, title: 'Quiz'),
+//     Item(icon: Icons.history, title: 'History'),
+//     Item(icon: Icons.account_circle, title: 'Profile'),
+//   ];
+//   int _selectedIndex = 0;
 
-  Widget buildButton(int index) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(
-          DefaultPaddin, DefaultPaddin, DefaultPaddin, DefaultPaddin),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-            children: [
-              Icon(items[index].icon),
-              Text(items[index].title),
-            ],
-          )
-        ],
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       child: ListView.builder(
+//         scrollDirection: Axis.horizontal,
+//         itemCount: items.length,
+//         itemBuilder: (context, index) => buildButton(index),
+//       ),
+//     );
+//   }
+
+//   Widget buildButton(int index) {
+//     return GestureDetector(
+//       onTap: () {
+//         setState(() {
+//           _selectedIndex = index;
+//           widget.indexCallBack(_selectedIndex);
+//         });
+//       },
+//       child: Padding(
+//         padding: const EdgeInsets.symmetric(horizontal: DefaultPaddin / 1.2),
+//         child: Column(
+//           crossAxisAlignment: CrossAxisAlignment.center,
+//           children: [
+//             Icon(
+//               items[index].icon,
+//               color: _selectedIndex == index ? Colors.yellow : Colors.black,
+//             ),
+//             Text(
+//               items[index].title,
+//               style: TextStyle(
+//                 color: _selectedIndex == index ? Colors.yellow : Colors.black,
+//               ),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
