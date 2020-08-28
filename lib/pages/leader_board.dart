@@ -1,3 +1,4 @@
+import 'package:EnQ/components/top_leader.dart';
 import 'package:EnQ/const/size_config.dart';
 import 'package:EnQ/const/style.dart';
 import 'package:flutter/material.dart';
@@ -49,31 +50,84 @@ class _LeaderBoardState extends State<LeaderBoard> {
             Stack(
               children: [
                 Container(
-                  decoration: BoxDecoration(color: Colors.blueAccent),
+                  margin: EdgeInsets.only(top: DefaultPaddin * 0.6),
+                  decoration: BoxDecoration(
+                      // border: Border(
+                      //   bottom: BorderSide(
+                      //     color: Colors.black,
+                      //     width: 10.0,
+                      //   ),
+                      // ), doesnt work.
+                      ),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Column(
-                        children: [
-                          SvgPicture.asset(
-                            'assets/images/gold-cup.svg',
-                            width: SizeConfig.screenWidth * 0.15,
-                          ),
-                          CircleAvatar(),
-                          Text('Akita'), //note
-                          Text('1500'),
-                        ],
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(top: DefaultPaddin * 4.0),
+                        child: TopLeader('assets/images/silver-cup.svg',
+                            'Okita', '1400', 'assets/images/pig.jpg'),
+                      ),
+                      TopLeader('assets/images/gold-cup.svg', 'Akita', '1500',
+                          'assets/images/dennis_dog.jpg'),
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(top: DefaultPaddin * 5.0),
+                        child: TopLeader('assets/images/bronze-cup.svg',
+                            'Ekita', '1300', 'assets/images/penguin.jpg'),
                       ),
                     ],
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(top: DefaultPaddin * 13.5),
-                  height: SizeConfig.screenHeight * 0.5,
-                  decoration: BoxDecoration(color: Colors.amber),
-                ),
+                    // change to ListView.builder
+                    margin: EdgeInsets.only(top: DefaultPaddin * 13.5),
+                    height: SizeConfig.screenHeight * 0.5,
+                    width: SizeConfig.screenWidth,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border(
+                        top: BorderSide(
+                          color: Colors.black,
+                          width: 2.0,
+                        ),
+                      ),
+                    ),
+                    child: Column(
+                      children: [
+                        Container(
+                          width: SizeConfig.screenWidth * 0.9,
+                          height: 50,
+                          margin: EdgeInsets.only(top: DefaultPaddin * 0.5),
+                          child: RaisedButton(
+                            onPressed: () {},
+                            color: Colors.white,
+                            elevation: 5.0,
+                            shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.circular(DefaultPaddin * 2),
+                              side: BorderSide(
+                                color: Colors.black54,
+                              ),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text('4'),
+                                CircleAvatar(),
+                                Text('Peter'),
+                                Text('1200'),
+                                SvgPicture.asset(
+                                    'assets/images/arrow_forward.svg'),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    )),
               ],
             ),
-            Stack(),
+            Stack(), // another tabs
           ],
         ),
       ),
