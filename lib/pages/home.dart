@@ -1,4 +1,3 @@
-import 'package:EnQ/components/bottom_navigation.dart';
 import 'package:EnQ/const/size_config.dart';
 import 'package:EnQ/utils/app_route.dart';
 import 'package:flutter/material.dart';
@@ -9,22 +8,6 @@ class Home extends StatefulWidget {
 }
 
 class _Home extends State<Home> {
-  List<Widget> _widgetOptions = <Widget>[
-    Text('Index 0: Home',
-        style: TextStyle(color: Colors.black, fontSize: 1000)),
-    Text(
-      'Index 1: Business',
-    ),
-    Text(
-      'Index 2: School',
-    ),
-    Text(
-      'Index 3: School',
-    ),
-    Text(
-      'Index 4: School',
-    ),
-  ];
   int _selectedIndex = 0;
   void _onItemTapped(int index) {
     setState(() {
