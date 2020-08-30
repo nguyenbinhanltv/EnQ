@@ -1,3 +1,4 @@
+import 'package:EnQ/const/style.dart';
 import 'package:EnQ/pages/home.dart';
 import 'package:EnQ/pages/leader_board.dart';
 import 'package:EnQ/utils/app_route.dart';
@@ -13,6 +14,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        textTheme: Theme.of(context).textTheme.apply(
+              fontFamily: FontName,
+            ),
+      ),
       debugShowCheckedModeBanner: false,
       routes: {
         AppRouting.home: (context) => Home(),

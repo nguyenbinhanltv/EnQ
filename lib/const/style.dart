@@ -1,3 +1,4 @@
+import 'package:EnQ/pages/leader_board.dart';
 import 'package:flutter/material.dart';
 
 const LargerText = 60.0;
@@ -20,5 +21,13 @@ const ScriptStyle = TextStyle(
   fontWeight: FontWeight.normal,
   decoration: TextDecoration.none,
   fontSize: MediumText,
+  fontFamily: FontName,
+);
+
+const TabsStyle = TextStyle(
+  color: Colors.black,
+  fontWeight: FontWeight.normal,
+  decoration: TextDecoration.none,
+  fontSize: SmallText,
   fontFamily: FontName,
 );

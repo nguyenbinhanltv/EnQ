@@ -20,7 +20,7 @@ class _LeaderBoardState extends State<LeaderBoard> {
           backgroundColor: Colors.white,
           elevation: 0,
           centerTitle: true,
-          title: Text('Leader Board', style: TextStyle(color: Colors.black)),
+          title: Text('Leader Board', style: ScriptStyle),
           leading: IconButton(
             icon: SvgPicture.asset(
               'assets/images/arrow_back.svg',
@@ -37,10 +37,10 @@ class _LeaderBoardState extends State<LeaderBoard> {
             labelColor: Colors.black,
             tabs: [
               Tab(
-                child: Text('This week'),
+                child: Text('This week', style: TabsStyle),
               ),
               Tab(
-                child: Text('All time'),
+                child: Text('All time', style: TabsStyle),
               ),
             ],
           ),
@@ -51,14 +51,6 @@ class _LeaderBoardState extends State<LeaderBoard> {
               children: [
                 Container(
                   margin: EdgeInsets.only(top: DefaultPaddin * 0.6),
-                  decoration: BoxDecoration(
-                      // border: Border(
-                      //   bottom: BorderSide(
-                      //     color: Colors.black,
-                      //     width: 10.0,
-                      //   ),
-                      // ), doesnt work.
-                      ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
