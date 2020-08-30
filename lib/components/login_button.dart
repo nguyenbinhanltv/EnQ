@@ -26,6 +26,7 @@ class LoginButton extends StatelessWidget {
 
     final FirebaseUser user =
         (await _auth.signInWithCredential(credential)).user;
+    // call http request to add user to cloud store
     return user;
   }
 
