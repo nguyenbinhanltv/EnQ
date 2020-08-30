@@ -22,3 +22,11 @@ const ScriptStyle = TextStyle(
   fontSize: MediumText,
   fontFamily: FontName,
 );
+
+const TabsStyle = TextStyle(
+  color: Colors.black,
+  fontWeight: FontWeight.normal,
+  decoration: TextDecoration.none,
+  fontSize: SmallText,
+  fontFamily: FontName,
+);

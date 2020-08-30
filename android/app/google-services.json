@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "99314661497",
+    "firebase_url": "https://enq-mobile.firebaseio.com",
+    "project_id": "enq-mobile",
+    "storage_bucket": "enq-mobile.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:99314661497:android:b3d5040e45506886d1fca8",
+        "android_client_info": {
+          "package_name": "com.dev.enq"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "99314661497-k5h9rghgrl62d0demrpl84llaau9ld9j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dev.enq",
+            "certificate_hash": "8d873a44a4752d02876485e2ce2acdc4694fc58f"
+          }
+        },
+        {
+          "client_id": "99314661497-6gfses1j7lu8fa0fha3h1a8tfu3vooff.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTspY7a1Rndb0oQ-7ir9pAf8kyNrfuKmQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "99314661497-6gfses1j7lu8fa0fha3h1a8tfu3vooff.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
