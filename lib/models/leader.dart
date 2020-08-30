@@ -1,5 +1,3 @@
-import 'package:EnQ/models/user.dart';
-
 class Leader {
   final String id, startAt, endAt;
   final List<String> userId;

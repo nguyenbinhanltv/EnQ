@@ -106,7 +106,10 @@ class _LeaderBoardState extends State<LeaderBoard> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text('4'),
-                                CircleAvatar(),
+                                CircleAvatar(
+                                  backgroundImage:
+                                      AssetImage('assets/images/baby_cow.jpg'),
+                                ),
                                 Text('Peter'),
                                 Text('1200'),
                                 SvgPicture.asset(

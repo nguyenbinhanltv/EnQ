@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class User {
   final String userName, id, photoUrl;
   final int rank, point;
