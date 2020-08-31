@@ -1,6 +1,7 @@
 import 'package:EnQ/const/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:EnQ/services/question_service.dart';
 
 class Quiz extends StatefulWidget {
   @override
@@ -8,8 +9,10 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> {
+  QuestionService questions = new QuestionService();
   @override
   Widget build(BuildContext context) {
+    questions.getQuestions();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
