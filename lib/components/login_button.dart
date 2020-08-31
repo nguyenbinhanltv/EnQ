@@ -3,38 +3,13 @@ import 'package:EnQ/const/style.dart';
 import 'package:EnQ/utils/app_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+import 'package:EnQ/services/auth_service.dart';
 
 class LoginButton extends StatelessWidget {
   final String _title;
   final String _imgUrl;
   LoginButton(this._title, this._imgUrl);
-
-  final GoogleSignIn _googleSignIn = GoogleSignIn();
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-
-  Future<FirebaseUser> _handleSignIn() async {
-    final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
-    final GoogleSignInAuthentication googleAuth =
-        await googleUser.authentication;
-
-    final AuthCredential credential = GoogleAuthProvider.getCredential(
-      accessToken: googleAuth.accessToken,
-      idToken: googleAuth.idToken,
-    );
-
-    final FirebaseUser user =
-        (await _auth.signInWithCredential(credential)).user;
-    // call http request to add user to cloud store
-    return user;
-  }
-
-  // Future _handleSignOut() async {
-  //   await _auth.signOut();
-  //   await _googleSignIn.signOut();
-  // }
-
+  AuthService auth = new AuthService();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -42,7 +17,7 @@ class LoginButton extends StatelessWidget {
       height: SizeConfig.screenHeight * 0.08,
       child: FlatButton(
         onPressed: () {
-          _handleSignIn().whenComplete(
+          auth.handleSignIn().whenComplete(
               () => Navigator.of(context).popAndPushNamed(AppRouting.home));
         },
         shape: RoundedRectangleBorder(
