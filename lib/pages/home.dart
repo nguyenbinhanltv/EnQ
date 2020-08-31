@@ -12,8 +12,14 @@ class _Home extends State<Home> {
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
-      if (_selectedIndex == 1) {
-        Navigator.of(context).pushNamed(AppRouting.leaderBoard);
+      switch (_selectedIndex) {
+        case 1:
+          Navigator.of(context).pushNamed(AppRouting.leaderBoard);
+          break;
+        case 2:
+          Navigator.of(context).pushNamed(AppRouting.quiz);
+          break;
+        default:
       }
     });
   }
@@ -27,11 +33,6 @@ class _Home extends State<Home> {
           color: Colors.white,
         ),
       ),
-      // bottomNavigationBar: BottomNavigation(
-      //   indexCallBack: (index) => {
-      //     setState(() => {_selectedIndex = index, print(_selectedIndex)})
-      //   },
-      // ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
