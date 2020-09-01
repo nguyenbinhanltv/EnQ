@@ -1,3 +1,4 @@
+import 'package:EnQ/const/size_config.dart';
 import 'package:EnQ/const/style.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -17,101 +18,101 @@ class _QuizState extends State<Quiz> {
       '1',
       textAlign: TextAlign.center,
     )),
-    new Tab(
-        child: Text(
-      '2',
-      textAlign: TextAlign.center,
-    )),
-    new Tab(
-        child: Text(
-      '3',
-      textAlign: TextAlign.center,
-    )),
-    new Tab(
-        child: Text(
-      '4',
-      textAlign: TextAlign.center,
-    )),
-    new Tab(
-        child: Text(
-      '5',
-      textAlign: TextAlign.center,
-    )),
-    new Tab(
-        child: Text(
-      '6',
-      textAlign: TextAlign.center,
-    )),
-    new Tab(
-        child: Text(
-      '7',
-      textAlign: TextAlign.center,
-    )),
-    new Tab(
-        child: Text(
-      '8',
-      textAlign: TextAlign.center,
-    )),
-    new Tab(
-        child: Text(
-      '9',
-      textAlign: TextAlign.center,
-    )),
-    new Tab(
-        child: Text(
-      '10',
-      textAlign: TextAlign.center,
-    )),
-    new Tab(
-        child: Text(
-      '11',
-      textAlign: TextAlign.center,
-    )),
-    new Tab(
-        child: Text(
-      '12',
-      textAlign: TextAlign.center,
-    )),
-    new Tab(
-        child: Text(
-      '13',
-      textAlign: TextAlign.center,
-    )),
-    new Tab(
-        child: Text(
-      '14',
-      textAlign: TextAlign.center,
-    )),
-    new Tab(
-        child: Text(
-      '15',
-      textAlign: TextAlign.center,
-    )),
-    new Tab(
-        child: Text(
-      '16',
-      textAlign: TextAlign.center,
-    )),
-    new Tab(
-        child: Text(
-      '17',
-      textAlign: TextAlign.center,
-    )),
-    new Tab(
-        child: Text(
-      '18',
-      textAlign: TextAlign.center,
-    )),
-    new Tab(
-        child: Text(
-      '19',
-      textAlign: TextAlign.center,
-    )),
-    new Tab(
-        child: Text(
-      '20',
-      textAlign: TextAlign.center,
-    )),
+    // new Tab(
+    //     child: Text(
+    //   '2',
+    //   textAlign: TextAlign.center,
+    // )),
+    // new Tab(
+    //     child: Text(
+    //   '3',
+    //   textAlign: TextAlign.center,
+    // )),
+    // new Tab(
+    //     child: Text(
+    //   '4',
+    //   textAlign: TextAlign.center,
+    // )),
+    // new Tab(
+    //     child: Text(
+    //   '5',
+    //   textAlign: TextAlign.center,
+    // )),
+    // new Tab(
+    //     child: Text(
+    //   '6',
+    //   textAlign: TextAlign.center,
+    // )),
+    // new Tab(
+    //     child: Text(
+    //   '7',
+    //   textAlign: TextAlign.center,
+    // )),
+    // new Tab(
+    //     child: Text(
+    //   '8',
+    //   textAlign: TextAlign.center,
+    // )),
+    // new Tab(
+    //     child: Text(
+    //   '9',
+    //   textAlign: TextAlign.center,
+    // )),
+    // new Tab(
+    //     child: Text(
+    //   '10',
+    //   textAlign: TextAlign.center,
+    // )),
+    // new Tab(
+    //     child: Text(
+    //   '11',
+    //   textAlign: TextAlign.center,
+    // )),
+    // new Tab(
+    //     child: Text(
+    //   '12',
+    //   textAlign: TextAlign.center,
+    // )),
+    // new Tab(
+    //     child: Text(
+    //   '13',
+    //   textAlign: TextAlign.center,
+    // )),
+    // new Tab(
+    //     child: Text(
+    //   '14',
+    //   textAlign: TextAlign.center,
+    // )),
+    // new Tab(
+    //     child: Text(
+    //   '15',
+    //   textAlign: TextAlign.center,
+    // )),
+    // new Tab(
+    //     child: Text(
+    //   '16',
+    //   textAlign: TextAlign.center,
+    // )),
+    // new Tab(
+    //     child: Text(
+    //   '17',
+    //   textAlign: TextAlign.center,
+    // )),
+    // new Tab(
+    //     child: Text(
+    //   '18',
+    //   textAlign: TextAlign.center,
+    // )),
+    // new Tab(
+    //     child: Text(
+    //   '19',
+    //   textAlign: TextAlign.center,
+    // )),
+    // new Tab(
+    //     child: Text(
+    //   '20',
+    //   textAlign: TextAlign.center,
+    // )),
   ];
 
   List<Icon> tabView = [
@@ -119,82 +120,82 @@ class _QuizState extends State<Quiz> {
       Icons.notifications,
       color: Colors.black,
     ),
-    new Icon(
-      Icons.notifications,
-      color: Colors.black,
-    ),
-    new Icon(
-      Icons.notifications,
-      color: Colors.black,
-    ),
-    new Icon(
-      Icons.notifications,
-      color: Colors.black,
-    ),
-    new Icon(
-      Icons.notifications,
-      color: Colors.black,
-    ),
-    new Icon(
-      Icons.notifications,
-      color: Colors.black,
-    ),
-    new Icon(
-      Icons.notifications,
-      color: Colors.black,
-    ),
-    new Icon(
-      Icons.notifications,
-      color: Colors.black,
-    ),
-    new Icon(
-      Icons.notifications,
-      color: Colors.black,
-    ),
-    new Icon(
-      Icons.notifications,
-      color: Colors.black,
-    ),
-    new Icon(
-      Icons.notifications,
-      color: Colors.black,
-    ),
-    new Icon(
-      Icons.notifications,
-      color: Colors.black,
-    ),
-    new Icon(
-      Icons.notifications,
-      color: Colors.black,
-    ),
-    new Icon(
-      Icons.notifications,
-      color: Colors.black,
-    ),
-    new Icon(
-      Icons.notifications,
-      color: Colors.black,
-    ),
-    new Icon(
-      Icons.notifications,
-      color: Colors.black,
-    ),
-    new Icon(
-      Icons.notifications,
-      color: Colors.black,
-    ),
-    new Icon(
-      Icons.notifications,
-      color: Colors.black,
-    ),
-    new Icon(
-      Icons.notifications,
-      color: Colors.black,
-    ),
-    new Icon(
-      Icons.notifications,
-      color: Colors.black,
-    ),
+    // new Icon(
+    //   Icons.notifications,
+    //   color: Colors.black,
+    // ),
+    // new Icon(
+    //   Icons.notifications,
+    //   color: Colors.black,
+    // ),
+    // new Icon(
+    //   Icons.notifications,
+    //   color: Colors.black,
+    // ),
+    // new Icon(
+    //   Icons.notifications,
+    //   color: Colors.black,
+    // ),
+    // new Icon(
+    //   Icons.notifications,
+    //   color: Colors.black,
+    // ),
+    // new Icon(
+    //   Icons.notifications,
+    //   color: Colors.black,
+    // ),
+    // new Icon(
+    //   Icons.notifications,
+    //   color: Colors.black,
+    // ),
+    // new Icon(
+    //   Icons.notifications,
+    //   color: Colors.black,
+    // ),
+    // new Icon(
+    //   Icons.notifications,
+    //   color: Colors.black,
+    // ),
+    // new Icon(
+    //   Icons.notifications,
+    //   color: Colors.black,
+    // ),
+    // new Icon(
+    //   Icons.notifications,
+    //   color: Colors.black,
+    // ),
+    // new Icon(
+    //   Icons.notifications,
+    //   color: Colors.black,
+    // ),
+    // new Icon(
+    //   Icons.notifications,
+    //   color: Colors.black,
+    // ),
+    // new Icon(
+    //   Icons.notifications,
+    //   color: Colors.black,
+    // ),
+    // new Icon(
+    //   Icons.notifications,
+    //   color: Colors.black,
+    // ),
+    // new Icon(
+    //   Icons.notifications,
+    //   color: Colors.black,
+    // ),
+    // new Icon(
+    //   Icons.notifications,
+    //   color: Colors.black,
+    // ),
+    // new Icon(
+    //   Icons.notifications,
+    //   color: Colors.black,
+    // ),
+    // new Icon(
+    //   Icons.notifications,
+    //   color: Colors.black,
+    // ),
   ];
   @override
   Widget build(BuildContext context) {
@@ -231,8 +232,31 @@ class _QuizState extends State<Quiz> {
             tabs: tabs,
           ),
         ),
-        body: Container(
-            color: Colors.amber, child: TabBarView(children: tabView)),
+        body: TabBarView(
+          children: [
+            Stack(
+              children: [
+                Container(
+                  margin: EdgeInsets.only(top: DefaultPaddin),
+                  width: SizeConfig.screenWidth,
+                  height: SizeConfig.screenHeight * 0.25,
+                  color: Colors.amber,
+                  child: Text(
+                    'Every morning, Ba ______ up at six o’clock.',
+                    style: ScriptStyle,
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(top: DefaultPaddin * 10.25),
+                  width: SizeConfig.screenWidth,
+                  height: SizeConfig.screenHeight * 0.6,
+                  color: Colors.green,
+                  child: Text('Bottom'),
+                )
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
