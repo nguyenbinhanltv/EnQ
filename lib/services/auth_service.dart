@@ -18,7 +18,6 @@ class AuthService {
 
     final FirebaseUser user =
         (await _auth.signInWithCredential(credential)).user;
-    // call http request to add user to cloud store
     await UserService()
         .createUser(user.uid, user.displayName, user.photoUrl, 1, 0, []);
   }

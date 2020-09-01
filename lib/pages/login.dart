@@ -69,9 +69,15 @@ class _LoginState extends State<Login> {
           ),
           Visibility(
               visible: loginFlag,
-              child: SpinKitRotatingCircle(
-                color: Colors.black,
-                size: 50.0,
+              child: Container(
+                alignment: Alignment.center,
+                width: SizeConfig.screenWidth,
+                height: SizeConfig.screenHeight,
+                color: Colors.white,
+                child: SpinKitWanderingCubes(
+                  color: Colors.blueAccent,
+                  size: SizeConfig.screenWidth / 2,
+                ),
               ))
         ],
       ),
