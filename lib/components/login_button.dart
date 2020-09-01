@@ -8,7 +8,8 @@ import 'package:EnQ/services/auth_service.dart';
 class LoginButton extends StatelessWidget {
   final String _title;
   final String _imgUrl;
-  LoginButton(this._title, this._imgUrl);
+  final Function isLogin;
+  LoginButton(this._title, this._imgUrl, this.isLogin);
   AuthService auth = new AuthService();
   @override
   Widget build(BuildContext context) {
@@ -17,8 +18,13 @@ class LoginButton extends StatelessWidget {
       height: SizeConfig.screenHeight * 0.08,
       child: FlatButton(
         onPressed: () {
+          this.isLogin();
           auth.handleSignIn().whenComplete(
-              () => Navigator.of(context).popAndPushNamed(AppRouting.home));
+                () => Future.delayed(
+                  Duration(seconds: 3),
+                  () => Navigator.of(context).popAndPushNamed(AppRouting.home),
+                ),
+              );
         },
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(25),
