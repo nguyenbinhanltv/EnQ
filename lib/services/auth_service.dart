@@ -22,8 +22,10 @@ class AuthService {
         .createUser(user.uid, user.displayName, user.photoUrl, 1, 0, []);
   }
 
-  Future _handleSignOut() async {
+  Future handleSignOut() async {
     await _auth.signOut();
-    await _googleSignIn.signOut();
+    await _googleSignIn
+        .signOut()
+        .whenComplete(() => print('sign out completed'));
   }
 }

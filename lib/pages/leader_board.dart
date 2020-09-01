@@ -83,7 +83,6 @@ class _LeaderBoardState extends State<LeaderBoard> {
                   ),
                 ),
                 Container(
-                  // change to ListView.builder
                   margin: EdgeInsets.only(top: DefaultPaddin * 13.5),
                   height: SizeConfig.screenHeight * 0.5,
                   width: SizeConfig.screenWidth,

@@ -1,4 +1,5 @@
 import 'package:EnQ/const/size_config.dart';
+import 'package:EnQ/pages/profile.dart';
 import 'package:EnQ/utils/app_route.dart';
 import 'package:flutter/material.dart';
 
@@ -19,6 +20,9 @@ class _Home extends State<Home> {
         case 2:
           Navigator.of(context).pushNamed(AppRouting.quiz);
           break;
+        case 4:
+          Navigator.of(context).pushNamed(AppRouting.profile);
+          break;
         default:
       }
     });
@@ -29,9 +33,7 @@ class _Home extends State<Home> {
     SizeConfig().init(context);
     return Scaffold(
       body: Center(
-        child: Container(
-          color: Colors.white,
-        ),
+        child: Container(color: Colors.white),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
