@@ -1,6 +1,5 @@
 import 'package:EnQ/const/size_config.dart';
 import 'package:EnQ/const/style.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:EnQ/services/question_service.dart';
@@ -18,101 +17,6 @@ class _QuizState extends State<Quiz> {
       '1',
       textAlign: TextAlign.center,
     )),
-    // new Tab(
-    //     child: Text(
-    //   '2',
-    //   textAlign: TextAlign.center,
-    // )),
-    // new Tab(
-    //     child: Text(
-    //   '3',
-    //   textAlign: TextAlign.center,
-    // )),
-    // new Tab(
-    //     child: Text(
-    //   '4',
-    //   textAlign: TextAlign.center,
-    // )),
-    // new Tab(
-    //     child: Text(
-    //   '5',
-    //   textAlign: TextAlign.center,
-    // )),
-    // new Tab(
-    //     child: Text(
-    //   '6',
-    //   textAlign: TextAlign.center,
-    // )),
-    // new Tab(
-    //     child: Text(
-    //   '7',
-    //   textAlign: TextAlign.center,
-    // )),
-    // new Tab(
-    //     child: Text(
-    //   '8',
-    //   textAlign: TextAlign.center,
-    // )),
-    // new Tab(
-    //     child: Text(
-    //   '9',
-    //   textAlign: TextAlign.center,
-    // )),
-    // new Tab(
-    //     child: Text(
-    //   '10',
-    //   textAlign: TextAlign.center,
-    // )),
-    // new Tab(
-    //     child: Text(
-    //   '11',
-    //   textAlign: TextAlign.center,
-    // )),
-    // new Tab(
-    //     child: Text(
-    //   '12',
-    //   textAlign: TextAlign.center,
-    // )),
-    // new Tab(
-    //     child: Text(
-    //   '13',
-    //   textAlign: TextAlign.center,
-    // )),
-    // new Tab(
-    //     child: Text(
-    //   '14',
-    //   textAlign: TextAlign.center,
-    // )),
-    // new Tab(
-    //     child: Text(
-    //   '15',
-    //   textAlign: TextAlign.center,
-    // )),
-    // new Tab(
-    //     child: Text(
-    //   '16',
-    //   textAlign: TextAlign.center,
-    // )),
-    // new Tab(
-    //     child: Text(
-    //   '17',
-    //   textAlign: TextAlign.center,
-    // )),
-    // new Tab(
-    //     child: Text(
-    //   '18',
-    //   textAlign: TextAlign.center,
-    // )),
-    // new Tab(
-    //     child: Text(
-    //   '19',
-    //   textAlign: TextAlign.center,
-    // )),
-    // new Tab(
-    //     child: Text(
-    //   '20',
-    //   textAlign: TextAlign.center,
-    // )),
   ];
 
   List<Icon> tabView = [
@@ -120,82 +24,6 @@ class _QuizState extends State<Quiz> {
       Icons.notifications,
       color: Colors.black,
     ),
-    // new Icon(
-    //   Icons.notifications,
-    //   color: Colors.black,
-    // ),
-    // new Icon(
-    //   Icons.notifications,
-    //   color: Colors.black,
-    // ),
-    // new Icon(
-    //   Icons.notifications,
-    //   color: Colors.black,
-    // ),
-    // new Icon(
-    //   Icons.notifications,
-    //   color: Colors.black,
-    // ),
-    // new Icon(
-    //   Icons.notifications,
-    //   color: Colors.black,
-    // ),
-    // new Icon(
-    //   Icons.notifications,
-    //   color: Colors.black,
-    // ),
-    // new Icon(
-    //   Icons.notifications,
-    //   color: Colors.black,
-    // ),
-    // new Icon(
-    //   Icons.notifications,
-    //   color: Colors.black,
-    // ),
-    // new Icon(
-    //   Icons.notifications,
-    //   color: Colors.black,
-    // ),
-    // new Icon(
-    //   Icons.notifications,
-    //   color: Colors.black,
-    // ),
-    // new Icon(
-    //   Icons.notifications,
-    //   color: Colors.black,
-    // ),
-    // new Icon(
-    //   Icons.notifications,
-    //   color: Colors.black,
-    // ),
-    // new Icon(
-    //   Icons.notifications,
-    //   color: Colors.black,
-    // ),
-    // new Icon(
-    //   Icons.notifications,
-    //   color: Colors.black,
-    // ),
-    // new Icon(
-    //   Icons.notifications,
-    //   color: Colors.black,
-    // ),
-    // new Icon(
-    //   Icons.notifications,
-    //   color: Colors.black,
-    // ),
-    // new Icon(
-    //   Icons.notifications,
-    //   color: Colors.black,
-    // ),
-    // new Icon(
-    //   Icons.notifications,
-    //   color: Colors.black,
-    // ),
-    // new Icon(
-    //   Icons.notifications,
-    //   color: Colors.black,
-    // ),
   ];
   @override
   Widget build(BuildContext context) {
@@ -240,10 +68,13 @@ class _QuizState extends State<Quiz> {
                   margin: EdgeInsets.only(top: DefaultPaddin),
                   width: SizeConfig.screenWidth,
                   height: SizeConfig.screenHeight * 0.25,
-                  color: Colors.amber,
-                  child: Text(
-                    'Every morning, Ba ______ up at six o’clock.',
-                    style: ScriptStyle,
+                  color: Colors.white,
+                  child: Padding(
+                    padding: EdgeInsets.all(DefaultPaddin * 1.5),
+                    child: Text(
+                      "If David's age is 27 years old in 2011. What was his age in 2003?",
+                      style: ScriptStyle,
+                    ),
                   ),
                 ),
                 Container(
@@ -251,7 +82,36 @@ class _QuizState extends State<Quiz> {
                   width: SizeConfig.screenWidth,
                   height: SizeConfig.screenHeight * 0.6,
                   color: Colors.green,
-                  child: Text('Bottom'),
+                  child: Column(
+                    children: [
+                      Container(
+                        width: SizeConfig.screenWidth * 0.9,
+                        height: 60,
+                        margin: EdgeInsets.only(top: DefaultPaddin * 0.75),
+                        child: RaisedButton(
+                          onPressed: () {},
+                          color: Colors.white,
+                          elevation: 5.0,
+                          shape: RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.circular(DefaultPaddin * 0.8),
+                            side: BorderSide(
+                              color: Colors.black54,
+                            ),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text('A', style: TextStyle(fontSize: 17.0)),
+                              SizedBox(width: DefaultPaddin * 5.25),
+                              Text('19 years',
+                                  style: TextStyle(fontSize: 17.0)),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 )
               ],
             ),

@@ -18,7 +18,6 @@ const TitleStyle = TextStyle(
 const ScriptStyle = TextStyle(
   color: Colors.black,
   fontWeight: FontWeight.normal,
-  decoration: TextDecoration.none,
   fontSize: MediumText,
   fontFamily: FontName,
 );
