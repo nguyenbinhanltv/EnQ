@@ -32,7 +32,10 @@ class _LeaderBoardState extends State<LeaderBoard> {
             },
           ),
           actions: <Widget>[
-            SvgPicture.asset('assets/images/military_tech.svg')
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SvgPicture.asset('assets/images/military_tech.svg'),
+            )
           ],
           bottom: TabBar(
             unselectedLabelColor: Colors.grey,
