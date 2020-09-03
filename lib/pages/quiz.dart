@@ -18,25 +18,11 @@ class _QuizState extends State<Quiz> {
   }
 
   //QuestionService question = new QuestionService();
-  List<Tab> tabs = [
-    new Tab(
-        child: Text(
-      '1',
-      textAlign: TextAlign.center,
-    )),
-  ];
-
-  List<Icon> tabView = [
-    new Icon(
-      Icons.notifications,
-      color: Colors.black,
-    ),
-  ];
   @override
   Widget build(BuildContext context) {
     //question.getQuestions();
     return DefaultTabController(
-      length: tabs.length,
+      length: Question.questions.length,
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -64,13 +50,20 @@ class _QuizState extends State<Quiz> {
             unselectedLabelColor: Colors.black12,
             indicatorColor: Colors.grey,
             indicatorSize: TabBarIndicatorSize.tab,
-            tabs: tabs,
+            tabs: List<Widget>.generate(
+              Question.questions.length,
+              (index) => new Tab(
+                  child: Text(
+                (index + 1).toString(),
+                textAlign: TextAlign.center,
+              )),
+            ),
           ),
         ),
         body: TabBarView(
             children: List<Widget>.generate(
           Question.questions.length,
-          (index) => Stack(
+          (index) => new Stack(
             children: [
               Container(
                 margin: EdgeInsets.only(top: DefaultPaddin),

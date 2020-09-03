@@ -11,21 +11,11 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  AuthService auth = new AuthService();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Profile'),
-      ),
-      body: Container(
-        width: SizeConfig.screenWidth,
-        height: SizeConfig.screenHeight,
-        color: Colors.amber,
-        child: FlatButton(
-            onPressed: () => auth.handleSignOut().whenComplete(
-                () => Navigator.of(context).popAndPushNamed(AppRouting.login)),
-            child: Text('Sign Out')),
       ),
     );
   }
