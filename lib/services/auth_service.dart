@@ -18,14 +18,12 @@ class AuthService {
 
     final FirebaseUser user =
         (await _auth.signInWithCredential(credential)).user;
-    await UserService()
-        .createUser(user.uid, user.displayName, user.photoUrl, 1, 0, []);
+    await UserService().createUser(
+        user.uid, user.displayName, user.photoUrl, 1, 0, [], user.email);
   }
 
   Future handleSignOut() async {
     await _auth.signOut();
-    await _googleSignIn
-        .signOut()
-        .whenComplete(() => print('sign out completed'));
+    await _googleSignIn.signOut();
   }
 }

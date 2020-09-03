@@ -1,6 +1,6 @@
 class Answer {
-  final String id, type, rank;
-  final List<String> questions;
+  final List<String> ans;
+  final String id;
 
-  Answer(this.id, this.type, this.rank, this.questions);
+  Answer(this.ans, this.id);
 }
