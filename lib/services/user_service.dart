@@ -3,7 +3,7 @@ import 'dart:convert';
 
 class UserService {
   Future<http.Response> createUser(String id, String userName, String photoURL,
-      int rank, int point, List<String> testHistory) {
+      int rank, int point, List<String> testHistory, String email) {
     return http.post(
       'https://enq-server.herokuapp.com/users',
       headers: <String, String>{
@@ -15,7 +15,8 @@ class UserService {
         "photoURL": photoURL,
         "rank": rank,
         "point": point,
-        "testHistory": testHistory
+        "testHistory": testHistory,
+        "email": email
       }),
     );
   }

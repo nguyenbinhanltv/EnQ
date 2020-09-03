@@ -1,5 +1,7 @@
 import 'package:EnQ/const/size_config.dart';
 import 'package:EnQ/const/style.dart';
+import 'package:EnQ/models/answer.dart';
+import 'package:EnQ/models/question.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:EnQ/services/question_service.dart';
@@ -10,6 +12,11 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
   //QuestionService question = new QuestionService();
   List<Tab> tabs = [
     new Tab(
@@ -61,62 +68,78 @@ class _QuizState extends State<Quiz> {
           ),
         ),
         body: TabBarView(
-          children: [
-            Stack(
-              children: [
-                Container(
-                  margin: EdgeInsets.only(top: DefaultPaddin),
-                  width: SizeConfig.screenWidth,
-                  height: SizeConfig.screenHeight * 0.25,
-                  color: Colors.white,
-                  child: Padding(
-                    padding: EdgeInsets.all(DefaultPaddin * 1.5),
-                    child: Text(
-                      "If David's age is 27 years old in 2011. What was his age in 2003?",
-                      style: ScriptStyle,
-                    ),
+            children: List<Widget>.generate(
+          Question.questions.length,
+          (index) => Stack(
+            children: [
+              Container(
+                margin: EdgeInsets.only(top: DefaultPaddin),
+                width: SizeConfig.screenWidth,
+                height: SizeConfig.screenHeight * 0.25,
+                color: Colors.white,
+                child: Padding(
+                  padding: EdgeInsets.all(DefaultPaddin * 1.5),
+                  child: Text(
+                    Question.questions[index].title,
+                    style: ScriptStyle,
                   ),
                 ),
-                Container(
-                  margin: EdgeInsets.only(top: DefaultPaddin * 10.25),
-                  width: SizeConfig.screenWidth,
-                  height: SizeConfig.screenHeight * 0.6,
-                  color: Colors.green,
-                  child: Column(
-                    children: [
-                      Container(
-                        width: SizeConfig.screenWidth * 0.9,
-                        height: 60,
-                        margin: EdgeInsets.only(top: DefaultPaddin * 0.75),
-                        child: RaisedButton(
-                          onPressed: () {},
-                          color: Colors.white,
-                          elevation: 5.0,
-                          shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.circular(DefaultPaddin * 0.8),
-                            side: BorderSide(
-                              color: Colors.black54,
-                            ),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text('A', style: TextStyle(fontSize: 17.0)),
-                              SizedBox(width: DefaultPaddin * 5.25),
-                              Text('19 years',
-                                  style: TextStyle(fontSize: 17.0)),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
+              ),
+              Container(
+                margin: EdgeInsets.only(top: DefaultPaddin * 10.25),
+                width: SizeConfig.screenWidth,
+                height: SizeConfig.screenHeight * 0.6,
+                child: AnswersBox(ans: Question.questions[0].answer),
+              )
+            ],
+          ),
+        )),
+      ),
+    );
+  }
+}
+
+class AnswersBox extends StatelessWidget {
+  final Answer ans;
+  const AnswersBox({Key key, this.ans}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    List<String> fields = ["A", "B", "C", "D"];
+    return ListView.builder(
+      itemCount: ans.ans.length,
+      itemBuilder: (BuildContext context, int index) => Column(
+        children: [
+          Container(
+            width: SizeConfig.screenWidth * 0.9,
+            height: 60,
+            margin: EdgeInsets.only(top: DefaultPaddin * 1.5),
+            child: RaisedButton(
+              onPressed: () {},
+              color: Colors.white,
+              elevation: 5.0,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(DefaultPaddin * 0.8),
+                side: BorderSide(
+                  color: Colors.black54,
+                ),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(fields[index], style: TextStyle(fontSize: 17.0)),
+                  //SizedBox(width: DefaultPaddin * 5.25),
+                  Spacer(
+                    flex: 1,
                   ),
-                )
-              ],
+                  Text(ans.ans[index], style: TextStyle(fontSize: 17.0)),
+                  Spacer(
+                    flex: 1,
+                  ),
+                ],
+              ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

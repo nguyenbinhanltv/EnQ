@@ -57,11 +57,13 @@ class _LoginState extends State<Login> {
                   LoginButton(
                       'Sign in with Google',
                       'assets/images/brands-and-logotypes.svg',
+                      'GG',
                       () => setState(() => loginFlag = !loginFlag)),
                   SizedBox(height: DefaultPaddin),
                   LoginButton(
                       'Sign in with Facebook',
                       'assets/images/facebook.svg',
+                      'FB',
                       () => setState(() => loginFlag = !loginFlag)),
                 ],
               ),

@@ -36,6 +36,7 @@ class _Home extends State<Home> {
         child: Container(color: Colors.white),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -60,6 +61,7 @@ class _Home extends State<Home> {
         ],
         currentIndex: 0,
         selectedItemColor: Colors.black,
+        selectedFontSize: 12,
         unselectedItemColor: Colors.black,
         showUnselectedLabels: true,
         onTap: _onItemTapped,
