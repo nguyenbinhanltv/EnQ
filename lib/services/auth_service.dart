@@ -5,7 +5,6 @@ import 'package:EnQ/services/user_service.dart';
 class AuthService {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
   final FirebaseAuth _auth = FirebaseAuth.instance;
-
   Future<FirebaseUser> handleSignIn() async {
     final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
     final GoogleSignInAuthentication googleAuth =
@@ -16,8 +15,7 @@ class AuthService {
       idToken: googleAuth.idToken,
     );
 
-    final FirebaseUser user =
-        (await _auth.signInWithCredential(credential)).user;
+    FirebaseUser user = (await _auth.signInWithCredential(credential)).user;
     await UserService().createUser(
         user.uid, user.displayName, user.photoUrl, 1, 0, [], user.email);
   }

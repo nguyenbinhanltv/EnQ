@@ -1,9 +1,18 @@
 class User {
-  final String userName, id, photoUrl;
+  final String userName, id, photoUrl, email;
   final int rank, point;
-  // final List<String> textHistory; // TextExamHistory id (dont know)
+  final List<String> testHistory;
+  final List<User> friend;
 
-  // User(this.userName, this.id, this.photoUrl, this.rank, this.point,
-  //     this.textHistory);
-  User(this.userName, this.id, this.photoUrl, this.rank, this.point);
+  User(this.userName, this.id, this.photoUrl, this.email, this.rank, this.point,
+      this.testHistory, this.friend);
+
+  static List<User> friends = [
+    User("Baby Cow", "user 1", "assets/images/baby_cow.jpg",
+        'meerkat@gmail.com', 1, 1500, [], []),
+    User("Rabbit", "user 2", "assets/images/rabbit.jpg", 'meerkat@gmail.com', 2,
+        1400, [], []),
+    User("Penguin", "user 3", "assets/images/penguin.jpg", 'meerkat@gmail.com',
+        3, 1350, [], []),
+  ];
 }
