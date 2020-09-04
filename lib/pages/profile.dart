@@ -149,36 +149,40 @@ class FriendsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Card(
-        margin: EdgeInsets.only(top: DefaultPaddin * 0.5),
-        elevation: 5.0,
-        child: InkWell(
-          onTap: () {},
-          child: Container(
-            width: SizeConfig.screenWidth * 0.9,
-            height: 50.0,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: CircleAvatar(
-                    backgroundImage: AssetImage(this.user.photoUrl),
+    return user != null
+        ? Center(
+            child: Card(
+              margin: EdgeInsets.only(top: DefaultPaddin * 0.8),
+              elevation: 5.0,
+              child: InkWell(
+                onTap: () {},
+                child: Container(
+                  width: SizeConfig.screenWidth * 0.9,
+                  height: 50.0,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: CircleAvatar(
+                          backgroundImage: AssetImage(this.user.photoUrl),
+                        ),
+                      ),
+                      Spacer(flex: 1),
+                      Text(this.user.userName),
+                      Spacer(flex: 1),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(this.user.point.toString()),
+                      ),
+                    ],
                   ),
                 ),
-                Spacer(flex: 1),
-                Text(this.user.userName),
-                Spacer(flex: 1),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(this.user.point.toString()),
-                ),
-              ],
+              ),
             ),
-          ),
-        ),
-      ),
-    );
+          )
+        : SizedBox(
+            height: 15.0,
+          );
   }
 }
