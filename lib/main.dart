@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
               fontFamily: FontName,
             ),
       ),
-      debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: true,
       routes: {
         AppRouting.home: (context) => Home(),
         AppRouting.login: (context) => Login(),
