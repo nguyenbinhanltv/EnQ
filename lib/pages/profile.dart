@@ -2,8 +2,6 @@ import 'package:EnQ/components/statistical_card.dart';
 import 'package:EnQ/const/size_config.dart';
 import 'package:EnQ/const/style.dart';
 import 'package:EnQ/models/user.dart';
-import 'package:EnQ/services/auth_service.dart';
-import 'package:EnQ/utils/app_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
