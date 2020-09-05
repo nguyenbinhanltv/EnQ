@@ -33,5 +33,5 @@ class User {
     User("Penguin", "user 3", "assets/images/penguin.jpg", 'meerkat@gmail.com',
         3, 1350, [], []),
     null
-  ];
+  ]; // when get friends array, remember to add an null.
 }
