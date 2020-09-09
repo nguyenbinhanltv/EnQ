@@ -41,7 +41,7 @@ class _LoginState extends State<Login> {
             child: Container(
               margin: EdgeInsets.symmetric(horizontal: DefaultPaddin),
               child: TypewriterAnimatedTextKit(
-                repeatForever: true,
+                repeatForever: false,
                 isRepeatingAnimation: true,
                 text: ['Welcome to EnQ, it will help you improve your English'],
                 textStyle: ScriptStyle,
