@@ -20,17 +20,30 @@ class _LoginState extends State<Login> {
       body: Column(
         children: <Widget>[
           Expanded(
+            flex: 3,
             child: Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage("assets/images/login.jpg"),
+                  image: AssetImage(
+                    "assets/images/login.jpg",
+                  ),
                   fit: BoxFit.cover,
                 ),
               ),
             ),
           ),
           Expanded(
-            child: Column(),
+            child: Column(
+              children: <Widget>[
+                Text(
+                  "Let's get started",
+                  style: TextStyle(
+                      color: Colors.black87,
+                      fontSize: 35,
+                      fontWeight: FontWeight.normal),
+                ),
+              ],
+            ),
           )
         ],
       ),
