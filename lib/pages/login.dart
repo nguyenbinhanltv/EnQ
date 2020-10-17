@@ -20,7 +20,7 @@ class _LoginState extends State<Login> {
       body: Column(
         children: <Widget>[
           Expanded(
-            flex: 3,
+            flex: 2,
             child: Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
@@ -44,7 +44,7 @@ class _LoginState extends State<Login> {
                 ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );
