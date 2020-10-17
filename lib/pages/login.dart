@@ -14,73 +14,24 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  // StreamController<bool> loginFlag = new StreamController();
-  bool loginFlag = false;
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
-    return Container(
-      color: Colors.white,
-      child: Stack(
+    return Scaffold(
+      body: Column(
         children: <Widget>[
-          Container(
-            margin: EdgeInsets.only(top: DefaultPaddin * 0.8),
-            child: SvgPicture.asset(
-              'assets/images/logo-noname.svg',
-              width: SizeConfig.screenWidth,
-              color: Colors.black,
-              alignment: Alignment.topRight,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-              left: DefaultPaddin * 2.0,
-              top: DefaultPaddin * 14.0,
-              right: DefaultPaddin * 6.0,
-            ),
+          Expanded(
             child: Container(
-              margin: EdgeInsets.symmetric(horizontal: DefaultPaddin),
-              child: TypewriterAnimatedTextKit(
-                repeatForever: true,
-                isRepeatingAnimation: true,
-                text: ['Welcome to EnQ, it will help you improve your English'],
-                textStyle: ScriptStyle,
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: DefaultPaddin * 15.0),
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  LoginButton(
-                      'Sign in with Google',
-                      'assets/images/brands-and-logotypes.svg',
-                      'GG',
-                      () => setState(() => loginFlag = !loginFlag)),
-                  SizedBox(height: DefaultPaddin),
-                  LoginButton(
-                      'Sign in with Facebook',
-                      'assets/images/facebook.svg',
-                      'FB',
-                      () => setState(() => loginFlag = !loginFlag)),
-                ],
-              ),
-            ),
-          ),
-          Visibility(
-              visible: loginFlag,
-              child: Container(
-                alignment: Alignment.center,
-                width: SizeConfig.screenWidth,
-                height: SizeConfig.screenHeight,
-                color: Colors.white,
-                child: SpinKitWanderingCubes(
-                  color: Colors.blueAccent,
-                  size: SizeConfig.screenWidth / 2,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("assets/images/login.jpg"),
+                  fit: BoxFit.cover,
                 ),
-              ))
+              ),
+            ),
+          ),
+          Expanded(
+            child: Column(),
+          )
         ],
       ),
     );
