@@ -17,35 +17,61 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: <Widget>[
-          Expanded(
-            flex: 2,
-            child: Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(
-                    "assets/images/login.jpg",
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Container(
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    margin: const EdgeInsets.only(
+                      top: 80,
+                    ),
+                    child: Text("EnQ"),
                   ),
-                  fit: BoxFit.cover,
-                ),
+                  Text("We will help improve your English"),
+                ],
               ),
             ),
-          ),
-          Expanded(
-            child: Column(
-              children: <Widget>[
-                Text(
-                  "Let's get started",
-                  style: TextStyle(
-                      color: Colors.black87,
-                      fontSize: 35,
-                      fontWeight: FontWeight.normal),
-                ),
-              ],
+            Container(
+              child: Center(
+                child: Image.asset("assets/images/login.jpg"),
+              ),
             ),
-          ),
-        ],
+            Container(
+              child: Text("Let's get started"),
+            ),
+            Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  Container(
+                    margin: EdgeInsets.only(
+                      bottom: 35,
+                    ),
+                    child: SvgPicture.asset(
+                      "assets/images/google.svg",
+                      width: 50,
+                      height: 50,
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(
+                      bottom: 35,
+                    ),
+                    child: SvgPicture.asset(
+                      "assets/images/facebook.svg",
+                      width: 50,
+                      height: 50,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
