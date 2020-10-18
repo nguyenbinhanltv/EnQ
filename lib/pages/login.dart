@@ -3,7 +3,9 @@ import 'dart:async';
 import 'package:EnQ/components/login_button.dart';
 import 'package:EnQ/const/size_config.dart';
 import 'package:EnQ/const/style.dart';
+import 'package:EnQ/pages/home.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gallery/studies/starter/home.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -14,81 +16,94 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  bool loginFlag = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Container(
-              child: Column(
+        child: Container(
+          width: double.infinity,
+          height: MediaQuery.of(context).size.height,
+          padding: EdgeInsets.symmetric(horizontal: 30, vertical: 50),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Column(
                 children: <Widget>[
+                  Text(
+                    "EnQ",
+                    style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    "We will help you improve your English",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 15, color: Colors.grey[700]),
+                  ),
                   Container(
-                    margin: const EdgeInsets.only(
-                      top: 60,
-                    ),
-                    child: Text(
-                      "EnQ",
-                      style: TextStyle(
-                        color: Colors.black87,
-                        fontSize: 35,
-                        fontWeight: FontWeight.bold,
+                    height: MediaQuery.of(context).size.height / 2,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('assets/images/login.jpg'),
                       ),
                     ),
                   ),
-                  Text(
-                    "We will help improve your English",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.black87, fontSize: 16),
+                  Column(
+                    children: <Widget>[
+                      MaterialButton(
+                        minWidth: double.infinity,
+                        height: 60,
+                        onPressed: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => Home()));
+                        },
+                        color: Colors.grey[100],
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Text(
+                          "Continue with Google",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Container(
+                        child: MaterialButton(
+                          minWidth: double.infinity,
+                          height: 60,
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Home()));
+                          },
+                          color: Colors.grey[100],
+                          elevation: 0,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Text(
+                            "Continue with Facebook",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 18,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
-            ),
-            Container(
-              child: Center(
-                child: Image.asset("assets/images/login.jpg"),
-              ),
-            ),
-            Container(
-              child: Text(
-                "Let's get started",
-                style: TextStyle(
-                  color: Colors.black87,
-                  fontSize: 35,
-                  fontWeight: FontWeight.w200,
-                ),
-              ),
-            ),
-            Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  Container(
-                    margin: EdgeInsets.only(
-                      bottom: 35,
-                    ),
-                    child: SvgPicture.asset(
-                      "assets/images/google.svg",
-                      width: 50,
-                      height: 50,
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(
-                      bottom: 30,
-                    ),
-                    child: SvgPicture.asset(
-                      "assets/images/facebook.svg",
-                      width: 50,
-                      height: 50,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
