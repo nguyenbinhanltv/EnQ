@@ -3,7 +3,9 @@ import 'dart:async';
 import 'package:EnQ/components/login_button.dart';
 import 'package:EnQ/const/size_config.dart';
 import 'package:EnQ/const/style.dart';
+import 'package:EnQ/pages/home.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gallery/studies/starter/home.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -52,7 +54,10 @@ class _LoginState extends State<Login> {
                       MaterialButton(
                         minWidth: double.infinity,
                         height: 60,
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => Home()));
+                        },
                         color: Colors.grey[100],
                         elevation: 0,
                         shape: RoundedRectangleBorder(
@@ -73,7 +78,12 @@ class _LoginState extends State<Login> {
                         child: MaterialButton(
                           minWidth: double.infinity,
                           height: 60,
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Home()));
+                          },
                           color: Colors.grey[100],
                           elevation: 0,
                           shape: RoundedRectangleBorder(
