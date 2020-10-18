@@ -27,11 +27,22 @@ class _LoginState extends State<Login> {
                 children: <Widget>[
                   Container(
                     margin: const EdgeInsets.only(
-                      top: 80,
+                      top: 60,
                     ),
-                    child: Text("EnQ"),
+                    child: Text(
+                      "EnQ",
+                      style: TextStyle(
+                        color: Colors.black87,
+                        fontSize: 35,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
-                  Text("We will help improve your English"),
+                  Text(
+                    "We will help improve your English",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: Colors.black87, fontSize: 16),
+                  ),
                 ],
               ),
             ),
@@ -41,7 +52,14 @@ class _LoginState extends State<Login> {
               ),
             ),
             Container(
-              child: Text("Let's get started"),
+              child: Text(
+                "Let's get started",
+                style: TextStyle(
+                  color: Colors.black87,
+                  fontSize: 35,
+                  fontWeight: FontWeight.w200,
+                ),
+              ),
             ),
             Container(
               child: Row(
@@ -59,7 +77,7 @@ class _LoginState extends State<Login> {
                   ),
                   Container(
                     margin: EdgeInsets.only(
-                      bottom: 35,
+                      bottom: 30,
                     ),
                     child: SvgPicture.asset(
                       "assets/images/facebook.svg",
