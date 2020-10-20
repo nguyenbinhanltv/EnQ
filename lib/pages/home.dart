@@ -1,4 +1,5 @@
 import 'package:EnQ/const/size_config.dart';
+import 'package:EnQ/components/bottom_bar.dart';
 import 'package:EnQ/pages/profile.dart';
 import 'package:EnQ/services/auth_service.dart';
 import 'package:EnQ/utils/app_route.dart';
@@ -30,161 +31,39 @@ class _Home extends State<Home> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        bottomIcons = BottomIcons.Home;
-                      });
+                  BottomBar(
+                    onPressed: () {
+                      bottomIcons = BottomIcons.Home;
                     },
-                    child: bottomIcons == BottomIcons.Home
-                        ? Container(
-                            decoration: BoxDecoration(
-                              color: Colors.indigo.shade100.withOpacity(0.6),
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                            padding: EdgeInsets.only(
-                              left: 16,
-                              right: 16,
-                              top: 8,
-                              bottom: 8,
-                            ),
-                            child: Row(
-                              children: <Widget>[
-                                Icon(
-                                  EvaIcons.home,
-                                  color: Colors.indigo,
-                                ),
-                                SizedBox(
-                                  width: 8,
-                                ),
-                                Text(
-                                  "Home",
-                                  style: TextStyle(
-                                      color: Colors.indigo,
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                          )
-                        : Icon(EvaIcons.home),
+                    bottomIcons: bottomIcons == BottomIcons.Home ? true : false,
+                    text: "Home",
+                    icons: EvaIcons.home,
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        bottomIcons = BottomIcons.Leader;
-                      });
+                  BottomBar(
+                    onPressed: () {
+                      bottomIcons = BottomIcons.Leader;
                     },
-                    child: bottomIcons == BottomIcons.Leader
-                        ? Container(
-                            decoration: BoxDecoration(
-                              color: Colors.indigo.shade100.withOpacity(0.6),
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                            padding: EdgeInsets.only(
-                              left: 16,
-                              right: 16,
-                              top: 8,
-                              bottom: 8,
-                            ),
-                            child: Row(
-                              children: <Widget>[
-                                Icon(
-                                  EvaIcons.barChartOutline,
-                                  color: Colors.indigo,
-                                ),
-                                SizedBox(
-                                  width: 8,
-                                ),
-                                Text(
-                                  "Leader",
-                                  style: TextStyle(
-                                      color: Colors.indigo,
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                          )
-                        : Icon(EvaIcons.barChartOutline),
+                    bottomIcons:
+                        bottomIcons == BottomIcons.Leader ? true : false,
+                    text: "Leader",
+                    icons: EvaIcons.barChartOutline,
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        bottomIcons = BottomIcons.Quiz;
-                      });
+                  BottomBar(
+                    onPressed: () {
+                      bottomIcons = BottomIcons.Quiz;
                     },
-                    child: bottomIcons == BottomIcons.Quiz
-                        ? Container(
-                            decoration: BoxDecoration(
-                              color: Colors.indigo.shade100.withOpacity(0.6),
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                            padding: EdgeInsets.only(
-                              left: 16,
-                              right: 16,
-                              top: 8,
-                              bottom: 8,
-                            ),
-                            child: Row(
-                              children: <Widget>[
-                                Icon(
-                                  EvaIcons.listOutline,
-                                  color: Colors.indigo,
-                                ),
-                                SizedBox(
-                                  width: 8,
-                                ),
-                                Text(
-                                  "Quiz",
-                                  style: TextStyle(
-                                      color: Colors.indigo,
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                          )
-                        : Icon(EvaIcons.listOutline),
+                    bottomIcons: bottomIcons == BottomIcons.Quiz ? true : false,
+                    text: "Quiz",
+                    icons: EvaIcons.listOutline,
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        bottomIcons = BottomIcons.Profile;
-                      });
+                  BottomBar(
+                    onPressed: () {
+                      bottomIcons = BottomIcons.Profile;
                     },
-                    child: bottomIcons == BottomIcons.Profile
-                        ? Container(
-                            decoration: BoxDecoration(
-                              color: Colors.indigo.shade100.withOpacity(0.6),
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                            padding: EdgeInsets.only(
-                              left: 16,
-                              right: 16,
-                              top: 8,
-                              bottom: 8,
-                            ),
-                            child: Row(
-                              children: <Widget>[
-                                Icon(
-                                  EvaIcons.personOutline,
-                                  color: Colors.indigo,
-                                ),
-                                SizedBox(
-                                  width: 8,
-                                ),
-                                Text(
-                                  "Profile",
-                                  style: TextStyle(
-                                      color: Colors.indigo,
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                          )
-                        : Icon(EvaIcons.personOutline),
+                    bottomIcons:
+                        bottomIcons == BottomIcons.Profile ? true : false,
+                    text: "Profile",
+                    icons: EvaIcons.personOutline,
                   ),
                 ],
               ),
