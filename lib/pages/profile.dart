@@ -2,6 +2,8 @@ import 'package:EnQ/components/statistical_card.dart';
 import 'package:EnQ/const/size_config.dart';
 import 'package:EnQ/const/style.dart';
 import 'package:EnQ/models/user.dart';
+import 'package:EnQ/services/auth_service.dart';
+import 'package:EnQ/utils/app_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -15,12 +17,19 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
+    AuthService auth = new AuthService();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
         centerTitle: true,
-        title: Text('Profile', style: ScriptStyle),
+        title: Text(
+          'Profile',
+          style: TextStyle(
+            color: Colors.black87,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         leading: IconButton(
           icon: SvgPicture.asset(
             'assets/images/arrow_back.svg',
@@ -130,6 +139,24 @@ class _ProfileState extends State<Profile> {
                     itemCount: User.friends.length,
                     itemBuilder: (BuildContext context, int index) =>
                         FriendsCard(user: User.friends[index]),
+                  ),
+                ),
+                Container(
+                  color: Colors.white,
+                  alignment: Alignment.center,
+                  child: MaterialButton(
+                    onPressed: () => auth.handleSignOut().whenComplete(
+                          () => Navigator.of(context)
+                              .popAndPushNamed(AppRouting.login),
+                        ),
+                    color: Colors.grey[100],
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Text(
+                      'Sign Out',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ),
               ],
