@@ -34,13 +34,67 @@ class _Home extends State<Home> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     AuthService auth = new AuthService();
-
     return Scaffold(
-      body: Center(
-        child: Container(
-          width: SizeConfig.screenWidth,
-          height: SizeConfig.screenHeight,
-          color: Colors.white,
+      body: Container(
+        child: SafeArea(
+          child: Column(
+            children: [
+              SizedBox(
+                height: 40,
+              ),
+              Container(
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Text(
+                          "Hello, Akita",
+                          style: TextStyle(
+                              fontSize: 30, fontWeight: FontWeight.bold),
+                        ),
+                        CircleAvatar(
+                          radius: 20,
+                          backgroundImage:
+                              AssetImage('assets/images/baby_lion.jpg'),
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Column(
+                      children: [
+                        Row(
+                          children: [
+                            Text(
+                              "Popular",
+                              style: TextStyle(
+                                  fontSize: 30, fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          height: 200,
+                          child: ListView(
+                            scrollDirection: Axis.horizontal,
+                            children: [
+                              promoCard('assets/images/rabbit.jpg'),
+                              promoCard('assets/images/pig.jpg'),
+                              promoCard('assets/images/penguin.jpg'),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -73,6 +127,36 @@ class _Home extends State<Home> {
         unselectedItemColor: Colors.black,
         showUnselectedLabels: true,
         onTap: _onItemTapped,
+      ),
+    );
+  }
+
+  Widget promoCard(image) {
+    return AspectRatio(
+      aspectRatio: 3 / 2,
+      child: Container(
+        margin: EdgeInsets.only(right: 20),
+        decoration: BoxDecoration(
+          color: Colors.orange,
+          borderRadius: BorderRadius.circular(20),
+          image: DecorationImage(
+            fit: BoxFit.cover,
+            image: AssetImage(image),
+          ),
+        ),
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            gradient: LinearGradient(
+              begin: Alignment.bottomRight,
+              stops: [0.1, 0.9],
+              colors: [
+                Colors.black.withOpacity(.8),
+                Colors.black.withOpacity(.1),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }

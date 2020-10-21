@@ -150,7 +150,6 @@ class _ProfileState extends State<Profile> {
                               .popAndPushNamed(AppRouting.login),
                         ),
                     color: Colors.grey[100],
-                    elevation: 0,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
