@@ -1,5 +1,4 @@
 import 'package:EnQ/const/size_config.dart';
-import 'package:EnQ/components/bottom_bar.dart';
 import 'package:EnQ/pages/profile.dart';
 import 'package:EnQ/services/auth_service.dart';
 import 'package:EnQ/utils/app_route.dart';
