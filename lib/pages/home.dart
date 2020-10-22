@@ -1,6 +1,4 @@
 import 'package:EnQ/const/size_config.dart';
-import 'package:EnQ/const/style.dart';
-import 'package:EnQ/models/recent.dart';
 import 'package:EnQ/pages/profile.dart';
 import 'package:EnQ/services/auth_service.dart';
 import 'package:EnQ/utils/app_route.dart';
@@ -92,24 +90,6 @@ class _Home extends State<Home> {
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Column(
-                      children: [
-                        Row(
-                          children: [
-                            Text(
-                              "Recent",
-                              style: TextStyle(
-                                fontSize: 30,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
                   ],
                 ),
               ),
@@ -153,11 +133,10 @@ class _Home extends State<Home> {
 
   Widget promoCard(image) {
     return AspectRatio(
-      aspectRatio: 2.5 / 2.5,
+      aspectRatio: 3 / 2.1,
       child: Container(
         margin: EdgeInsets.only(right: 20),
         decoration: BoxDecoration(
-          color: Colors.white,
           borderRadius: BorderRadius.circular(20),
           image: DecorationImage(
             fit: BoxFit.cover,
