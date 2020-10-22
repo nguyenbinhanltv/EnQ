@@ -133,28 +133,14 @@ class _Home extends State<Home> {
 
   Widget promoCard(image) {
     return AspectRatio(
-      aspectRatio: 3 / 2,
+      aspectRatio: 3 / 2.1,
       child: Container(
         margin: EdgeInsets.only(right: 20),
         decoration: BoxDecoration(
-          color: Colors.orange,
           borderRadius: BorderRadius.circular(20),
           image: DecorationImage(
             fit: BoxFit.cover,
             image: AssetImage(image),
-          ),
-        ),
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            gradient: LinearGradient(
-              begin: Alignment.bottomRight,
-              stops: [0.1, 0.9],
-              colors: [
-                Colors.black.withOpacity(.8),
-                Colors.black.withOpacity(.1),
-              ],
-            ),
           ),
         ),
       ),
