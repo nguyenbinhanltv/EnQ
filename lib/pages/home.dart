@@ -1,4 +1,6 @@
 import 'package:EnQ/const/size_config.dart';
+import 'package:EnQ/const/style.dart';
+import 'package:EnQ/models/recent.dart';
 import 'package:EnQ/pages/profile.dart';
 import 'package:EnQ/services/auth_service.dart';
 import 'package:EnQ/utils/app_route.dart';
@@ -106,12 +108,6 @@ class _Home extends State<Home> {
                             ),
                           ],
                         ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Expanded(
-                          child: Text("ahaiaii"),
-                        ),
                       ],
                     ),
                   ],
@@ -168,19 +164,6 @@ class _Home extends State<Home> {
             image: AssetImage(image),
           ),
         ),
-        // child: Container(
-        //   decoration: BoxDecoration(
-        //     borderRadius: BorderRadius.circular(20),
-        //     gradient: LinearGradient(
-        //       begin: Alignment.bottomRight,
-        //       stops: [0.1, 0.9],
-        //       colors: [
-        //         Colors.black.withOpacity(.8),
-        //         Colors.black.withOpacity(.1),
-        //       ],
-        //     ),
-        //   ),
-        // ),
       ),
     );
   }
