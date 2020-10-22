@@ -90,6 +90,30 @@ class _Home extends State<Home> {
                         ),
                       ],
                     ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Column(
+                      children: [
+                        Row(
+                          children: [
+                            Text(
+                              "Recent",
+                              style: TextStyle(
+                                fontSize: 30,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Expanded(
+                          child: Text("ahaiaii"),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ),
@@ -133,30 +157,30 @@ class _Home extends State<Home> {
 
   Widget promoCard(image) {
     return AspectRatio(
-      aspectRatio: 3 / 2,
+      aspectRatio: 2.5 / 2.5,
       child: Container(
         margin: EdgeInsets.only(right: 20),
         decoration: BoxDecoration(
-          color: Colors.orange,
+          color: Colors.white,
           borderRadius: BorderRadius.circular(20),
           image: DecorationImage(
             fit: BoxFit.cover,
             image: AssetImage(image),
           ),
         ),
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            gradient: LinearGradient(
-              begin: Alignment.bottomRight,
-              stops: [0.1, 0.9],
-              colors: [
-                Colors.black.withOpacity(.8),
-                Colors.black.withOpacity(.1),
-              ],
-            ),
-          ),
-        ),
+        // child: Container(
+        //   decoration: BoxDecoration(
+        //     borderRadius: BorderRadius.circular(20),
+        //     gradient: LinearGradient(
+        //       begin: Alignment.bottomRight,
+        //       stops: [0.1, 0.9],
+        //       colors: [
+        //         Colors.black.withOpacity(.8),
+        //         Colors.black.withOpacity(.1),
+        //       ],
+        //     ),
+        //   ),
+        // ),
       ),
     );
   }
