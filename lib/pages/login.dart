@@ -50,54 +50,18 @@ class _LoginState extends State<Login> {
                     ),
                   ),
                   Column(
-                    children: <Widget>[
-                      MaterialButton(
-                        minWidth: double.infinity,
-                        height: 60,
-                        onPressed: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => Home()));
-                        },
-                        color: Colors.grey[100],
-                        elevation: 0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Text(
-                          "Continue with Google",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Container(
-                        child: MaterialButton(
-                          minWidth: double.infinity,
-                          height: 60,
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Home()));
-                          },
-                          color: Colors.grey[100],
-                          elevation: 0,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Text(
-                            "Continue with Facebook",
-                            style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 18,
-                            ),
-                          ),
-                        ),
-                      ),
+                    children: [
+                      LoginButton(
+                          'Sign in with Google',
+                          'assets/images/google.svg',
+                          'GG',
+                          () => setState(() => loginFlag = !loginFlag)),
+                      SizedBox(height: DefaultPaddin),
+                      LoginButton(
+                          'Sign in with Facebook',
+                          'assets/images/facebook.svg',
+                          'FB',
+                          () => setState(() => loginFlag = !loginFlag)),
                     ],
                   ),
                 ],
