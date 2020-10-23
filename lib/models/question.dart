@@ -20,6 +20,13 @@ class Question {
       'Every morning, Ba ______ up at six o’clock.',
       'grammar',
       Answer(['to get', 'get', 'gets', 'is getting'], 'ans id 1'),
+    ),
+    Question(
+      'id 1',
+      'easy',
+      'Every morning, Ba ______ up at six o’clock.',
+      'grammar',
+      Answer(['to get', 'get', 'gets', 'is getting'], 'ans id 1'),
     )
   ];
 }

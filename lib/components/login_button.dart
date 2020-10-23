@@ -15,9 +15,9 @@ class LoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: SizeConfig.screenWidth * 0.7,
-      height: SizeConfig.screenHeight * 0.08,
-      child: FlatButton(
+      child: MaterialButton(
+        minWidth: double.infinity,
+        height: 60,
         onPressed: () {
           this.isLogin();
           if (this._type == 'GG') {
@@ -32,11 +32,13 @@ class LoginButton extends StatelessWidget {
             Navigator.of(context).popAndPushNamed(AppRouting.home);
           }
         },
+        color: Colors.grey[100],
+        elevation: 0,
         shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(25),
-            side: BorderSide(color: Colors.black)),
+          borderRadius: BorderRadius.circular(15),
+        ),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             SvgPicture.asset(
               this._imgUrl,
@@ -46,11 +48,11 @@ class LoginButton extends StatelessWidget {
             Text(
               this._title,
               style: TextStyle(
-                fontSize: SmallText,
-                fontFamily: FontName,
-              ),
+                  fontSize: SmallText,
+                  fontFamily: FontName,
+                  fontWeight: FontWeight.w200),
             ),
-            Icon(Icons.arrow_forward),
+            // Icon(Icons.arrow_forward),
           ],
         ),
       ),
