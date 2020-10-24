@@ -4,6 +4,7 @@ import 'package:EnQ/services/auth_service.dart';
 import 'package:EnQ/utils/app_route.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -82,9 +83,12 @@ class _Home extends State<Home> {
                           child: ListView(
                             scrollDirection: Axis.horizontal,
                             children: [
-                              promoCard('assets/images/rabbit.jpg'),
-                              promoCard('assets/images/pig.jpg'),
-                              promoCard('assets/images/penguin.jpg'),
+                              popularCard(
+                                  'assets/images/undraw_book_lover_mkck.png'),
+                              popularCard(
+                                  'assets/images/undraw_book_reading_kx9s.png'),
+                              popularCard(
+                                  'assets/images/undraw_Reading_book_re_kqpk.png'),
                             ],
                           ),
                         ),
@@ -131,7 +135,7 @@ class _Home extends State<Home> {
     );
   }
 
-  Widget promoCard(image) {
+  Widget popularCard(image) {
     return AspectRatio(
       aspectRatio: 3 / 2.1,
       child: Container(
@@ -139,8 +143,14 @@ class _Home extends State<Home> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           image: DecorationImage(
-            fit: BoxFit.cover,
             image: AssetImage(image),
+          ),
+        ),
+        child: Container(
+          child: Row(
+            children: [
+              Text("Type: Grammar"),
+            ],
           ),
         ),
       ),
