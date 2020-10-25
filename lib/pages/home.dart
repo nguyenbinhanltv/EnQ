@@ -146,13 +146,6 @@ class _Home extends State<Home> {
             image: AssetImage(image),
           ),
         ),
-        child: Container(
-          child: Row(
-            children: [
-              Text("Type: Grammar"),
-            ],
-          ),
-        ),
       ),
     );
   }
