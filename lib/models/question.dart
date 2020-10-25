@@ -15,11 +15,11 @@ class Question {
       Answer(['to get', 'get', 'gets', 'is getting'], 'ans id 1'),
     ),
     Question(
-      'id 1',
+      'id 2',
       'easy',
       ' Hi,  ______ name is Phong. I’m a student.',
       'grammar',
-      Answer(['My', 'His', 'Her', 'Our'], 'ans id 1'),
+      Answer(['My', 'His', 'Her', 'Our'], 'ans id 2'),
     ),
     Question(
       'id 1',
@@ -76,26 +76,16 @@ class Question {
     Question(
       'id 1',
       'easy',
-      'Which sentence is correct?',
+      'My sister can’t swim _________. She’s afraid of water.',
       'grammar',
-      Answer([
-        'Do your brother watches TV in the evening?',
-        'Is your brother watches TV in the evening?',
-        'Does your brother watches TV in the evening?',
-        'Does your brother watch TV in the evening?'
-      ], 'ans id 1'),
+      Answer(['because', 'and', 'but', 'so'], 'ans id 1'),
     ),
     Question(
       'id 1',
       'easy',
-      'Which sentence is correct?',
+      ' Last summer, I _________. Finishing with my uncle in the afternoon..',
       'grammar',
-      Answer([
-        'There is a flower garden to the left of the house.',
-        'There is a flowers garden to the left of the house.',
-        'There is a flower garden the left of the house.',
-        'There is a flower gardens to the left of the house.'
-      ], 'ans id 1'),
+      Answer(['go', 'went', 'goes', 'going'], 'ans id 1'),
     ),
   ];
 }

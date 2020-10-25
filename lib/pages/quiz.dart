@@ -82,7 +82,7 @@ class _QuizState extends State<Quiz> {
                 margin: EdgeInsets.only(top: DefaultPaddin * 10.25),
                 width: SizeConfig.screenWidth,
                 height: SizeConfig.screenHeight * 0.6,
-                child: AnswersBox(ans: Question.questions[0].answer),
+                child: AnswersBox(ans: Question.questions[index].answer),
               )
             ],
           ),
