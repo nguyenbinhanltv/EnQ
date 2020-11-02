@@ -23,7 +23,7 @@ class LoginButton extends StatelessWidget {
           if (this._type == 'GG') {
             auth.handleSignIn().whenComplete(
                   () => Future.delayed(
-                    Duration(seconds: 2),
+                    Duration(seconds: 1),
                     () =>
                         Navigator.of(context).popAndPushNamed(AppRouting.home),
                   ),

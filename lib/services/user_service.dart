@@ -21,4 +21,8 @@ class UserService {
       }),
     );
   }
+
+  Future<http.Response> getUsers() {
+    return http.get(Enviroment.prod + '/users');
+  }
 }

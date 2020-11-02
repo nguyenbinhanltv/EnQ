@@ -3,6 +3,7 @@ import 'package:EnQ/pages/profile.dart';
 import 'package:EnQ/services/auth_service.dart';
 import 'package:EnQ/utils/app_route.dart';
 import 'package:flutter/material.dart';
+import 'package:EnQ/services/user_service.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -30,10 +31,16 @@ class _Home extends State<Home> {
   }
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    UserService().getUsers().then((value) => print(value.body));
+  }
+
+  @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     AuthService auth = new AuthService();
-
     return Scaffold(
       body: Center(
         child: Container(
