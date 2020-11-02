@@ -2,9 +2,9 @@ import 'package:EnQ/const/size_config.dart';
 import 'package:EnQ/const/style.dart';
 import 'package:EnQ/models/answer.dart';
 import 'package:EnQ/models/question.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:EnQ/services/question_service.dart';
 
 class Quiz extends StatefulWidget {
   @override
@@ -73,7 +73,7 @@ class _QuizState extends State<Quiz> {
                 child: Padding(
                   padding: EdgeInsets.all(DefaultPaddin * 1.5),
                   child: Text(
-                    Question.questions[index].title,
+                    Question.questions[questionNumber].title,
                     style: ScriptStyle,
                   ),
                 ),
@@ -82,7 +82,7 @@ class _QuizState extends State<Quiz> {
                 margin: EdgeInsets.only(top: DefaultPaddin * 10.25),
                 width: SizeConfig.screenWidth,
                 height: SizeConfig.screenHeight * 0.6,
-                child: AnswersBox(ans: Question.questions[0].answer),
+                child: AnswersBox(ans: Question.questions[index].answer),
               )
             ],
           ),
@@ -92,9 +92,31 @@ class _QuizState extends State<Quiz> {
   }
 }
 
+var finalScore = 0;
+var questionNumber = 0;
+
+// void nextQuestion() {
+//   // ignore: unused_element
+//   setState() {
+//     if (questionNumber == Question.questions.length) {
+//       Navigator.push(
+//           context,
+//           MaterialPageRoute(
+//               builder: (context) => Summary(
+//                     score: finalScore,
+//                   )));
+//     } else {
+//       questionNumber++;
+//     }
+//   }
+// }
+
 class AnswersBox extends StatelessWidget {
   final Answer ans;
-  const AnswersBox({Key key, this.ans}) : super(key: key);
+  const AnswersBox({
+    Key key,
+    this.ans,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     List<String> fields = ["A", "B", "C", "D"];
@@ -107,7 +129,15 @@ class AnswersBox extends StatelessWidget {
             height: 60,
             margin: EdgeInsets.only(top: DefaultPaddin * 1.5),
             child: RaisedButton(
-              onPressed: () {},
+              onPressed: () {
+                if (ans.ans[index] == ans.correctAnswer) {
+                  debugPrint("Correct");
+                  finalScore++;
+                } else {
+                  debugPrint("Wrong");
+                }
+                // nextQuestion();
+              },
               color: Colors.white,
               elevation: 5.0,
               shape: RoundedRectangleBorder(
@@ -133,6 +163,30 @@ class AnswersBox extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class Summary extends StatelessWidget {
+  final int score;
+  Summary({Key key, @required this.score}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return new WillPopScope(
+      onWillPop: null,
+      child: Scaffold(
+        body: Container(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                "Your Result: $score",
+                style: TextStyle(fontSize: 35.0),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

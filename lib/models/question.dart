@@ -18,11 +18,18 @@ class Question {
       Answer(['to get', 'get', 'gets', 'is getting'], 'ans id 1'),
     ),
     Question(
-      'id 1',
+      'id 2',
       'easy',
       'Every morning, Ba ______ up at six o’clock.',
       Type.Grammar,
       Answer(['to get', 'get', 'gets', 'is getting'], 'ans id 1'),
-    )
+    ),
+    Question(
+      'id 10',
+      'easy',
+      ' Last summer, I _________. Finishing with my uncle in the afternoon..',
+      Type.Grammar,
+      Answer(['go', 'went', 'goes', 'going'], 'went'),
+    ),
   ];
 }
