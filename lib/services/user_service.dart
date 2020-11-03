@@ -6,7 +6,7 @@ class UserService {
   Future<http.Response> createUser(String id, String userName, String photoURL,
       int rank, int point, List<String> testHistory, String email) {
     return http.post(
-      Enviroment.prod + '/users',
+      Enviroment.local + '/users',
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -23,6 +23,6 @@ class UserService {
   }
 
   Future<http.Response> getUsers() {
-    return http.get(Enviroment.prod + '/users');
+    return http.get(Enviroment.local + '/users');
   }
 }

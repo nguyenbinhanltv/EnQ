@@ -54,12 +54,12 @@ class _ProfileState extends State<Profile> {
               border: Border(
                 top: BorderSide(
                   width: 1.0,
-                  color: Colors.black,
+                  color: Colors.grey,
                   style: BorderStyle.solid,
                 ),
                 bottom: BorderSide(
                   width: 1.0,
-                  color: Colors.black,
+                  color: Colors.grey,
                   style: BorderStyle.solid,
                 ),
               ),

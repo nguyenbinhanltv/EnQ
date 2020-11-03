@@ -1,3 +1,4 @@
+import 'package:EnQ/components/popular_card.dart';
 import 'package:EnQ/const/size_config.dart';
 import 'package:EnQ/const/style.dart';
 import 'package:EnQ/pages/profile.dart';
@@ -23,7 +24,7 @@ class _Home extends State<Home> {
           Navigator.of(context).pushNamed(AppRouting.leaderBoard);
           break;
         case 2:
-          Navigator.of(context).pushNamed(AppRouting.quiz);
+          Navigator.of(context).pushNamed(AppRouting.categories);
           break;
         case 3:
           Navigator.of(context).pushNamed(AppRouting.profile);
@@ -37,7 +38,7 @@ class _Home extends State<Home> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    UserService().getUsers().then((value) => print(value.body));
+    //UserService().getUsers().then((value) => print(value.body));
   }
 
   @override
@@ -74,18 +75,13 @@ class _Home extends State<Home> {
                     ),
                     Column(
                       children: [
-                        Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  left: DefaultPaddin * 1.6),
-                              child: Text(
-                                "Popular",
-                                style: TextStyle(
-                                    fontSize: 22.5, fontFamily: FontName),
-                              ),
-                            ),
-                          ],
+                        Padding(
+                          padding: const EdgeInsets.only(left: DefaultPaddin),
+                          child: Text(
+                            "Popular",
+                            style:
+                                TextStyle(fontSize: 22.5, fontFamily: FontName),
+                          ),
                         ),
                         SizedBox(
                           height: 20,
@@ -95,14 +91,23 @@ class _Home extends State<Home> {
                           child: ListView(
                             scrollDirection: Axis.horizontal,
                             children: [
-                              popularCard(
+                              PopularCard(
                                   'assets/images/undraw_book_lover_mkck.png'),
-                              popularCard(
+                              PopularCard(
                                   'assets/images/undraw_book_reading_kx9s.png'),
-                              popularCard(
+                              PopularCard(
                                   'assets/images/undraw_Reading_book_re_kqpk.png'),
                             ],
                           ),
+                        ),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Text(
+                          'Recent',
+                          style:
+                              TextStyle(fontSize: 22.5, fontFamily: FontName),
                         ),
                       ],
                     ),
@@ -126,7 +131,7 @@ class _Home extends State<Home> {
           ),
           BottomNavigationBarItem(
             icon: Icon(EvaIcons.listOutline),
-            title: Text('Quiz'),
+            title: Text('Categories'),
           ),
           // BottomNavigationBarItem(
           //   icon: Icon(Icons.history),
@@ -143,19 +148,6 @@ class _Home extends State<Home> {
         unselectedItemColor: Colors.black,
         showUnselectedLabels: true,
         onTap: _onItemTapped,
-      ),
-    );
-  }
-
-  Widget popularCard(image) {
-    return AspectRatio(
-      aspectRatio: 3 / 2.0,
-      child: Container(
-        margin: EdgeInsets.only(right: 20),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          image: DecorationImage(image: AssetImage(image), fit: BoxFit.fill),
-        ),
       ),
     );
   }

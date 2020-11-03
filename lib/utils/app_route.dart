@@ -2,6 +2,6 @@ class AppRouting {
   static final home = '/home';
   static final login = '/login';
   static final leaderBoard = '/leader_board';
-  static final quiz = '/quiz';
+  static final categories = '/categories';
   static final profile = '/profile';
 }
