@@ -29,3 +29,10 @@ const TabsStyle = TextStyle(
   fontSize: SmallText,
   fontFamily: FontName,
 );
+
+const Script2Style = TextStyle(
+    color: Colors.black,
+    fontSize: 25.0,
+    decoration: TextDecoration.none,
+    fontWeight: FontWeight.bold,
+    fontFamily: FontName);

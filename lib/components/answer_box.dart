@@ -39,7 +39,8 @@ class _AnswersBoxState extends State<AnswersBox>
             height: 60,
             margin: EdgeInsets.only(top: DefaultPaddin * 1.5),
             child: RaisedButton(
-              color: press[index] ? Colors.amberAccent : Colors.white,
+              color: press[index] ? Colors.deepPurpleAccent[200] : Colors.white,
+              textColor: press[index] ? Colors.white : Colors.black,
               autofocus: true,
               onPressed: () {
                 setState(() {

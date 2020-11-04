@@ -12,27 +12,30 @@ class Categories extends StatefulWidget {
 class _CategoriesState extends State<Categories> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          backgroundColor: Colors.white,
-          elevation: 0,
-          title: Text('Categories', style: ScriptStyle),
-          leading: IconButton(
-            icon: SvgPicture.asset(
-              'assets/images/arrow_back.svg',
+    return SafeArea(
+      child: Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            backgroundColor: Colors.white,
+            elevation: 0,
+            title: Text('Categories', style: ScriptStyle),
+            leading: IconButton(
+              icon: SvgPicture.asset(
+                'assets/images/arrow_back.svg',
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
             ),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
           ),
-        ),
-        body: SafeArea(
-          child: ListView.builder(
-              itemCount: categories.length,
-              itemBuilder: (BuildContext context, int index) => CategoriesCard(
-                    category: categories[index],
-                  )),
-        ));
+          body: SafeArea(
+            child: ListView.builder(
+                itemCount: categories.length,
+                itemBuilder: (BuildContext context, int index) =>
+                    CategoriesCard(
+                      category: categories[index],
+                    )),
+          )),
+    );
   }
 }

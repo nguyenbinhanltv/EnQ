@@ -25,7 +25,7 @@ class CategoriesCard extends StatelessWidget {
                 children: [
                   Container(
                       height: SizeConfig.screenHeight * 0.2,
-                      child: SvgPicture.asset('assets/images/team.svg')),
+                      child: SvgPicture.asset('assets/images/teamWork.svg')),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
@@ -43,7 +43,10 @@ class CategoriesCard extends StatelessWidget {
                         ),
                         RaisedButton(
                           onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => Quiz()));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Quiz()));
                           },
                           elevation: 5.0,
                           color: Colors.white,
