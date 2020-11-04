@@ -1,4 +1,3 @@
-import 'package:EnQ/const/size_config.dart';
 import 'package:EnQ/const/style.dart';
 import 'package:EnQ/utils/app_route.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +22,7 @@ class LoginButton extends StatelessWidget {
           if (this._type == 'GG') {
             auth.handleSignIn().whenComplete(
                   () => Future.delayed(
-                    Duration(seconds: 2),
+                    Duration(seconds: 1),
                     () =>
                         Navigator.of(context).popAndPushNamed(AppRouting.home),
                   ),

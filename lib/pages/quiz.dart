@@ -1,3 +1,4 @@
+import 'package:EnQ/components/answer_box.dart';
 import 'package:EnQ/const/size_config.dart';
 import 'package:EnQ/const/style.dart';
 import 'package:EnQ/models/answer.dart';
@@ -17,10 +18,22 @@ class _QuizState extends State<Quiz> {
     super.initState();
   }
 
+  List<String> userAns = [];
+  void generateListUserAns() {
+    if (userAns.length == Question.questions.length) {
+      return;
+    } else {
+      for (int i = 0; i < Question.questions.length; i++) {
+        userAns.add('');
+      }
+    }
+  }
+
   //QuestionService question = new QuestionService();
   @override
   Widget build(BuildContext context) {
     //question.getQuestions();
+    generateListUserAns();
     return DefaultTabController(
       length: Question.questions.length,
       child: Scaffold(
@@ -40,8 +53,10 @@ class _QuizState extends State<Quiz> {
           ),
           actions: [
             FlatButton(
-              onPressed: () {},
-              child: Text('Skip'),
+              onPressed: () {
+                print(this.userAns);
+              },
+              child: Text('Finish'),
             )
           ],
           bottom: TabBar(
@@ -73,7 +88,7 @@ class _QuizState extends State<Quiz> {
                 child: Padding(
                   padding: EdgeInsets.all(DefaultPaddin * 1.5),
                   child: Text(
-                    Question.questions[questionNumber].title,
+                    Question.questions[index].title,
                     style: ScriptStyle,
                   ),
                 ),
@@ -82,7 +97,10 @@ class _QuizState extends State<Quiz> {
                 margin: EdgeInsets.only(top: DefaultPaddin * 10.25),
                 width: SizeConfig.screenWidth,
                 height: SizeConfig.screenHeight * 0.6,
-                child: AnswersBox(ans: Question.questions[index].answer),
+                child: AnswersBox(
+                    ans: Question.questions[index].answer,
+                    indexOfQuestion: index,
+                    userAns: this.userAns),
               )
             ],
           ),
@@ -91,9 +109,6 @@ class _QuizState extends State<Quiz> {
     );
   }
 }
-
-var finalScore = 0;
-var questionNumber = 0;
 
 // void nextQuestion() {
 //   // ignore: unused_element
@@ -111,83 +126,26 @@ var questionNumber = 0;
 //   }
 // }
 
-class AnswersBox extends StatelessWidget {
-  final Answer ans;
-  const AnswersBox({
-    Key key,
-    this.ans,
-  }) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    List<String> fields = ["A", "B", "C", "D"];
-    return ListView.builder(
-      itemCount: ans.ans.length,
-      itemBuilder: (BuildContext context, int index) => Column(
-        children: [
-          Container(
-            width: SizeConfig.screenWidth * 0.9,
-            height: 60,
-            margin: EdgeInsets.only(top: DefaultPaddin * 1.5),
-            child: RaisedButton(
-              onPressed: () {
-                if (ans.ans[index] == ans.correctAnswer) {
-                  debugPrint("Correct");
-                  finalScore++;
-                } else {
-                  debugPrint("Wrong");
-                }
-                // nextQuestion();
-              },
-              color: Colors.white,
-              elevation: 5.0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(DefaultPaddin * 0.8),
-                side: BorderSide(
-                  color: Colors.black54,
-                ),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(fields[index], style: TextStyle(fontSize: 17.0)),
-                  //SizedBox(width: DefaultPaddin * 5.25),
-                  Spacer(
-                    flex: 1,
-                  ),
-                  Text(ans.ans[index], style: TextStyle(fontSize: 17.0)),
-                  Spacer(
-                    flex: 1,
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class Summary extends StatelessWidget {
-  final int score;
-  Summary({Key key, @required this.score}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return new WillPopScope(
-      onWillPop: null,
-      child: Scaffold(
-        body: Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                "Your Result: $score",
-                style: TextStyle(fontSize: 35.0),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
+// class Summary extends StatelessWidget {
+//   final int score;
+//   Summary({Key key, @required this.score}) : super(key: key);
+//   @override
+//   Widget build(BuildContext context) {
+//     return new WillPopScope(
+//       onWillPop: null,
+//       child: Scaffold(
+//         body: Container(
+//           child: Column(
+//             mainAxisAlignment: MainAxisAlignment.center,
+//             children: <Widget>[
+//               Text(
+//                 "Your Result: $score",
+//                 style: TextStyle(fontSize: 35.0),
+//               ),
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }

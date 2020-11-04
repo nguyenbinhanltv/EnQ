@@ -1,8 +1,8 @@
+enum AnswerType { A, B, C, D }
+
 class Answer {
   final List<String> ans;
-  // final String id;
-  final String correctAnswer;
-  // final String incorrectAnswer;
+  final AnswerType correctAnswer;
 
   Answer(
     this.ans,

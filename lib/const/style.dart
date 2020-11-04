@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-const LargerText = 60.0;
+const LargerText = 35.0;
 const MediumText = 20.0;
 const SmallText = 16.0;
 
