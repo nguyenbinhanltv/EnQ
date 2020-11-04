@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
         AppRouting.login: (context) => Login(),
         AppRouting.leaderBoard: (context) => LeaderBoard(),
         AppRouting.categories: (context) => Categories(),
-        AppRouting.profile: (context) => Profile()
+        AppRouting.profile: (context) => Profile(),
       },
       // home: Home(),
       initialRoute: AppRouting.login,

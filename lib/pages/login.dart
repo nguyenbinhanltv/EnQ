@@ -1,14 +1,6 @@
-import 'dart:async';
-
 import 'package:EnQ/components/login_button.dart';
-import 'package:EnQ/const/size_config.dart';
 import 'package:EnQ/const/style.dart';
-import 'package:EnQ/pages/home.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gallery/studies/starter/home.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class Login extends StatefulWidget {
   @override

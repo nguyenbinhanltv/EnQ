@@ -3,6 +3,8 @@ import 'package:EnQ/const/size_config.dart';
 import 'package:EnQ/const/style.dart';
 import 'package:EnQ/models/answer.dart';
 import 'package:EnQ/models/question.dart';
+import 'package:EnQ/pages/result.dart';
+import 'package:EnQ/utils/app_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -19,12 +21,22 @@ class _QuizState extends State<Quiz> {
   }
 
   List<String> userAns = [];
+  int point = 0;
   void generateListUserAns() {
     if (userAns.length == Question.questions.length) {
       return;
     } else {
       for (int i = 0; i < Question.questions.length; i++) {
         userAns.add('');
+      }
+    }
+  }
+
+  void checkCorrectAnswer() {
+    for (int i = 0; i < userAns.length; i++) {
+      if (userAns[i] ==
+          Question.questions[i].answer.correctAnswer.toString().substring(11)) {
+        point++;
       }
     }
   }
@@ -55,6 +67,10 @@ class _QuizState extends State<Quiz> {
             FlatButton(
               onPressed: () {
                 print(this.userAns);
+                checkCorrectAnswer();
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    builder: (context) =>
+                        Result(score: this.point, total: userAns.length)));
               },
               child: Text('Finish'),
             )
