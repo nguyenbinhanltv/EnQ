@@ -1,4 +1,3 @@
-import 'package:EnQ/const/size_config.dart';
 import 'package:EnQ/const/style.dart';
 import 'package:EnQ/utils/app_route.dart';
 import 'package:flutter/material.dart';

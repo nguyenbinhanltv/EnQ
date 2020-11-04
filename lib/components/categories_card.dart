@@ -2,6 +2,7 @@ import 'package:EnQ/const/size_config.dart';
 import 'package:EnQ/models/category.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:EnQ/pages/quiz.dart';
 
 class CategoriesCard extends StatelessWidget {
   final Category category;
@@ -41,7 +42,9 @@ class CategoriesCard extends StatelessWidget {
                           ],
                         ),
                         RaisedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => Quiz()));
+                          },
                           elevation: 5.0,
                           color: Colors.white,
                           textColor: Colors.black,

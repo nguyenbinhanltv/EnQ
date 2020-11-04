@@ -17,21 +17,21 @@ class Question {
       Level.Easy,
       'Every morning, Ba ______ up at six o’clock.',
       Type.Grammar,
-      Answer(['to get', 'get', 'gets', 'is getting'], 'ans id 1'),
+      Answer(['to get', 'get', 'gets', 'is getting'], AnswerType.C),
     ),
     Question(
       'id 2',
       Level.Easy,
       'Every morning, Ba ______ up at six o’clock.',
       Type.Grammar,
-      Answer(['to get', 'get', 'gets', 'is getting'], 'ans id 1'),
+      Answer(['to get', 'get', 'gets', 'is getting'], AnswerType.C),
     ),
     Question(
       'id 10',
       Level.Easy,
       ' Last summer, I _________. Finishing with my uncle in the afternoon..',
       Type.Grammar,
-      Answer(['go', 'went', 'goes', 'going'], 'went'),
+      Answer(['go', 'went', 'goes', 'going'], AnswerType.C),
     ),
   ];
 }

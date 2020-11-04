@@ -2,7 +2,6 @@ import 'package:EnQ/const/style.dart';
 import 'package:EnQ/pages/categories.dart';
 import 'package:EnQ/pages/home.dart';
 import 'package:EnQ/pages/leader_board.dart';
-import 'package:EnQ/pages/quiz.dart';
 import 'package:EnQ/pages/profile.dart';
 import 'package:EnQ/utils/app_route.dart';
 import 'package:flutter/material.dart';
