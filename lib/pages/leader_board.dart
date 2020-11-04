@@ -14,100 +14,102 @@ class LeaderBoard extends StatefulWidget {
 class _LeaderBoardState extends State<LeaderBoard> {
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
+    return SafeArea(
+      child: DefaultTabController(
+        length: 2,
+        child: Scaffold(
           backgroundColor: Colors.white,
-          elevation: 0,
-          centerTitle: true,
-          title: Text('Leader Board', style: ScriptStyle),
-          leading: IconButton(
-            icon: SvgPicture.asset(
-              'assets/images/arrow_back.svg',
+          appBar: AppBar(
+            backgroundColor: Colors.white,
+            elevation: 0,
+            centerTitle: true,
+            title: Text('Leader Board', style: ScriptStyle),
+            leading: IconButton(
+              icon: SvgPicture.asset(
+                'assets/images/arrow_back.svg',
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
             ),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-          actions: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SvgPicture.asset('assets/images/military_tech.svg'),
-            )
-          ],
-          bottom: TabBar(
-            unselectedLabelColor: Colors.grey,
-            labelColor: Colors.black,
-            tabs: [
-              Tab(
-                child: Text('This week', style: TabsStyle),
-              ),
-              Tab(
-                child: Text('All time', style: TabsStyle),
-              ),
+            actions: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SvgPicture.asset('assets/images/military_tech.svg'),
+              )
             ],
-          ),
-        ),
-        body: TabBarView(
-          children: [
-            Stack(
-              children: [
-                Container(
-                  margin: EdgeInsets.only(top: DefaultPaddin * 0.6),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Padding(
-                        padding:
-                            const EdgeInsets.only(top: DefaultPaddin * 4.0),
-                        child: TopLeader(
-                            'assets/images/silver-cup.svg',
-                            Leader.leaders[1].userName,
-                            Leader.leaders[1].point.toString(),
-                            Leader.leaders[1].photoUrl),
-                      ),
-                      TopLeader(
-                          'assets/images/gold-cup.svg',
-                          Leader.leaders[0].userName,
-                          Leader.leaders[0].point.toString(),
-                          Leader.leaders[0].photoUrl),
-                      Padding(
-                        padding:
-                            const EdgeInsets.only(top: DefaultPaddin * 5.0),
-                        child: TopLeader(
-                            'assets/images/bronze-cup.svg',
-                            Leader.leaders[2].userName,
-                            Leader.leaders[2].point.toString(),
-                            Leader.leaders[2].photoUrl),
-                      ),
-                    ],
-                  ),
+            bottom: TabBar(
+              unselectedLabelColor: Colors.grey,
+              labelColor: Colors.black,
+              tabs: [
+                Tab(
+                  child: Text('This week', style: TabsStyle),
                 ),
-                Container(
-                  margin: EdgeInsets.only(top: DefaultPaddin * 13.5),
-                  height: SizeConfig.screenHeight * 0.5,
-                  width: SizeConfig.screenWidth,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border(
-                      top: BorderSide(
-                        color: Colors.black,
-                        width: 2.0,
-                      ),
-                    ),
-                  ),
-                  child: ListView.builder(
-                    itemCount: Leader.subLeaders.length,
-                    itemBuilder: (BuildContext context, int index) =>
-                        BuildSubLeaders(user: Leader.subLeaders[index]),
-                  ),
+                Tab(
+                  child: Text('All time', style: TabsStyle),
                 ),
               ],
             ),
-            Stack(), // another tabs
-          ],
+          ),
+          body: TabBarView(
+            children: [
+              Stack(
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(top: DefaultPaddin * 0.6),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Padding(
+                          padding:
+                              const EdgeInsets.only(top: DefaultPaddin * 4.0),
+                          child: TopLeader(
+                              'assets/images/silver-cup.svg',
+                              Leader.leaders[1].userName,
+                              Leader.leaders[1].point.toString(),
+                              Leader.leaders[1].photoUrl),
+                        ),
+                        TopLeader(
+                            'assets/images/gold-cup.svg',
+                            Leader.leaders[0].userName,
+                            Leader.leaders[0].point.toString(),
+                            Leader.leaders[0].photoUrl),
+                        Padding(
+                          padding:
+                              const EdgeInsets.only(top: DefaultPaddin * 5.0),
+                          child: TopLeader(
+                              'assets/images/bronze-cup.svg',
+                              Leader.leaders[2].userName,
+                              Leader.leaders[2].point.toString(),
+                              Leader.leaders[2].photoUrl),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: DefaultPaddin * 13.5),
+                    height: SizeConfig.screenHeight * 0.5,
+                    width: SizeConfig.screenWidth,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border(
+                        top: BorderSide(
+                          color: Colors.black,
+                          width: 2.0,
+                        ),
+                      ),
+                    ),
+                    child: ListView.builder(
+                      itemCount: Leader.subLeaders.length,
+                      itemBuilder: (BuildContext context, int index) =>
+                          BuildSubLeaders(user: Leader.subLeaders[index]),
+                    ),
+                  ),
+                ],
+              ),
+              Stack(), // another tabs
+            ],
+          ),
         ),
       ),
     );

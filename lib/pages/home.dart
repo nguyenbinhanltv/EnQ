@@ -45,109 +45,111 @@ class _Home extends State<Home> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     AuthService auth = new AuthService();
-    return Scaffold(
-      body: Container(
-        child: SafeArea(
-          child: Column(
-            children: [
-              SizedBox(
-                height: 40,
-              ),
-              Container(
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Text(
-                          "Hello, Akita",
-                          style: TitleStyle,
-                        ),
-                        CircleAvatar(
-                          radius: 20,
-                          backgroundImage:
-                              AssetImage('assets/images/baby_lion.jpg'),
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: DefaultPaddin),
-                          child: Text(
-                            "Popular",
+    return SafeArea(
+      child: Scaffold(
+        body: Container(
+          child: SafeArea(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 40,
+                ),
+                Container(
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Text(
+                            "Hello, Akita",
+                            style: TitleStyle,
+                          ),
+                          CircleAvatar(
+                            radius: 20,
+                            backgroundImage:
+                                AssetImage('assets/images/baby_lion.jpg'),
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: DefaultPaddin),
+                            child: Text(
+                              "Popular",
+                              style: TextStyle(
+                                  fontSize: 22.5, fontFamily: FontName),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Container(
+                            height: 200,
+                            child: ListView(
+                              scrollDirection: Axis.horizontal,
+                              children: [
+                                PopularCard(
+                                    'assets/images/undraw_book_lover_mkck.png'),
+                                PopularCard(
+                                    'assets/images/undraw_book_reading_kx9s.png'),
+                                PopularCard(
+                                    'assets/images/undraw_Reading_book_re_kqpk.png'),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Text(
+                            'Recent',
                             style:
                                 TextStyle(fontSize: 22.5, fontFamily: FontName),
                           ),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Container(
-                          height: 200,
-                          child: ListView(
-                            scrollDirection: Axis.horizontal,
-                            children: [
-                              PopularCard(
-                                  'assets/images/undraw_book_lover_mkck.png'),
-                              PopularCard(
-                                  'assets/images/undraw_book_reading_kx9s.png'),
-                              PopularCard(
-                                  'assets/images/undraw_Reading_book_re_kqpk.png'),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        Text(
-                          'Recent',
-                          style:
-                              TextStyle(fontSize: 22.5, fontFamily: FontName),
-                        ),
-                      ],
-                    ),
-                  ],
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(EvaIcons.home),
-            title: Text('Home'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(EvaIcons.barChartOutline),
-            title: Text('Leader'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(EvaIcons.listOutline),
-            title: Text('Categories'),
-          ),
-          // BottomNavigationBarItem(
-          //   icon: Icon(Icons.history),
-          //   title: Text('History'),
-          // ),
-          BottomNavigationBarItem(
-            icon: Icon(EvaIcons.personOutline),
-            title: Text('Profile'),
-          ),
-        ],
-        currentIndex: 0,
-        selectedItemColor: Colors.black,
-        selectedFontSize: 12,
-        unselectedItemColor: Colors.black,
-        showUnselectedLabels: true,
-        onTap: _onItemTapped,
+        bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(EvaIcons.home),
+              title: Text('Home'),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(EvaIcons.barChartOutline),
+              title: Text('Leader'),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(EvaIcons.listOutline),
+              title: Text('Categories'),
+            ),
+            // BottomNavigationBarItem(
+            //   icon: Icon(Icons.history),
+            //   title: Text('History'),
+            // ),
+            BottomNavigationBarItem(
+              icon: Icon(EvaIcons.personOutline),
+              title: Text('Profile'),
+            ),
+          ],
+          currentIndex: 0,
+          selectedItemColor: Colors.black,
+          selectedFontSize: 12,
+          unselectedItemColor: Colors.black,
+          showUnselectedLabels: true,
+          onTap: _onItemTapped,
+        ),
       ),
     );
   }

@@ -46,81 +46,83 @@ class _QuizState extends State<Quiz> {
   Widget build(BuildContext context) {
     //question.getQuestions();
     generateListUserAns();
-    return DefaultTabController(
-      length: Question.questions.length,
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
+    return SafeArea(
+      child: DefaultTabController(
+        length: Question.questions.length,
+        child: Scaffold(
           backgroundColor: Colors.white,
-          elevation: 0,
-          centerTitle: true,
-          title: Text('English Quiz', style: TabsStyle),
-          leading: IconButton(
-            icon: SvgPicture.asset(
-              'assets/images/arrow_back.svg',
-            ),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-          actions: [
-            FlatButton(
-              onPressed: () {
-                print(this.userAns);
-                checkCorrectAnswer();
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) =>
-                        Result(score: this.point, total: userAns.length)));
-              },
-              child: Text('Finish'),
-            )
-          ],
-          bottom: TabBar(
-            isScrollable: true,
-            labelColor: Colors.black,
-            unselectedLabelColor: Colors.black12,
-            indicatorColor: Colors.grey,
-            indicatorSize: TabBarIndicatorSize.tab,
-            tabs: List<Widget>.generate(
-              Question.questions.length,
-              (index) => new Tab(
-                  child: Text(
-                (index + 1).toString(),
-                textAlign: TextAlign.center,
-              )),
-            ),
-          ),
-        ),
-        body: TabBarView(
-            children: List<Widget>.generate(
-          Question.questions.length,
-          (index) => new Stack(
-            children: [
-              Container(
-                margin: EdgeInsets.only(top: DefaultPaddin),
-                width: SizeConfig.screenWidth,
-                height: SizeConfig.screenHeight * 0.25,
-                color: Colors.white,
-                child: Padding(
-                  padding: EdgeInsets.all(DefaultPaddin * 1.5),
-                  child: Text(
-                    Question.questions[index].title,
-                    style: ScriptStyle,
-                  ),
-                ),
+          appBar: AppBar(
+            backgroundColor: Colors.white,
+            elevation: 0,
+            centerTitle: true,
+            title: Text('English Quiz', style: TabsStyle),
+            leading: IconButton(
+              icon: SvgPicture.asset(
+                'assets/images/arrow_back.svg',
               ),
-              Container(
-                margin: EdgeInsets.only(top: DefaultPaddin * 10.25),
-                width: SizeConfig.screenWidth,
-                height: SizeConfig.screenHeight * 0.6,
-                child: AnswersBox(
-                    ans: Question.questions[index].answer,
-                    indexOfQuestion: index,
-                    userAns: this.userAns),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            actions: [
+              FlatButton(
+                onPressed: () {
+                  print(this.userAns);
+                  checkCorrectAnswer();
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (context) =>
+                          Result(score: this.point, total: userAns.length)));
+                },
+                child: Text('Finish'),
               )
             ],
+            bottom: TabBar(
+              isScrollable: true,
+              labelColor: Colors.black,
+              unselectedLabelColor: Colors.black12,
+              indicatorColor: Colors.grey,
+              indicatorSize: TabBarIndicatorSize.tab,
+              tabs: List<Widget>.generate(
+                Question.questions.length,
+                (index) => new Tab(
+                    child: Text(
+                  (index + 1).toString(),
+                  textAlign: TextAlign.center,
+                )),
+              ),
+            ),
           ),
-        )),
+          body: TabBarView(
+              children: List<Widget>.generate(
+            Question.questions.length,
+            (index) => new Stack(
+              children: [
+                Container(
+                  margin: EdgeInsets.only(top: DefaultPaddin),
+                  width: SizeConfig.screenWidth,
+                  height: SizeConfig.screenHeight * 0.25,
+                  color: Colors.white,
+                  child: Padding(
+                    padding: EdgeInsets.all(DefaultPaddin * 1.5),
+                    child: Text(
+                      Question.questions[index].title,
+                      style: ScriptStyle,
+                    ),
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(top: DefaultPaddin * 10.25),
+                  width: SizeConfig.screenWidth,
+                  height: SizeConfig.screenHeight * 0.6,
+                  child: AnswersBox(
+                      ans: Question.questions[index].answer,
+                      indexOfQuestion: index,
+                      userAns: this.userAns),
+                )
+              ],
+            ),
+          )),
+        ),
       ),
     );
   }
