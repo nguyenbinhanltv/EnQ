@@ -1,13 +1,13 @@
 import 'package:EnQ/components/answer_box.dart';
 import 'package:EnQ/const/size_config.dart';
 import 'package:EnQ/const/style.dart';
-import 'package:EnQ/models/answer.dart';
 import 'package:EnQ/models/question.dart';
 import 'package:EnQ/pages/result.dart';
-import 'package:EnQ/utils/app_route.dart';
-import 'package:flutter/foundation.dart';
+import 'package:audioplayers/audio_cache.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:otp_count_down/otp_count_down.dart';
 
 class Quiz extends StatefulWidget {
   @override
@@ -17,7 +17,16 @@ class Quiz extends StatefulWidget {
 class _QuizState extends State<Quiz> {
   @override
   void initState() {
+    generateListUserAns();
+    _startCountDown();
+    loadMusic();
     super.initState();
+  }
+
+  AudioPlayer advancedPlayer;
+  Future loadMusic() async {
+    advancedPlayer =
+        await AudioCache().loop('audio/wallyworld_magical_parade.mp3');
   }
 
   List<String> userAns = [];
@@ -33,19 +42,40 @@ class _QuizState extends State<Quiz> {
   }
 
   void checkCorrectAnswer() {
+    advancedPlayer.dispose();
+
     for (int i = 0; i < userAns.length; i++) {
       if (userAns[i] ==
           Question.questions[i].answer.correctAnswer.toString().substring(11)) {
         point++;
       }
     }
+    Navigator.of(context).pushReplacement(MaterialPageRoute(
+        builder: (context) =>
+            Result(score: this.point, total: userAns.length)));
+  }
+
+  String _countDown = '00:00';
+  OTPCountDown _otpCountDown;
+  final int _otpTimeInMS = 1000 * 5 * 60;
+
+  void _startCountDown() {
+    _otpCountDown = OTPCountDown.startOTPTimer(
+      timeInMS: _otpTimeInMS,
+      currentCountDown: (String countDown) {
+        _countDown = countDown;
+        setState(() {});
+      },
+      onFinish: () {
+        checkCorrectAnswer();
+      },
+    );
   }
 
   //QuestionService question = new QuestionService();
   @override
   Widget build(BuildContext context) {
     //question.getQuestions();
-    generateListUserAns();
     return SafeArea(
       child: DefaultTabController(
         length: Question.questions.length,
@@ -55,7 +85,7 @@ class _QuizState extends State<Quiz> {
             backgroundColor: Colors.white,
             elevation: 0,
             centerTitle: true,
-            title: Text('English Quiz', style: TabsStyle),
+            title: Text('English Quiz', style: ScriptStyle),
             leading: IconButton(
               icon: SvgPicture.asset(
                 'assets/images/arrow_back.svg',
@@ -69,11 +99,9 @@ class _QuizState extends State<Quiz> {
                 onPressed: () {
                   print(this.userAns);
                   checkCorrectAnswer();
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) =>
-                          Result(score: this.point, total: userAns.length)));
                 },
-                child: Text('Finish'),
+                child: Text('Finish', style: TextStyle(fontFamily: FontName)),
+                textColor: Colors.redAccent,
               )
             ],
             bottom: TabBar(
@@ -98,15 +126,35 @@ class _QuizState extends State<Quiz> {
             (index) => new Stack(
               children: [
                 Container(
-                  margin: EdgeInsets.only(top: DefaultPaddin),
+                  margin: EdgeInsets.only(top: DefaultPaddin * 0.5),
                   width: SizeConfig.screenWidth,
                   height: SizeConfig.screenHeight * 0.25,
                   color: Colors.white,
                   child: Padding(
-                    padding: EdgeInsets.all(DefaultPaddin * 1.5),
-                    child: Text(
-                      Question.questions[index].title,
-                      style: ScriptStyle,
+                    padding: EdgeInsets.only(
+                        left: DefaultPaddin * 1.5,
+                        right: DefaultPaddin * 1.5,
+                        bottom: DefaultPaddin * 1.5),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Icon(Icons.access_time),
+                                Text(_countDown),
+                              ],
+                            ),
+                            Icon(Icons.volume_mute),
+                          ],
+                        ),
+                        Text(
+                          Question.questions[index].title,
+                          style: ScriptStyle,
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -126,44 +174,10 @@ class _QuizState extends State<Quiz> {
       ),
     );
   }
+
+  @override
+  void dispose() {
+    _otpCountDown.cancelTimer();
+    super.dispose();
+  }
 }
-
-// void nextQuestion() {
-//   // ignore: unused_element
-//   setState() {
-//     if (questionNumber == Question.questions.length) {
-//       Navigator.push(
-//           context,
-//           MaterialPageRoute(
-//               builder: (context) => Summary(
-//                     score: finalScore,
-//                   )));
-//     } else {
-//       questionNumber++;
-//     }
-//   }
-// }
-
-// class Summary extends StatelessWidget {
-//   final int score;
-//   Summary({Key key, @required this.score}) : super(key: key);
-//   @override
-//   Widget build(BuildContext context) {
-//     return new WillPopScope(
-//       onWillPop: null,
-//       child: Scaffold(
-//         body: Container(
-//           child: Column(
-//             mainAxisAlignment: MainAxisAlignment.center,
-//             children: <Widget>[
-//               Text(
-//                 "Your Result: $score",
-//                 style: TextStyle(fontSize: 35.0),
-//               ),
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
