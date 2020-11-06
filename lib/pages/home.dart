@@ -1,6 +1,7 @@
 import 'package:EnQ/components/popular_card.dart';
 import 'package:EnQ/const/size_config.dart';
 import 'package:EnQ/const/style.dart';
+import 'package:EnQ/models/recent.dart';
 import 'package:EnQ/services/auth_service.dart';
 import 'package:EnQ/utils/app_route.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
@@ -44,77 +45,104 @@ class _Home extends State<Home> {
     AuthService auth = new AuthService();
     return SafeArea(
       child: Scaffold(
-        body: Container(
-          child: SafeArea(
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 40,
-                ),
-                Container(
-                  child: Column(
+        body: Column(
+          children: [
+            Container(
+              width: SizeConfig.screenWidth,
+              height: SizeConfig.screenHeight / 2.25,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text(
-                            "Hello, Akita",
-                            style: TitleStyle,
-                          ),
-                          CircleAvatar(
-                            radius: 20,
-                            backgroundImage:
-                                AssetImage('assets/images/baby_lion.jpg'),
-                          )
-                        ],
+                      Text(
+                        "Hello, Akita",
+                        style: TitleStyle,
                       ),
-                      SizedBox(
-                        height: 30,
-                      ),
-                      Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: DefaultPaddin),
-                            child: Text(
-                              "Popular",
-                              style: TextStyle(
-                                  fontSize: 22.5, fontFamily: FontName),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Container(
-                            height: 200,
-                            child: ListView(
-                              scrollDirection: Axis.horizontal,
-                              children: [
-                                PopularCard(
-                                    'assets/images/undraw_book_lover_mkck.png'),
-                                PopularCard(
-                                    'assets/images/undraw_book_reading_kx9s.png'),
-                                PopularCard(
-                                    'assets/images/undraw_Reading_book_re_kqpk.png'),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          Text(
-                            'Recent',
-                            style:
-                                TextStyle(fontSize: 22.5, fontFamily: FontName),
-                          ),
-                        ],
-                      ),
+                      CircleAvatar(
+                        radius: 20,
+                        backgroundImage:
+                            AssetImage('assets/images/baby_lion.jpg'),
+                      )
                     ],
                   ),
-                ),
-              ],
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0),
+                    child: Text(
+                      "Popular",
+                      style: TextStyle(fontSize: 22.5, fontFamily: FontName),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0),
+                    child: Container(
+                      height: 200,
+                      child: ListView(
+                        scrollDirection: Axis.horizontal,
+                        children: [
+                          PopularCard(
+                              'assets/images/undraw_book_lover_mkck.png'),
+                          PopularCard(
+                              'assets/images/undraw_book_reading_kx9s.png'),
+                          PopularCard(
+                              'assets/images/undraw_Reading_book_re_kqpk.png'),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
+            Container(
+              width: SizeConfig.screenWidth,
+              height: SizeConfig.screenHeight / 2.25,
+              color: Colors.lightBlueAccent,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      "Recent",
+                      style: TextStyle(fontSize: 22.5, fontFamily: FontName),
+                    ),
+                  ),
+                  FlatButton(
+                    onPressed: () {},
+                    color: Colors.amberAccent,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          CircleAvatar(
+                            radius: 20,
+                            backgroundImage: AssetImage(recents[0].photoUrl),
+                          ),
+                          Text(recents[0].userName),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Date: ' + recents[0].date),
+                              Text('End Time: ' + recents[0].endAt),
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              Text('Score'),
+                              Text('${recents[0].point}' + '/10'),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,

@@ -42,8 +42,7 @@ class _QuizState extends State<Quiz> {
   }
 
   void checkCorrectAnswer() {
-    advancedPlayer.dispose();
-
+    advancedPlayer.stop();
     for (int i = 0; i < userAns.length; i++) {
       if (userAns[i] ==
           Question.questions[i].answer.correctAnswer.toString().substring(11)) {
@@ -72,6 +71,7 @@ class _QuizState extends State<Quiz> {
     );
   }
 
+  bool isVolIconOnTap = true;
   //QuestionService question = new QuestionService();
   @override
   Widget build(BuildContext context) {
@@ -147,7 +147,17 @@ class _QuizState extends State<Quiz> {
                                 Text(_countDown),
                               ],
                             ),
-                            Icon(Icons.volume_mute),
+                            IconButton(
+                              icon: Icon(isVolIconOnTap
+                                  ? Icons.volume_mute
+                                  : Icons.volume_off),
+                              onPressed: () => setState(() {
+                                isVolIconOnTap = !isVolIconOnTap;
+                                isVolIconOnTap
+                                    ? advancedPlayer.resume()
+                                    : advancedPlayer.pause();
+                              }),
+                            ),
                           ],
                         ),
                         Text(
@@ -177,6 +187,7 @@ class _QuizState extends State<Quiz> {
 
   @override
   void dispose() {
+    advancedPlayer.dispose();
     _otpCountDown.cancelTimer();
     super.dispose();
   }
