@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:EnQ/components/popular_card.dart';
 import 'package:EnQ/const/size_config.dart';
 import 'package:EnQ/const/style.dart';

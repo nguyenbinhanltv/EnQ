@@ -6,7 +6,7 @@ class Recent {
 }
 
 List<Recent> recents = [
-  Recent("Akita", "assets/images/baby_lion.jpg", "12:30", "Aug 18,2020", 10),
-  Recent("Akita", "assets/images/baby_lion.jpg", "12:30", "Aug 18,2020", 10),
-  Recent("Akita", "assets/images/baby_lion.jpg", "12:30", "Aug 18,2020", 10),
+  Recent("Akita", "assets/images/bear.jpg", "12:30", "Aug 18,2020", 10),
+  Recent("Akita", "assets/images/rabbit.jpg", "12:30", "Aug 18,2020", 10),
+  Recent("Akita", "assets/images/baby_cow.jpg", "12:30", "Aug 18,2020", 10),
 ];
