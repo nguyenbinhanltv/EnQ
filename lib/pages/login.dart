@@ -28,12 +28,12 @@ class _LoginState extends State<Login> {
                     Text(
                       "EnQ",
                       style:
-                          TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
+                          TitleStyle,
                     ),
                     Text(
                       "We will help you improve your English",
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 15, color: Colors.grey[700]),
+                      style: TextStyle(fontSize: 15, color: Colors.grey[700], fontFamily: FontName),
                     ),
                     Container(
                       height: MediaQuery.of(context).size.height / 2,

@@ -1,10 +1,9 @@
-import 'package:EnQ/components/build_sub_leaders.dart';
-import 'package:EnQ/components/top_leader.dart';
-import 'package:EnQ/const/size_config.dart';
 import 'package:EnQ/const/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:EnQ/models/leader.dart';
+import 'package:EnQ/models/user.dart';
+import 'package:EnQ/components/show_leaders.dart';
 
 class LeaderBoard extends StatefulWidget {
   @override
@@ -12,6 +11,22 @@ class LeaderBoard extends StatefulWidget {
 }
 
 class _LeaderBoardState extends State<LeaderBoard> {
+  List<User> subLeadersMonth = [];
+  List<User> subLeadersWeek = [];
+  void generateSubLeaders() {
+    print(leaderMonth.users.length);
+    for (int i = 3; i < leaderMonth.users.length; i++) {
+      subLeadersMonth.add(leaderMonth.users[i]);
+      subLeadersWeek.add(leaderWeek.users[i]);
+    }
+  }
+
+  @override
+  void initState() {
+    generateSubLeaders();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -53,61 +68,11 @@ class _LeaderBoardState extends State<LeaderBoard> {
           ),
           body: TabBarView(
             children: [
-              Stack(
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(top: DefaultPaddin * 0.6),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Padding(
-                          padding:
-                              const EdgeInsets.only(top: DefaultPaddin * 4.0),
-                          child: TopLeader(
-                              'assets/images/silver-cup.svg',
-                              Leader.leaders[1].userName,
-                              Leader.leaders[1].point.toString(),
-                              Leader.leaders[1].photoUrl),
-                        ),
-                        TopLeader(
-                            'assets/images/gold-cup.svg',
-                            Leader.leaders[0].userName,
-                            Leader.leaders[0].point.toString(),
-                            Leader.leaders[0].photoUrl),
-                        Padding(
-                          padding:
-                              const EdgeInsets.only(top: DefaultPaddin * 5.0),
-                          child: TopLeader(
-                              'assets/images/bronze-cup.svg',
-                              Leader.leaders[2].userName,
-                              Leader.leaders[2].point.toString(),
-                              Leader.leaders[2].photoUrl),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(top: DefaultPaddin * 13.5),
-                    height: SizeConfig.screenHeight * 0.5,
-                    width: SizeConfig.screenWidth,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      border: Border(
-                        top: BorderSide(
-                          color: Colors.black,
-                          width: 2.0,
-                        ),
-                      ),
-                    ),
-                    child: ListView.builder(
-                      itemCount: Leader.subLeaders.length,
-                      itemBuilder: (BuildContext context, int index) =>
-                          BuildSubLeaders(user: Leader.subLeaders[index]),
-                    ),
-                  ),
-                ],
-              ),
-              Stack(), // another tabs
+              ShowLeaders(subLeaders: subLeadersWeek, leader: leaderWeek),
+              ShowLeaders(
+                subLeaders: subLeadersMonth,
+                leader: leaderMonth,
+              ), // another tabs
             ],
           ),
         ),
