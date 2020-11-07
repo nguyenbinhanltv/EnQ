@@ -74,7 +74,7 @@ class _ProfileState extends State<Profile> {
                     children: [
                       Row(
                         children: [
-                          Text('Akita', style: ScriptStyle),
+                          Text(recentUser.userName, style: ScriptStyle),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: SvgPicture.asset(
@@ -84,15 +84,14 @@ class _ProfileState extends State<Profile> {
                           )
                         ],
                       ),
-                      Text('akita@gmail.com', style: TabsStyle),
+                      Text(recentUser.email, style: TabsStyle),
                     ],
                   ),
                   Container(
                     width: DefaultPaddin * 4.0,
                     height: DefaultPaddin * 4.0,
                     child: CircleAvatar(
-                      backgroundImage:
-                          AssetImage('assets/images/baby_lion.jpg'),
+                      backgroundImage: AssetImage(recentUser.photoUrl),
                     ),
                   ),
                 ],

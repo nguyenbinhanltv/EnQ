@@ -5,11 +5,17 @@ import 'package:EnQ/const/style.dart';
 import 'package:EnQ/models/test_exam_history.dart';
 import 'package:EnQ/models/user.dart';
 import 'package:EnQ/services/auth_service.dart';
+import 'package:EnQ/services/user_service.dart';
 import 'package:EnQ/utils/app_route.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class Home extends StatefulWidget {
+  FirebaseUser currentUser;
+
+  Home({Key key, @required this.currentUser});
+
   @override
   _Home createState() => _Home();
 }
@@ -37,17 +43,21 @@ class _Home extends State<Home> {
     });
   }
 
+  dynamic user;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    //UserService().getUsers().then((value) => print(value.body));
+    getUser();
+  }
+
+  void getUser() async {
+    user = await UserService().getUser(widget.currentUser.uid);
   }
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    AuthService auth = new AuthService();
     return SafeArea(
       child: Scaffold(
         body: Column(
@@ -63,12 +73,13 @@ class _Home extends State<Home> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Text(
-                        "Hello, ${recentUser.userName}",
+                        "Hello, " + user.body.data['displayName'],
+                        // recentUser.userName,
                         style: ScriptStyle,
                       ),
                       CircleAvatar(
                         radius: 30,
-                        backgroundImage: AssetImage(recentUser.photoUrl),
+                        backgroundImage: AssetImage(user.body.data['photoURL']),
                       )
                     ],
                   ),
