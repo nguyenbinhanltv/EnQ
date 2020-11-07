@@ -36,3 +36,10 @@ const Script2Style = TextStyle(
     decoration: TextDecoration.none,
     fontWeight: FontWeight.bold,
     fontFamily: FontName);
+
+const InsideButton = TextStyle(
+  color: Colors.black,
+  fontWeight: FontWeight.normal,
+  decoration: TextDecoration.none,
+  fontSize: 12.0,
+);

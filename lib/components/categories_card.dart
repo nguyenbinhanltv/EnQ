@@ -25,7 +25,8 @@ class CategoriesCard extends StatelessWidget {
                 children: [
                   Container(
                       height: SizeConfig.screenHeight * 0.2,
-                      child: SvgPicture.asset('assets/images/teamWork.svg')),
+                      child: SvgPicture.asset(
+                          'assets/images/Learning languages-bro.svg')),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(

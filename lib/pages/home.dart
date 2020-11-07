@@ -1,7 +1,8 @@
 import 'package:EnQ/components/popular_card.dart';
 import 'package:EnQ/const/size_config.dart';
 import 'package:EnQ/const/style.dart';
-import 'package:EnQ/models/recent.dart';
+import 'package:EnQ/models/test_exam_history.dart';
+import 'package:EnQ/models/user.dart';
 import 'package:EnQ/services/auth_service.dart';
 import 'package:EnQ/utils/app_route.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
@@ -25,6 +26,9 @@ class _Home extends State<Home> {
           Navigator.of(context).pushNamed(AppRouting.categories);
           break;
         case 3:
+          Navigator.of(context).pushNamed(AppRouting.history);
+          break;
+        case 4:
           Navigator.of(context).pushNamed(AppRouting.profile);
           break;
         default:
@@ -98,7 +102,6 @@ class _Home extends State<Home> {
             Container(
               width: SizeConfig.screenWidth,
               height: SizeConfig.screenHeight / 2.25,
-              color: Colors.lightBlueAccent,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -109,33 +112,13 @@ class _Home extends State<Home> {
                       style: TextStyle(fontSize: 22.5, fontFamily: FontName),
                     ),
                   ),
-                  FlatButton(
-                    onPressed: () {},
-                    color: Colors.amberAccent,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          CircleAvatar(
-                            radius: 20,
-                            backgroundImage: AssetImage(recents[0].photoUrl),
-                          ),
-                          Text(recents[0].userName),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('Date: ' + recents[0].date),
-                              Text('End Time: ' + recents[0].endAt),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Text('Score'),
-                              Text('${recents[0].point}' + '/10'),
-                            ],
-                          ),
-                        ],
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: histories.length,
+                      itemBuilder: (BuildContext context, int index) =>
+                          HistoryReviewButton(
+                        histories: histories[index],
+                        index: index,
                       ),
                     ),
                   ),
@@ -159,10 +142,10 @@ class _Home extends State<Home> {
               icon: Icon(EvaIcons.listOutline),
               title: Text('Categories'),
             ),
-            // BottomNavigationBarItem(
-            //   icon: Icon(Icons.history),
-            //   title: Text('History'),
-            // ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.history),
+              title: Text('History'),
+            ),
             BottomNavigationBarItem(
               icon: Icon(EvaIcons.personOutline),
               title: Text('Profile'),
@@ -174,6 +157,54 @@ class _Home extends State<Home> {
           unselectedItemColor: Colors.black,
           showUnselectedLabels: true,
           onTap: _onItemTapped,
+        ),
+      ),
+    );
+  }
+}
+
+class HistoryReviewButton extends StatelessWidget {
+  final TestExamHistory histories;
+  final int index;
+  const HistoryReviewButton({Key key, this.histories, this.index})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: FlatButton(
+        onPressed: () {},
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          side: BorderSide(color: Colors.grey),
+        ),
+        color: index % 2 == 0 ? Colors.purple[50] : Colors.green[50],
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              CircleAvatar(
+                radius: 20,
+                backgroundImage: AssetImage(recentUser.photoUrl),
+              ),
+              Text(recentUser.userName, style: InsideButton),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(histories.timeStart, style: InsideButton),
+                  Text('End Time: ' + histories.timeEnd, style: InsideButton),
+                ],
+              ),
+              Column(
+                children: [
+                  Text('Score', style: InsideButton),
+                  Text('${histories.point}' + '/10', style: InsideButton),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -4,4 +4,5 @@ class AppRouting {
   static final leaderBoard = '/leader_board';
   static final categories = '/categories';
   static final profile = '/profile';
+  static final history = '/history';
 }

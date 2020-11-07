@@ -20,7 +20,11 @@ class Result extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            SvgPicture.asset('assets/images/youngAndHappy-bro.svg'),
+            SvgPicture.asset(
+              'assets/images/youngAndHappy-bro.svg',
+              width: SizeConfig.screenWidth,
+              height: SizeConfig.screenHeight * 0.5,
+            ),
             Center(
               child: Text(
                 'Your Result',
