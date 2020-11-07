@@ -1,3 +1,4 @@
+import 'package:EnQ/components/history_review_button.dart';
 import 'package:EnQ/components/popular_card.dart';
 import 'package:EnQ/const/size_config.dart';
 import 'package:EnQ/const/style.dart';
@@ -62,13 +63,12 @@ class _Home extends State<Home> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Text(
-                        "Hello, Akita",
-                        style: TitleStyle,
+                        "Hello, ${recentUser.userName}",
+                        style: ScriptStyle,
                       ),
                       CircleAvatar(
-                        radius: 20,
-                        backgroundImage:
-                            AssetImage('assets/images/baby_lion.jpg'),
+                        radius: 30,
+                        backgroundImage: AssetImage(recentUser.photoUrl),
                       )
                     ],
                   ),
@@ -114,7 +114,7 @@ class _Home extends State<Home> {
                   ),
                   Expanded(
                     child: ListView.builder(
-                      itemCount: histories.length,
+                      itemCount: 3,
                       itemBuilder: (BuildContext context, int index) =>
                           HistoryReviewButton(
                         histories: histories[index],
@@ -157,54 +157,6 @@ class _Home extends State<Home> {
           unselectedItemColor: Colors.black,
           showUnselectedLabels: true,
           onTap: _onItemTapped,
-        ),
-      ),
-    );
-  }
-}
-
-class HistoryReviewButton extends StatelessWidget {
-  final TestExamHistory histories;
-  final int index;
-  const HistoryReviewButton({Key key, this.histories, this.index})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: FlatButton(
-        onPressed: () {},
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8.0),
-          side: BorderSide(color: Colors.grey),
-        ),
-        color: index % 2 == 0 ? Colors.purple[50] : Colors.green[50],
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              CircleAvatar(
-                radius: 20,
-                backgroundImage: AssetImage(recentUser.photoUrl),
-              ),
-              Text(recentUser.userName, style: InsideButton),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(histories.timeStart, style: InsideButton),
-                  Text('End Time: ' + histories.timeEnd, style: InsideButton),
-                ],
-              ),
-              Column(
-                children: [
-                  Text('Score', style: InsideButton),
-                  Text('${histories.point}' + '/10', style: InsideButton),
-                ],
-              ),
-            ],
-          ),
         ),
       ),
     );

@@ -1,4 +1,6 @@
+import 'package:EnQ/components/history_review_button.dart';
 import 'package:EnQ/const/style.dart';
+import 'package:EnQ/models/test_exam_history.dart';
 import 'package:EnQ/utils/app_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -23,9 +25,21 @@ class _HistoryState extends State<History> {
               'assets/images/arrow_back.svg',
             ),
             onPressed: () {
-              Navigator.of(context)
-                  .popUntil(ModalRoute.withName(AppRouting.home));
+              Navigator.of(context).popUntil(
+                ModalRoute.withName(AppRouting.home),
+              );
             },
+          ),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ListView.builder(
+            itemCount: histories.length,
+            itemBuilder: (BuildContext context, int index) =>
+                HistoryReviewButton(
+              histories: histories[index],
+              index: index,
+            ),
           ),
         ),
       ),

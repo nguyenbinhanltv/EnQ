@@ -41,5 +41,5 @@ const InsideButton = TextStyle(
   color: Colors.black,
   fontWeight: FontWeight.normal,
   decoration: TextDecoration.none,
-  fontSize: 12.0,
+  fontSize: 13.0,
 );

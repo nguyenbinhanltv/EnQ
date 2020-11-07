@@ -1,7 +1,9 @@
+import 'package:EnQ/models/test_exam_history.dart';
+
 class User {
   final String userName, id, photoUrl, email;
   final int rank, point;
-  final List<String> testHistory;
+  final List<TestExamHistory> testHistory;
   final List<User> friend;
 
   User(this.userName, this.id, this.photoUrl, this.email, this.rank, this.point,
