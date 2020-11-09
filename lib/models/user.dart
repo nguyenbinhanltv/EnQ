@@ -9,6 +9,21 @@ class User {
   User(this.userName, this.id, this.photoUrl, this.email, this.rank, this.point,
       this.testHistory, this.friend);
 
+  factory User.fromJson(Map<dynamic, dynamic> json) {
+    return User(
+      json['data']['displayName'],
+      json['data']['_id'],
+      json['data']['photoURL'],
+      json['data']['email'],
+      json['data']['rank'],
+      json['data']['point'],
+      //json['data']['testExamHistory'],
+      [],
+      //json['data']['friend'],
+      [],
+    );
+  }
+
   static List<User> friends = [
     User("Baby Cow", "user 1", "assets/images/baby_cow.jpg",
         'meerkat@gmail.com', 1, 1500, [], []),
@@ -36,6 +51,7 @@ class User {
         3, 1350, [], []),
     null
   ]; // when get friends array, remember to add an null.
+
 }
 
 User recentUser = User("Baby Cow", "user 1", "assets/images/baby_cow.jpg",

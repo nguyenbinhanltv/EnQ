@@ -48,7 +48,6 @@ class _AnswersBoxState extends State<AnswersBox>
                       (fields[index]);
                   changeStateAnsBox();
                   press[index] = !press[index];
-                  print(this.widget.userAns);
                 });
               },
               elevation: 5.0,

@@ -3,6 +3,7 @@ import 'package:EnQ/utils/app_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:EnQ/services/auth_service.dart';
+import 'package:EnQ/pages/home.dart';
 
 class LoginButton extends StatelessWidget {
   final String _title;
@@ -20,13 +21,16 @@ class LoginButton extends StatelessWidget {
         onPressed: () {
           this.isLogin();
           if (this._type == 'GG') {
-            auth.handleSignIn().whenComplete(
-                  () => Future.delayed(
-                    Duration(seconds: 1),
-                    () =>
-                        Navigator.of(context).popAndPushNamed(AppRouting.home),
-                  ),
-                );
+            try {
+              auth.handleSignIn().whenComplete(() {
+                //Navigator.of(context).popAndPushNamed(AppRouting.home));
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    builder: (context) =>
+                        Home(uidCurrentUser: auth.currentUser.uid)));
+              });
+            } catch (err) {
+              print("ERROR: $err");
+            }
           } else {
             Navigator.of(context).popAndPushNamed(AppRouting.home);
           }

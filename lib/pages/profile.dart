@@ -6,15 +6,25 @@ import 'package:EnQ/services/auth_service.dart';
 import 'package:EnQ/utils/app_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:EnQ/services/user_service.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class Profile extends StatefulWidget {
-  Profile({Key key}) : super(key: key);
+  final Future<User> user;
+  Profile({Key key, @required this.user}) : super(key: key);
 
   @override
   _ProfileState createState() => _ProfileState();
 }
 
 class _ProfileState extends State<Profile> {
+  // Future<User> user;
+  @override
+  void initState() {
+    // user = UserService().getUser(widget.uid);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     AuthService auth = new AuthService();
@@ -46,125 +56,140 @@ class _ProfileState extends State<Profile> {
             ),
           ],
         ),
-        body: Stack(
-          children: [
-            Container(
-              width: SizeConfig.screenWidth,
-              height: SizeConfig.screenHeight * 0.2,
-              decoration: BoxDecoration(
-                border: Border(
-                  top: BorderSide(
-                    width: 1.0,
-                    color: Colors.grey,
-                    style: BorderStyle.solid,
-                  ),
-                  bottom: BorderSide(
-                    width: 1.0,
-                    color: Colors.grey,
-                    style: BorderStyle.solid,
-                  ),
-                ),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                crossAxisAlignment: CrossAxisAlignment.center,
+        body: FutureBuilder(
+          future: widget.user,
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            if (snapshot.hasData) {
+              return Stack(
                 children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Row(
-                        children: [
-                          Text('Akita', style: ScriptStyle),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: SvgPicture.asset(
-                              'assets/images/crown_1.svg',
-                              width: 24.0,
+                  Container(
+                    width: SizeConfig.screenWidth,
+                    height: SizeConfig.screenHeight * 0.2,
+                    decoration: BoxDecoration(
+                      border: Border(
+                        top: BorderSide(
+                          width: 1.0,
+                          color: Colors.grey,
+                          style: BorderStyle.solid,
+                        ),
+                        bottom: BorderSide(
+                          width: 1.0,
+                          color: Colors.grey,
+                          style: BorderStyle.solid,
+                        ),
+                      ),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Row(
+                              children: [
+                                Text(snapshot.data.userName,
+                                    style: ScriptStyle),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: SvgPicture.asset(
+                                    'assets/images/crown_1.svg',
+                                    width: 24.0,
+                                  ),
+                                )
+                              ],
                             ),
-                          )
-                        ],
-                      ),
-                      Text('akita@gmail.com', style: TabsStyle),
-                    ],
-                  ),
-                  Container(
-                    width: DefaultPaddin * 4.0,
-                    height: DefaultPaddin * 4.0,
-                    child: CircleAvatar(
-                      backgroundImage:
-                          AssetImage('assets/images/baby_lion.jpg'),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              width: SizeConfig.screenWidth,
-              height: SizeConfig.screenHeight * 0.3,
-              margin: EdgeInsets.only(top: DefaultPaddin * 7.75),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        left: DefaultPaddin, bottom: DefaultPaddin * 0.6),
-                    child: Text('Statistical', style: ScriptStyle),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      StatisticalCard(
-                          'assets/images/thunder.svg', 'Score', '216953'),
-                      StatisticalCard('assets/images/fire.svg', 'Day', '30'),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            //color: Colors.red,
-            Container(
-              width: SizeConfig.screenWidth,
-              height: SizeConfig.screenHeight * 0.5,
-              margin: EdgeInsets.only(top: DefaultPaddin * 14.5),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        left: DefaultPaddin, bottom: DefaultPaddin * 0.6),
-                    child: Text('Friends', style: ScriptStyle),
-                  ),
-                  Expanded(
-                    child: ListView.builder(
-                      itemCount: User.friends.length,
-                      itemBuilder: (BuildContext context, int index) =>
-                          FriendsCard(user: User.friends[index]),
-                    ),
-                  ),
-                  Container(
-                    color: Colors.white,
-                    alignment: Alignment.center,
-                    child: MaterialButton(
-                      onPressed: () => auth.handleSignOut().whenComplete(
-                            () => Navigator.of(context)
-                                .popAndPushNamed(AppRouting.login),
+                            Text(snapshot.data.email, style: TabsStyle),
+                          ],
+                        ),
+                        Container(
+                          width: DefaultPaddin * 4.0,
+                          height: DefaultPaddin * 4.0,
+                          child: CircleAvatar(
+                            backgroundImage:
+                                //AssetImage(recentUser.photoUrl),
+                                NetworkImage(snapshot.data.photoUrl),
                           ),
-                      color: Colors.grey[100],
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Text(
-                        'Sign Out',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    width: SizeConfig.screenWidth,
+                    height: SizeConfig.screenHeight * 0.3,
+                    margin: EdgeInsets.only(top: DefaultPaddin * 7.75),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              left: DefaultPaddin, bottom: DefaultPaddin * 0.6),
+                          child: Text('Statistical', style: ScriptStyle),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            StatisticalCard(
+                                'assets/images/thunder.svg', 'Score', '216953'),
+                            StatisticalCard(
+                                'assets/images/fire.svg', 'Day', '30'),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  //color: Colors.red,
+                  Container(
+                    width: SizeConfig.screenWidth,
+                    height: SizeConfig.screenHeight * 0.5,
+                    margin: EdgeInsets.only(top: DefaultPaddin * 14.5),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              left: DefaultPaddin, bottom: DefaultPaddin * 0.6),
+                          child: Text('Friends', style: ScriptStyle),
+                        ),
+                        Expanded(
+                          child: ListView.builder(
+                            itemCount: User.friends.length,
+                            itemBuilder: (BuildContext context, int index) =>
+                                FriendsCard(user: User.friends[index]),
+                          ),
+                        ),
+                        Container(
+                          color: Colors.white,
+                          alignment: Alignment.center,
+                          child: MaterialButton(
+                            onPressed: () => auth.handleSignOut().whenComplete(
+                                  () => Navigator.of(context)
+                                      .popAndPushNamed(AppRouting.login),
+                                ),
+                            color: Colors.grey[100],
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Text(
+                              'Sign Out',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
-              ),
-            ),
-          ],
+              );
+            } else if (snapshot.hasError) {
+              return Text("${snapshot.error} from Profile");
+            }
+            return SpinKitWave(
+              color: Colors.purple[50],
+            );
+          },
         ),
       ),
     );
