@@ -4,18 +4,17 @@ import 'package:EnQ/const/size_config.dart';
 import 'package:EnQ/const/style.dart';
 import 'package:EnQ/models/test_exam_history.dart';
 import 'package:EnQ/models/user.dart';
-import 'package:EnQ/services/auth_service.dart';
 import 'package:EnQ/services/user_service.dart';
 import 'package:EnQ/utils/app_route.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:EnQ/pages/profile.dart';
 
 class Home extends StatefulWidget {
-  FirebaseUser currentUser;
+  String uidCurrentUser;
 
-  Home({Key key, @required this.currentUser});
+  Home({Key key, @required this.uidCurrentUser});
 
   @override
   _Home createState() => _Home();
@@ -37,7 +36,12 @@ class _Home extends State<Home> {
           Navigator.of(context).pushNamed(AppRouting.history);
           break;
         case 4:
-          Navigator.of(context).pushNamed(AppRouting.profile);
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (BuildContext context) => Profile(
+                        user: this.user,
+                      )));
           break;
         default:
       }
@@ -49,7 +53,7 @@ class _Home extends State<Home> {
   void initState() {
     super.initState();
     //getUser();
-    user = UserService().getUser(widget.currentUser.uid);
+    user = UserService().getUser(widget.uidCurrentUser);
   }
 
   @override
@@ -142,7 +146,7 @@ class _Home extends State<Home> {
                 ],
               );
             } else if (snapshot.hasError) {
-              throw Exception('Error on Home');
+              return Text("${snapshot.error} from Home");
             }
             return SpinKitWave(
               color: Colors.purple[50],
