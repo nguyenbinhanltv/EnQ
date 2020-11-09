@@ -1,7 +1,5 @@
 import 'package:EnQ/models/answer.dart';
-
-enum Type { Grammar, Vocab }
-enum Level { Easy, Normal, Hard }
+import 'package:EnQ/models/category.dart';
 
 class Question {
   final String id, title;

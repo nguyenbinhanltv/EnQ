@@ -27,7 +27,6 @@ class UserService {
     String url = Enviroment.prod + '/users/' + id;
     final response = await http.get(url);
     if (response.statusCode == 200) {
-      print(User.fromJson(jsonDecode(response.body)).userName);
       return User.fromJson(jsonDecode(response.body));
     } else {
       throw Exception('Fail to get user');

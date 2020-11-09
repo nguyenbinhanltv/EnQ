@@ -3,6 +3,7 @@ import 'package:EnQ/models/category.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:EnQ/pages/quiz.dart';
+import 'package:EnQ/services/test_exam_service.dart';
 
 class CategoriesCard extends StatelessWidget {
   final Category category;
@@ -44,10 +45,12 @@ class CategoriesCard extends StatelessWidget {
                         ),
                         RaisedButton(
                           onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Quiz()));
+                            TestExamService().getTestExam(
+                                category.type.index, category.rank.index);
+                            // Navigator.push(
+                            //     context,
+                            //     MaterialPageRoute(
+                            //         builder: (context) => Quiz()));
                           },
                           elevation: 5.0,
                           color: Colors.white,

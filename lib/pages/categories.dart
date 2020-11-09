@@ -11,6 +11,11 @@ class Categories extends StatefulWidget {
 
 class _CategoriesState extends State<Categories> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
