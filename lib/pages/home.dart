@@ -10,6 +10,7 @@ import 'package:EnQ/utils/app_route.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class Home extends StatefulWidget {
   FirebaseUser currentUser;
@@ -43,16 +44,12 @@ class _Home extends State<Home> {
     });
   }
 
-  dynamic user;
+  Future<User> user;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    getUser();
-  }
-
-  void getUser() async {
-    user = await UserService().getUser(widget.currentUser.uid);
+    //getUser();
+    user = UserService().getUser(widget.currentUser.uid);
   }
 
   @override
@@ -60,83 +57,97 @@ class _Home extends State<Home> {
     SizeConfig().init(context);
     return SafeArea(
       child: Scaffold(
-        body: Column(
-          children: [
-            Container(
-              width: SizeConfig.screenWidth,
-              height: SizeConfig.screenHeight / 2.25,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.start,
+        body: FutureBuilder(
+          future: user,
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            if (snapshot.hasData) {
+              return Column(
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Text(
-                        "Hello, " + user.body.data['displayName'],
-                        // recentUser.userName,
-                        style: ScriptStyle,
-                      ),
-                      CircleAvatar(
-                        radius: 30,
-                        backgroundImage: AssetImage(user.body.data['photoURL']),
-                      )
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
-                    child: Text(
-                      "Popular",
-                      style: TextStyle(fontSize: 22.5, fontFamily: FontName),
+                  Container(
+                    width: SizeConfig.screenWidth,
+                    height: SizeConfig.screenHeight / 2.25,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Text(
+                              "Hello, ${snapshot.data.userName}",
+                              style: ScriptStyle,
+                            ),
+                            CircleAvatar(
+                              radius: 30,
+                              backgroundImage:
+                                  NetworkImage(snapshot.data.photoUrl),
+                            )
+                          ],
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: Text(
+                            "Popular",
+                            style:
+                                TextStyle(fontSize: 22.5, fontFamily: FontName),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: Container(
+                            height: 200,
+                            child: ListView(
+                              scrollDirection: Axis.horizontal,
+                              children: [
+                                PopularCard(
+                                    'assets/images/undraw_book_lover_mkck.png'),
+                                PopularCard(
+                                    'assets/images/undraw_book_reading_kx9s.png'),
+                                PopularCard(
+                                    'assets/images/undraw_Reading_book_re_kqpk.png'),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
-                    child: Container(
-                      height: 200,
-                      child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        children: [
-                          PopularCard(
-                              'assets/images/undraw_book_lover_mkck.png'),
-                          PopularCard(
-                              'assets/images/undraw_book_reading_kx9s.png'),
-                          PopularCard(
-                              'assets/images/undraw_Reading_book_re_kqpk.png'),
-                        ],
-                      ),
+                  Container(
+                    width: SizeConfig.screenWidth,
+                    height: SizeConfig.screenHeight / 2.25,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            "Recent",
+                            style:
+                                TextStyle(fontSize: 22.5, fontFamily: FontName),
+                          ),
+                        ),
+                        Expanded(
+                          child: ListView.builder(
+                            itemCount: 3,
+                            itemBuilder: (BuildContext context, int index) =>
+                                HistoryReviewButton(
+                              histories: histories[index],
+                              index: index,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
-              ),
-            ),
-            Container(
-              width: SizeConfig.screenWidth,
-              height: SizeConfig.screenHeight / 2.25,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      "Recent",
-                      style: TextStyle(fontSize: 22.5, fontFamily: FontName),
-                    ),
-                  ),
-                  Expanded(
-                    child: ListView.builder(
-                      itemCount: 3,
-                      itemBuilder: (BuildContext context, int index) =>
-                          HistoryReviewButton(
-                        histories: histories[index],
-                        index: index,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
+              );
+            } else if (snapshot.hasError) {
+              throw Exception('Error on Home');
+            }
+            return SpinKitWave(
+              color: Colors.purple[50],
+            );
+          },
         ),
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,

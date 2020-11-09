@@ -8,18 +8,21 @@ class User {
 
   User(this.userName, this.id, this.photoUrl, this.email, this.rank, this.point,
       this.testHistory, this.friend);
-  // factory User.fromJson(Map<dynamic, dynamic> json) {
-  //   return User(
-  //     json['displayName'],
-  //     json['_id'],
-  //     json['photoURL'],
-  //     json['email'],
-  //     json['rank'],
-  //     json['point'],
-  //     json['testExamHistory'],
-  //     json['friend'],
-  //   );
-  // }
+
+  factory User.fromJson(Map<dynamic, dynamic> json) {
+    return User(
+      json['data']['displayName'],
+      json['data']['_id'],
+      json['data']['photoURL'],
+      json['data']['email'],
+      json['data']['rank'],
+      json['data']['point'],
+      //json['data']['testExamHistory'],
+      [],
+      //json['data']['friend'],
+      [],
+    );
+  }
 
   static List<User> friends = [
     User("Baby Cow", "user 1", "assets/images/baby_cow.jpg",

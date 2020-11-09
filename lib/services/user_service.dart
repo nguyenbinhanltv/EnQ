@@ -23,11 +23,12 @@ class UserService {
     );
   }
 
-  Future<http.Response> getUser(String id) async {
+  Future<User> getUser(String id) async {
     String url = Enviroment.prod + '/users/' + id;
     final response = await http.get(url);
     if (response.statusCode == 200) {
-      return response;
+      print(User.fromJson(jsonDecode(response.body)).userName);
+      return User.fromJson(jsonDecode(response.body));
     } else {
       throw Exception('Fail to get user');
     }
