@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:EnQ/services/user_service.dart';
+import 'package:http/http.dart' as http;
 
 class AuthService {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
@@ -18,8 +19,15 @@ class AuthService {
     );
 
     this.currentUser = (await _auth.signInWithCredential(credential)).user;
-    await UserService().createUser(currentUser.uid, currentUser.displayName,
-        currentUser.photoUrl, 1, 0, [], currentUser.email);
+    http.Response response = await UserService().createUser(
+        currentUser.uid,
+        currentUser.displayName,
+        currentUser.photoUrl,
+        0,
+        0,
+        [],
+        currentUser.email);
+    print('${response.statusCode} ${response.body}');
   }
 
   Future handleSignOut() async {

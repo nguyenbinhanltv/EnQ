@@ -49,11 +49,22 @@ class _Home extends State<Home> {
   }
 
   Future<User> user;
+  Stream<User> stream;
   @override
   void initState() {
     super.initState();
     //getUser();
+    stream =
+        new Stream.fromFuture(UserService().getUser(widget.uidCurrentUser));
     user = UserService().getUser(widget.uidCurrentUser);
+  }
+
+  Stream<User> userStream() async* {
+    while (true) {
+      await Future.delayed(Duration(seconds: 5));
+      User users = UserService().getUserStream(widget.uidCurrentUser);
+      yield users;
+    }
   }
 
   @override
@@ -61,10 +72,103 @@ class _Home extends State<Home> {
     SizeConfig().init(context);
     return SafeArea(
       child: Scaffold(
-        body: FutureBuilder(
-          future: user,
-          builder: (BuildContext context, AsyncSnapshot snapshot) {
-            if (snapshot.hasData) {
+        body:
+            // FutureBuilder(
+            //   future: user,
+            //   builder: (BuildContext context, AsyncSnapshot snapshot) {
+            //     if (snapshot.hasData) {
+            //       return Column(
+            //         children: [
+            //           Container(
+            //             width: SizeConfig.screenWidth,
+            //             height: SizeConfig.screenHeight / 2.25,
+            //             child: Column(
+            //               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            //               crossAxisAlignment: CrossAxisAlignment.start,
+            //               children: [
+            //                 Row(
+            //                   mainAxisAlignment: MainAxisAlignment.spaceAround,
+            //                   children: [
+            //                     Text(
+            //                       "Hello, ${snapshot.data.userName}",
+            //                       style: ScriptStyle,
+            //                     ),
+            //                     CircleAvatar(
+            //                       radius: 30,
+            //                       backgroundImage:
+            //                           NetworkImage(snapshot.data.photoUrl),
+            //                     )
+            //                   ],
+            //                 ),
+            //                 Padding(
+            //                   padding: const EdgeInsets.only(left: 8.0),
+            //                   child: Text(
+            //                     "Popular",
+            //                     style:
+            //                         TextStyle(fontSize: 22.5, fontFamily: FontName),
+            //                   ),
+            //                 ),
+            //                 Padding(
+            //                   padding: const EdgeInsets.only(left: 8.0),
+            //                   child: Container(
+            //                     height: 200,
+            //                     child: ListView(
+            //                       scrollDirection: Axis.horizontal,
+            //                       children: [
+            //                         PopularCard(
+            //                             'assets/images/undraw_book_lover_mkck.png'),
+            //                         PopularCard(
+            //                             'assets/images/undraw_book_reading_kx9s.png'),
+            //                         PopularCard(
+            //                             'assets/images/undraw_Reading_book_re_kqpk.png'),
+            //                       ],
+            //                     ),
+            //                   ),
+            //                 ),
+            //               ],
+            //             ),
+            //           ),
+            //           Container(
+            //             width: SizeConfig.screenWidth,
+            //             height: SizeConfig.screenHeight / 2.25,
+            //             child: Column(
+            //               crossAxisAlignment: CrossAxisAlignment.start,
+            //               children: [
+            //                 Padding(
+            //                   padding: const EdgeInsets.all(8.0),
+            //                   child: Text(
+            //                     "Recent",
+            //                     style:
+            //                         TextStyle(fontSize: 22.5, fontFamily: FontName),
+            //                   ),
+            //                 ),
+            //                 Expanded(
+            //                   child: ListView.builder(
+            //                     itemCount: 3,
+            //                     itemBuilder: (BuildContext context, int index) =>
+            //                         HistoryReviewButton(
+            //                       histories: histories[index],
+            //                       index: index,
+            //                     ),
+            //                   ),
+            //                 ),
+            //               ],
+            //             ),
+            //           ),
+            //         ],
+            //       );
+            //     } else if (snapshot.hasError) {
+            //       return Text("${snapshot.error} from Home");
+            //     }
+            //     return SpinKitWave(
+            //       color: Colors.purple[50],
+            //     );
+            //   },
+            // ),
+            StreamBuilder(
+          stream: userStream(),
+          builder: (BuildContext context, AsyncSnapshot<User> snapshot) {
+            if (snapshot.connectionState == ConnectionState.active) {
               return Column(
                 children: [
                   Container(
@@ -78,7 +182,7 @@ class _Home extends State<Home> {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             Text(
-                              "Hello, ${snapshot.data.userName}",
+                              "Hello, ${snapshot.data}",
                               style: ScriptStyle,
                             ),
                             CircleAvatar(
@@ -145,12 +249,13 @@ class _Home extends State<Home> {
                   ),
                 ],
               );
-            } else if (snapshot.hasError) {
+            } else if (snapshot.connectionState == ConnectionState.none) {
               return Text("${snapshot.error} from Home");
+            } else {
+              return SpinKitWave(
+                color: Colors.purple[50],
+              );
             }
-            return SpinKitWave(
-              color: Colors.purple[50],
-            );
           },
         ),
         bottomNavigationBar: BottomNavigationBar(
