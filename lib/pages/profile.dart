@@ -10,8 +10,8 @@ import 'package:EnQ/services/user_service.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class Profile extends StatefulWidget {
-  final Future<User> user;
-  Profile({Key key, @required this.user}) : super(key: key);
+  final String uid;
+  Profile({Key key, @required this.uid}) : super(key: key);
 
   @override
   _ProfileState createState() => _ProfileState();
@@ -21,7 +21,6 @@ class _ProfileState extends State<Profile> {
   // Future<User> user;
   @override
   void initState() {
-    // user = UserService().getUser(widget.uid);
     super.initState();
   }
 
@@ -56,10 +55,10 @@ class _ProfileState extends State<Profile> {
             ),
           ],
         ),
-        body: FutureBuilder(
-          future: widget.user,
-          builder: (BuildContext context, AsyncSnapshot snapshot) {
-            if (snapshot.hasData) {
+        body: StreamBuilder(
+          stream: UserService().userStream(widget.uid),
+          builder: (BuildContext context, stream) {
+            if (stream.hasData) {
               return Stack(
                 children: [
                   Container(
@@ -88,8 +87,7 @@ class _ProfileState extends State<Profile> {
                           children: [
                             Row(
                               children: [
-                                Text(snapshot.data.userName,
-                                    style: ScriptStyle),
+                                Text(stream.data.userName, style: ScriptStyle),
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: SvgPicture.asset(
@@ -99,7 +97,7 @@ class _ProfileState extends State<Profile> {
                                 )
                               ],
                             ),
-                            Text(snapshot.data.email, style: TabsStyle),
+                            Text(stream.data.email, style: TabsStyle),
                           ],
                         ),
                         Container(
@@ -108,7 +106,7 @@ class _ProfileState extends State<Profile> {
                           child: CircleAvatar(
                             backgroundImage:
                                 //AssetImage(recentUser.photoUrl),
-                                NetworkImage(snapshot.data.photoUrl),
+                                NetworkImage(stream.data.photoUrl),
                           ),
                         ),
                       ],
@@ -183,12 +181,11 @@ class _ProfileState extends State<Profile> {
                   ),
                 ],
               );
-            } else if (snapshot.hasError) {
-              return Text("${snapshot.error} from Profile");
+            } else {
+              return SpinKitWave(
+                color: Colors.purple[50],
+              );
             }
-            return SpinKitWave(
-              color: Colors.purple[50],
-            );
           },
         ),
       ),

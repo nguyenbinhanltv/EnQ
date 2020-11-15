@@ -36,19 +36,9 @@ class UserService {
     }
   }
 
-  // User getUserStream(String id) {
-  //   String url = Enviroment.prod + '/users/' + id;
-  //   final response = http.get(url);
-  //   response.then((value) {
-  //     User user = User.fromJson(jsonDecode(value.body));
-  //     print(user.userName);
-  //     return User.fromJson(jsonDecode(value.body));
-  //   });
-  // }
-
   Stream<User> userStream(String id) async* {
     while (true) {
-      await Future.delayed(Duration(seconds: 5));
+      await Future.delayed(Duration(milliseconds: 500));
       yield await getUser(id);
     }
   }
