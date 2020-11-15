@@ -55,5 +55,5 @@ class User {
 
 }
 
-User recentUser = User("Baby Cow", "user 1", "assets/images/baby_cow.jpg",
+User exampleUser = User("Baby Cow", "user 1", "assets/images/baby_cow.jpg",
     'meerkat@gmail.com', 1, 1500, [], [], DateTime.now().toString());

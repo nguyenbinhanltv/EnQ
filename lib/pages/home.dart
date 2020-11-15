@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:EnQ/components/history_review_button.dart';
 import 'package:EnQ/components/popular_card.dart';
 import 'package:EnQ/const/size_config.dart';
@@ -49,22 +51,18 @@ class _Home extends State<Home> {
   }
 
   Future<User> user;
-  Stream<User> stream;
+  //Stream<User> stream;
+  StreamController<User> streamController = StreamController();
   @override
   void initState() {
+    // Timer.periodic(Duration(seconds: 1), (timer) {
+    //   streamController.add(UserService().getUserStream(widget.uidCurrentUser));
+    // });
     super.initState();
-    //getUser();
-    stream =
-        new Stream.fromFuture(UserService().getUser(widget.uidCurrentUser));
-    user = UserService().getUser(widget.uidCurrentUser);
-  }
-
-  Stream<User> userStream() async* {
-    while (true) {
-      await Future.delayed(Duration(seconds: 5));
-      User users = UserService().getUserStream(widget.uidCurrentUser);
-      yield users;
-    }
+    // getUser();
+    // stream =
+    //     new Stream.fromFuture(UserService().getUser(widget.uidCurrentUser));
+    // user = UserService().getUser(widget.uidCurrentUser);
   }
 
   @override
@@ -166,9 +164,10 @@ class _Home extends State<Home> {
             //   },
             // ),
             StreamBuilder(
-          stream: userStream(),
-          builder: (BuildContext context, AsyncSnapshot<User> snapshot) {
-            if (snapshot.connectionState == ConnectionState.active) {
+          stream: UserService().userStream(widget.uidCurrentUser),
+          // initialData: exampleUser,
+          builder: (BuildContext context, stream) {
+            if (stream.hasData) {
               return Column(
                 children: [
                   Container(
@@ -182,13 +181,13 @@ class _Home extends State<Home> {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             Text(
-                              "Hello, ${snapshot.data}",
+                              "Hello, ${stream.data.userName}",
                               style: ScriptStyle,
                             ),
                             CircleAvatar(
                               radius: 30,
                               backgroundImage:
-                                  NetworkImage(snapshot.data.photoUrl),
+                                  NetworkImage(stream.data.photoUrl),
                             )
                           ],
                         ),
@@ -249,9 +248,11 @@ class _Home extends State<Home> {
                   ),
                 ],
               );
-            } else if (snapshot.connectionState == ConnectionState.none) {
-              return Text("${snapshot.error} from Home");
-            } else {
+            }
+            // else if (snapshot.connectionState == ConnectionState.none) {
+            //   return Text("${snapshot.error} from Home");
+            // }
+            else {
               return SpinKitWave(
                 color: Colors.purple[50],
               );

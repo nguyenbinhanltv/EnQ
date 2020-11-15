@@ -26,8 +26,9 @@ class UserService {
   }
 
   Future<User> getUser(String id) async {
-    String url = Enviroment.prod + '/users/' + id;
-    final response = await http.get(url);
+    // String url = Enviroment.prod + '/users/' + id;
+    final response =
+        await http.get(Uri.https('enq-server.herokuapp.com', '/v1/users/$id'));
     if (response.statusCode == 200) {
       return User.fromJson(jsonDecode(response.body));
     } else {
@@ -35,13 +36,20 @@ class UserService {
     }
   }
 
-  User getUserStream(String id) {
-    String url = Enviroment.prod + '/users/' + id;
-    final response = http.get(url);
-    response.then((value) {
-      User user = User.fromJson(jsonDecode(value.body));
-      print(user.userName);
-      return User.fromJson(jsonDecode(value.body));
-    });
+  // User getUserStream(String id) {
+  //   String url = Enviroment.prod + '/users/' + id;
+  //   final response = http.get(url);
+  //   response.then((value) {
+  //     User user = User.fromJson(jsonDecode(value.body));
+  //     print(user.userName);
+  //     return User.fromJson(jsonDecode(value.body));
+  //   });
+  // }
+
+  Stream<User> userStream(String id) async* {
+    while (true) {
+      await Future.delayed(Duration(seconds: 5));
+      yield await getUser(id);
+    }
   }
 }
