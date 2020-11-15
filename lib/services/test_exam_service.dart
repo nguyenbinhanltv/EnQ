@@ -5,11 +5,9 @@ import 'dart:convert';
 
 class TestExamService {
   Future<TestExam> getTestExam(int type, int rank) async {
-    var url = Enviroment.prod + '/test-exam' + '?type=$type&rank=$rank';
-    print(url);
+    var url = Enviroment.prod + '/test/test-exam' + '?type=$type&rank=$rank';
     final response = await http.get(url);
     if (response.statusCode == 200) {
-      print(TestExam.fromJson(jsonDecode(response.body)));
       return TestExam.fromJson(jsonDecode(response.body));
     } else {
       throw Exception('Fail to get testExam');

@@ -45,12 +45,16 @@ class CategoriesCard extends StatelessWidget {
                         ),
                         RaisedButton(
                           onPressed: () {
-                            TestExamService().getTestExam(
-                                category.type.index, category.rank.index);
-                            // Navigator.push(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //         builder: (context) => Quiz()));
+                            // TestExamService().getTestExam(
+                            //     category.type.index, category.rank.index).whenComplete(() =>
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Quiz(
+                                        test: TestExamService().getTestExam(
+                                            category.type.index,
+                                            category.rank.index))));
+                            // );
                           },
                           elevation: 5.0,
                           color: Colors.white,

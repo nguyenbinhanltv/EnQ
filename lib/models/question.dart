@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:EnQ/models/answer.dart';
 import 'package:EnQ/models/category.dart';
 
@@ -8,6 +10,15 @@ class Question {
   final Answer answer;
 
   Question(this.id, this.rank, this.title, this.type, this.answer);
+
+  factory Question.fromJson(Map<dynamic, dynamic> json) {
+    return Question(
+        json['_id'],
+        Level.values[int.parse(json['rank'])],
+        json['title'],
+        Type.values[int.parse(json['type'])],
+        Answer.fromJson(json["answer"]));
+  }
 
   static List<Question> questions = [
     Question(
