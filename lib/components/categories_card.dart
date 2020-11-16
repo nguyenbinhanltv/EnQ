@@ -7,7 +7,9 @@ import 'package:EnQ/services/test_exam_service.dart';
 
 class CategoriesCard extends StatelessWidget {
   final Category category;
-  const CategoriesCard({Key key, this.category}) : super(key: key);
+  final String uidCurrentUser;
+  const CategoriesCard({Key key, this.category, this.uidCurrentUser})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -47,13 +49,14 @@ class CategoriesCard extends StatelessWidget {
                           onPressed: () {
                             // TestExamService().getTestExam(
                             //     category.type.index, category.rank.index).whenComplete(() =>
-                            Navigator.push(
+                            Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => Quiz(
                                         test: TestExamService().getTestExam(
                                             category.type.index,
-                                            category.rank.index))));
+                                            category.rank.index),
+                                        uidCurrentUser: this.uidCurrentUser)));
                             // );
                           },
                           elevation: 5.0,

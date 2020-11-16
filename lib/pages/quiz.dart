@@ -13,7 +13,8 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class Quiz extends StatefulWidget {
   Future<TestExam> test;
-  Quiz({@required this.test});
+  String uidCurrentUser;
+  Quiz({@required this.test, this.uidCurrentUser});
 
   @override
   _QuizState createState() => _QuizState();
@@ -53,8 +54,11 @@ class _QuizState extends State<Quiz> {
     }
     print(idQuestions);
     Navigator.of(context).pushReplacement(MaterialPageRoute(
-        builder: (context) =>
-            Result(score: this.point, total: userAns.length)));
+        builder: (context) => Result(
+              score: this.point,
+              total: userAns.length,
+              uidCurrentUser: widget.uidCurrentUser,
+            )));
   }
 
   String _countDown = '00:00';
@@ -80,7 +84,6 @@ class _QuizState extends State<Quiz> {
   List<String> idQuestions = [];
 
   bool isVolIconOnTap = true;
-  //QuestionService question = new QuestionService();
   @override
   Widget build(BuildContext context) {
     return SafeArea(

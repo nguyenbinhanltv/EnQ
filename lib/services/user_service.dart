@@ -38,7 +38,7 @@ class UserService {
 
   Stream<User> userStream(String id) async* {
     while (true) {
-      await Future.delayed(Duration(milliseconds: 500));
+      await Future.delayed(Duration(hours: 2));
       yield await getUser(id);
     }
   }

@@ -6,12 +6,13 @@ import 'package:EnQ/services/auth_service.dart';
 import 'package:EnQ/utils/app_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:EnQ/services/user_service.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class Profile extends StatefulWidget {
-  final String uid;
-  Profile({Key key, @required this.uid}) : super(key: key);
+  final String uidCurrentUser;
+  Future<User> user;
+  Profile({Key key, @required this.uidCurrentUser, @required this.user})
+      : super(key: key);
 
   @override
   _ProfileState createState() => _ProfileState();
@@ -55,10 +56,10 @@ class _ProfileState extends State<Profile> {
             ),
           ],
         ),
-        body: StreamBuilder(
-          stream: UserService().userStream(widget.uid),
-          builder: (BuildContext context, stream) {
-            if (stream.hasData) {
+        body: FutureBuilder(
+          future: widget.user,
+          builder: (BuildContext context, AsyncSnapshot<User> snapshot) {
+            if (snapshot.hasData) {
               return Stack(
                 children: [
                   Container(
@@ -87,7 +88,8 @@ class _ProfileState extends State<Profile> {
                           children: [
                             Row(
                               children: [
-                                Text(stream.data.userName, style: ScriptStyle),
+                                Text(snapshot.data.userName,
+                                    style: ScriptStyle),
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: SvgPicture.asset(
@@ -97,7 +99,7 @@ class _ProfileState extends State<Profile> {
                                 )
                               ],
                             ),
-                            Text(stream.data.email, style: TabsStyle),
+                            Text(snapshot.data.email, style: TabsStyle),
                           ],
                         ),
                         Container(
@@ -106,7 +108,7 @@ class _ProfileState extends State<Profile> {
                           child: CircleAvatar(
                             backgroundImage:
                                 //AssetImage(recentUser.photoUrl),
-                                NetworkImage(stream.data.photoUrl),
+                                NetworkImage(snapshot.data.photoUrl),
                           ),
                         ),
                       ],
