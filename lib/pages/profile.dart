@@ -6,12 +6,13 @@ import 'package:EnQ/services/auth_service.dart';
 import 'package:EnQ/utils/app_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:EnQ/services/user_service.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class Profile extends StatefulWidget {
-  final Future<User> user;
-  Profile({Key key, @required this.user}) : super(key: key);
+  final String uidCurrentUser;
+  Future<User> user;
+  Profile({Key key, @required this.uidCurrentUser, @required this.user})
+      : super(key: key);
 
   @override
   _ProfileState createState() => _ProfileState();
@@ -21,7 +22,6 @@ class _ProfileState extends State<Profile> {
   // Future<User> user;
   @override
   void initState() {
-    // user = UserService().getUser(widget.uid);
     super.initState();
   }
 
@@ -58,7 +58,7 @@ class _ProfileState extends State<Profile> {
         ),
         body: FutureBuilder(
           future: widget.user,
-          builder: (BuildContext context, AsyncSnapshot snapshot) {
+          builder: (BuildContext context, AsyncSnapshot<User> snapshot) {
             if (snapshot.hasData) {
               return Stack(
                 children: [
@@ -183,12 +183,11 @@ class _ProfileState extends State<Profile> {
                   ),
                 ],
               );
-            } else if (snapshot.hasError) {
-              return Text("${snapshot.error} from Profile");
+            } else {
+              return SpinKitWave(
+                color: Colors.purple[50],
+              );
             }
-            return SpinKitWave(
-              color: Colors.purple[50],
-            );
           },
         ),
       ),

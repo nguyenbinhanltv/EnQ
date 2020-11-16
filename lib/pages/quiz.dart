@@ -2,14 +2,20 @@ import 'package:EnQ/components/answer_box.dart';
 import 'package:EnQ/const/size_config.dart';
 import 'package:EnQ/const/style.dart';
 import 'package:EnQ/models/question.dart';
+import 'package:EnQ/models/testExam.dart';
 import 'package:EnQ/pages/result.dart';
 import 'package:audioplayers/audio_cache.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:otp_count_down/otp_count_down.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class Quiz extends StatefulWidget {
+  Future<TestExam> test;
+  String uidCurrentUser;
+  Quiz({@required this.test, this.uidCurrentUser});
+
   @override
   _QuizState createState() => _QuizState();
 }
@@ -17,9 +23,10 @@ class Quiz extends StatefulWidget {
 class _QuizState extends State<Quiz> {
   @override
   void initState() {
-    generateListUserAns();
-    _startCountDown();
+    // generateListUserAns();
     loadMusic();
+    _startCountDown();
+    generateListUserAns();
     super.initState();
   }
 
@@ -32,12 +39,8 @@ class _QuizState extends State<Quiz> {
   List<String> userAns = [];
   int point = 0;
   void generateListUserAns() {
-    if (userAns.length == Question.questions.length) {
-      return;
-    } else {
-      for (int i = 0; i < Question.questions.length; i++) {
-        userAns.add('');
-      }
+    for (int i = 0; i < 10; i++) {
+      userAns.add('');
     }
   }
 
@@ -45,13 +48,17 @@ class _QuizState extends State<Quiz> {
     advancedPlayer.stop();
     for (int i = 0; i < userAns.length; i++) {
       if (userAns[i] ==
-          Question.questions[i].answer.correctAnswer.toString().substring(11)) {
+          questions[i].answer.correctAnswer.toString().substring(11)) {
         point++;
       }
     }
+    print(idQuestions);
     Navigator.of(context).pushReplacement(MaterialPageRoute(
-        builder: (context) =>
-            Result(score: this.point, total: userAns.length)));
+        builder: (context) => Result(
+              score: this.point,
+              total: userAns.length,
+              uidCurrentUser: widget.uidCurrentUser,
+            )));
   }
 
   String _countDown = '00:00';
@@ -66,122 +73,144 @@ class _QuizState extends State<Quiz> {
         setState(() {});
       },
       onFinish: () {
-        checkCorrectAnswer();
+        if (questions != null) {
+          checkCorrectAnswer();
+        }
       },
     );
   }
 
+  List<Question> questions = [];
+  List<String> idQuestions = [];
+
   bool isVolIconOnTap = true;
-  //QuestionService question = new QuestionService();
   @override
   Widget build(BuildContext context) {
-    //question.getQuestions();
     return SafeArea(
-      child: DefaultTabController(
-        length: Question.questions.length,
-        child: Scaffold(
-          backgroundColor: Colors.white,
-          appBar: AppBar(
-            backgroundColor: Colors.white,
-            elevation: 0,
-            centerTitle: true,
-            title: Text('English Quiz', style: ScriptStyle),
-            leading: IconButton(
-              icon: SvgPicture.asset(
-                'assets/images/arrow_back.svg',
-              ),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            actions: [
-              FlatButton(
-                onPressed: () {
-                  print(this.userAns);
-                  checkCorrectAnswer();
-                },
-                child: Text('Finish', style: TextStyle(fontFamily: FontName)),
-                textColor: Colors.redAccent,
-              )
-            ],
-            bottom: TabBar(
-              isScrollable: true,
-              labelColor: Colors.black,
-              unselectedLabelColor: Colors.black12,
-              indicatorColor: Colors.grey,
-              indicatorSize: TabBarIndicatorSize.tab,
-              tabs: List<Widget>.generate(
-                Question.questions.length,
-                (index) => new Tab(
-                    child: Text(
-                  (index + 1).toString(),
-                  textAlign: TextAlign.center,
-                )),
-              ),
-            ),
-          ),
-          body: TabBarView(
-              children: List<Widget>.generate(
-            Question.questions.length,
-            (index) => new Stack(
-              children: [
-                Container(
-                  margin: EdgeInsets.only(top: DefaultPaddin * 0.5),
-                  width: SizeConfig.screenWidth,
-                  height: SizeConfig.screenHeight * 0.25,
-                  color: Colors.white,
-                  child: Padding(
-                    padding: EdgeInsets.only(
-                        left: DefaultPaddin * 1.5,
-                        right: DefaultPaddin * 1.5,
-                        bottom: DefaultPaddin * 1.5),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: [
-                                Icon(Icons.access_time),
-                                Text(_countDown),
-                              ],
-                            ),
-                            IconButton(
-                              icon: Icon(isVolIconOnTap
-                                  ? Icons.volume_mute
-                                  : Icons.volume_off),
-                              onPressed: () => setState(() {
-                                isVolIconOnTap = !isVolIconOnTap;
-                                isVolIconOnTap
-                                    ? advancedPlayer.resume()
-                                    : advancedPlayer.pause();
-                              }),
-                            ),
-                          ],
-                        ),
-                        Text(
-                          Question.questions[index].title,
-                          style: ScriptStyle,
-                        ),
-                      ],
+      child: FutureBuilder(
+          future: widget.test,
+          builder: (BuildContext context, AsyncSnapshot<TestExam> snapshot) {
+            if (snapshot.hasData) {
+              questions = snapshot.data.questions;
+              return DefaultTabController(
+                length: snapshot.data.questions.length,
+                child: Scaffold(
+                  backgroundColor: Colors.white,
+                  appBar: AppBar(
+                    backgroundColor: Colors.white,
+                    elevation: 0,
+                    centerTitle: true,
+                    title: Text('English Quiz', style: ScriptStyle),
+                    leading: IconButton(
+                      icon: SvgPicture.asset(
+                        'assets/images/arrow_back.svg',
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                    actions: [
+                      FlatButton(
+                        onPressed: () {
+                          print(this.userAns);
+                          checkCorrectAnswer();
+                        },
+                        child: Text('Finish',
+                            style: TextStyle(fontFamily: FontName)),
+                        textColor: Colors.redAccent,
+                      )
+                    ],
+                    bottom: TabBar(
+                      isScrollable: true,
+                      labelColor: Colors.black,
+                      unselectedLabelColor: Colors.black12,
+                      indicatorColor: Colors.grey,
+                      indicatorSize: TabBarIndicatorSize.tab,
+                      tabs: List<Widget>.generate(
+                        snapshot.data.questions.length,
+                        (index) {
+                          idQuestions.add(snapshot.data.questions[index].id);
+                          return new Tab(
+                              child: Text(
+                            (index + 1).toString(),
+                            textAlign: TextAlign.center,
+                          ));
+                        },
+                      ),
                     ),
                   ),
+                  body: TabBarView(
+                      children: List<Widget>.generate(
+                    snapshot.data.questions.length,
+                    (index) => new Stack(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(top: DefaultPaddin * 0.5),
+                          width: SizeConfig.screenWidth,
+                          height: SizeConfig.screenHeight * 0.25,
+                          color: Colors.white,
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                                left: DefaultPaddin * 1.5,
+                                right: DefaultPaddin * 1.5,
+                                bottom: DefaultPaddin * 1.5),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Icon(Icons.access_time),
+                                        Text(_countDown),
+                                      ],
+                                    ),
+                                    IconButton(
+                                      icon: Icon(isVolIconOnTap
+                                          ? Icons.volume_mute
+                                          : Icons.volume_off),
+                                      onPressed: () => setState(() {
+                                        isVolIconOnTap = !isVolIconOnTap;
+                                        isVolIconOnTap
+                                            ? advancedPlayer.resume()
+                                            : advancedPlayer.pause();
+                                      }),
+                                    ),
+                                  ],
+                                ),
+                                Expanded(
+                                  child: Text(
+                                    snapshot.data.questions[index].title,
+                                    style: ScriptStyle,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(top: DefaultPaddin * 10.25),
+                          width: SizeConfig.screenWidth,
+                          height: SizeConfig.screenHeight * 0.6,
+                          child: AnswersBox(
+                            ans: snapshot.data.questions[index].answer,
+                            indexOfQuestion: index,
+                            userAns: this.userAns,
+                          ),
+                        )
+                      ],
+                    ),
+                  )),
                 ),
-                Container(
-                  margin: EdgeInsets.only(top: DefaultPaddin * 10.25),
-                  width: SizeConfig.screenWidth,
-                  height: SizeConfig.screenHeight * 0.6,
-                  child: AnswersBox(
-                      ans: Question.questions[index].answer,
-                      indexOfQuestion: index,
-                      userAns: this.userAns),
-                )
-              ],
-            ),
-          )),
-        ),
-      ),
+              );
+            } else {
+              return SpinKitWave(
+                color: Colors.purple[50],
+              );
+            }
+          }),
     );
   }
 

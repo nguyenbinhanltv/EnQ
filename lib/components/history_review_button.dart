@@ -28,9 +28,9 @@ class HistoryReviewButton extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 20,
-                backgroundImage: AssetImage(recentUser.photoUrl),
+                backgroundImage: AssetImage(exampleUser.photoUrl),
               ),
-              Text(recentUser.userName, style: InsideButton),
+              Text(exampleUser.userName, style: InsideButton),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

@@ -1,13 +1,19 @@
 import 'package:EnQ/const/size_config.dart';
 import 'package:EnQ/const/style.dart';
 import 'package:EnQ/pages/history.dart';
+import 'package:EnQ/pages/categories.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class Result extends StatelessWidget {
   final int score;
   final int total;
-  const Result({Key key, @required this.score, @required this.total})
+  final String uidCurrentUser;
+  const Result(
+      {Key key,
+      @required this.score,
+      @required this.total,
+      this.uidCurrentUser})
       : super(key: key);
 
   @override
@@ -64,7 +70,11 @@ class Result extends StatelessWidget {
                   height: 50.0,
                   child: RaisedButton(
                     onPressed: () {
-                      Navigator.of(context).pop();
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Categories(
+                                  uidCurrentUser: this.uidCurrentUser)));
                     },
                     child: Text(
                       'Quiz',

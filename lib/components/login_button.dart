@@ -24,9 +24,12 @@ class LoginButton extends StatelessWidget {
             try {
               auth.handleSignIn().whenComplete(() {
                 //Navigator.of(context).popAndPushNamed(AppRouting.home));
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) =>
-                        Home(uidCurrentUser: auth.currentUser.uid)));
+                Future.delayed(
+                    Duration(seconds: 2),
+                    () => Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                Home(uidCurrentUser: auth.currentUser.uid))));
               });
             } catch (err) {
               print("ERROR: $err");

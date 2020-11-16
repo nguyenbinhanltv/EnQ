@@ -60,15 +60,15 @@ class _AnswersBoxState extends State<AnswersBox>
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(fields[index], style: TextStyle(fontSize: 17.0)),
+                  Expanded(
+                      flex: 1,
+                      child: Text(fields[index],
+                          style: TextStyle(fontSize: 17.0))),
                   //SizedBox(width: DefaultPaddin * 5.25),
-                  Spacer(
-                    flex: 1,
-                  ),
-                  Text(widget.ans.ans[index], style: TextStyle(fontSize: 17.0)),
-                  Spacer(
-                    flex: 1,
-                  ),
+                  Expanded(
+                      flex: 4,
+                      child: Text(widget.ans.ans[index],
+                          style: TextStyle(fontSize: 17.0))),
                 ],
               ),
             ),

@@ -1,8 +1,6 @@
 import 'package:EnQ/const/style.dart';
-import 'package:EnQ/pages/categories.dart';
 import 'package:EnQ/pages/history.dart';
 import 'package:EnQ/pages/leader_board.dart';
-import 'package:EnQ/pages/profile.dart';
 import 'package:EnQ/utils/app_route.dart';
 import 'package:flutter/material.dart';
 import 'package:EnQ/pages/login.dart';
@@ -21,12 +19,10 @@ class MyApp extends StatelessWidget {
               fontFamily: FontName,
             ),
       ),
-      debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: true,
       routes: {
         AppRouting.login: (context) => Login(),
         AppRouting.leaderBoard: (context) => LeaderBoard(),
-        AppRouting.categories: (context) => Categories(),
-        AppRouting.profile: (context) => Profile(),
         AppRouting.history: (context) => History(),
       },
       // home: Home(),
