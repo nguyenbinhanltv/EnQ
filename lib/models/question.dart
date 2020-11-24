@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:EnQ/models/answer.dart';
 import 'package:EnQ/models/category.dart';
 
@@ -9,38 +7,24 @@ class Question {
   final Level rank;
   final Answer answer;
 
-  Question(this.id, this.rank, this.title, this.type, this.answer);
+  Question({this.id, this.rank, this.title, this.type, this.answer});
+
+  Map<String, dynamic> toJson() => _questionToJson(this);
 
   factory Question.fromJson(Map<dynamic, dynamic> json) {
     return Question(
-        json['_id'],
-        Level.values[int.parse(json['rank'])],
-        json['title'],
-        Type.values[int.parse(json['type'])],
-        Answer.fromJson(json["answer"]));
+        id: json['_id'],
+        rank: Level.values[int.parse(json['rank'])],
+        title: json['title'],
+        type: Type.values[int.parse(json['type'])],
+        answer: Answer.fromJson(json["answer"]));
   }
-
-  static List<Question> questions = [
-    Question(
-      'id 1',
-      Level.Easy,
-      'Every morning, Ba ______ up at six o’clock.',
-      Type.Grammar,
-      Answer(['to get', 'get', 'gets', 'is getting'], AnswerType.C),
-    ),
-    Question(
-      'id 2',
-      Level.Easy,
-      'Every morning, Ba ______ up at six o’clock.',
-      Type.Grammar,
-      Answer(['to get', 'get', 'gets', 'is getting'], AnswerType.C),
-    ),
-    Question(
-      'id 10',
-      Level.Easy,
-      ' Last summer, I _________. Finishing with my uncle in the afternoon..',
-      Type.Grammar,
-      Answer(['go', 'went', 'goes', 'going'], AnswerType.C),
-    ),
-  ];
 }
+
+Map<String, dynamic> _questionToJson(Question instance) => <String, dynamic>{
+      'id': instance.id,
+      'rank': instance.rank,
+      'title': instance.title,
+      'type': instance.type,
+      'answer': instance.answer != null ? instance.answer.toJson() : null
+    };

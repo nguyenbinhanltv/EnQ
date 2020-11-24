@@ -11,7 +11,7 @@ class LoginButton extends StatelessWidget {
   final String _type;
   final Function isLogin;
   LoginButton(this._title, this._imgUrl, this._type, this.isLogin);
-  AuthService auth = new AuthService();
+  final AuthService auth = new AuthService();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,12 +24,13 @@ class LoginButton extends StatelessWidget {
             try {
               auth.handleSignIn().whenComplete(() {
                 //Navigator.of(context).popAndPushNamed(AppRouting.home));
-                Future.delayed(
-                    Duration(seconds: 2),
-                    () => Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                Home(uidCurrentUser: auth.currentUser.uid))));
+                // Future.delayed(
+                //     Duration(seconds: 2),
+                // () =>
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) =>
+                        Home(uidCurrentUser: auth.currentUser.uid)));
+                //);
               });
             } catch (err) {
               print("ERROR: $err");

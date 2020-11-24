@@ -9,12 +9,12 @@ class Result extends StatelessWidget {
   final int score;
   final int total;
   final String uidCurrentUser;
-  const Result(
-      {Key key,
-      @required this.score,
-      @required this.total,
-      this.uidCurrentUser})
-      : super(key: key);
+  const Result({
+    Key key,
+    @required this.score,
+    @required this.total,
+    @required this.uidCurrentUser,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

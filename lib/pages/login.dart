@@ -27,13 +27,15 @@ class _LoginState extends State<Login> {
                   children: <Widget>[
                     Text(
                       "EnQ",
-                      style:
-                          TitleStyle,
+                      style: TitleStyle,
                     ),
                     Text(
                       "We will help you improve your English",
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 15, color: Colors.grey[700], fontFamily: FontName),
+                      style: TextStyle(
+                          fontSize: 15,
+                          color: Colors.grey[700],
+                          fontFamily: FontName),
                     ),
                     Container(
                       height: MediaQuery.of(context).size.height / 2,

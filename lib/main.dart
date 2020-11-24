@@ -1,6 +1,7 @@
 import 'package:EnQ/const/style.dart';
 import 'package:EnQ/pages/history.dart';
 import 'package:EnQ/pages/leader_board.dart';
+import 'package:EnQ/pages/home.dart';
 import 'package:EnQ/utils/app_route.dart';
 import 'package:flutter/material.dart';
 import 'package:EnQ/pages/login.dart';
@@ -24,6 +25,8 @@ class MyApp extends StatelessWidget {
         AppRouting.login: (context) => Login(),
         AppRouting.leaderBoard: (context) => LeaderBoard(),
         AppRouting.history: (context) => History(),
+        // ignore: missing_required_param
+        AppRouting.home: (context) => Home()
       },
       // home: Home(),
       initialRoute: AppRouting.login,

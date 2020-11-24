@@ -2,8 +2,10 @@ import 'package:EnQ/components/answer_box.dart';
 import 'package:EnQ/const/size_config.dart';
 import 'package:EnQ/const/style.dart';
 import 'package:EnQ/models/question.dart';
-import 'package:EnQ/models/testExam.dart';
+import 'package:EnQ/models/test_exam.dart';
+import 'package:EnQ/models/test_exam_history.dart';
 import 'package:EnQ/pages/result.dart';
+import 'package:EnQ/services/user_service.dart';
 import 'package:audioplayers/audio_cache.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
@@ -12,8 +14,8 @@ import 'package:otp_count_down/otp_count_down.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class Quiz extends StatefulWidget {
-  Future<TestExam> test;
-  String uidCurrentUser;
+  final Future<TestExam> test;
+  final String uidCurrentUser;
   Quiz({@required this.test, this.uidCurrentUser});
 
   @override
@@ -27,8 +29,11 @@ class _QuizState extends State<Quiz> {
     loadMusic();
     _startCountDown();
     generateListUserAns();
+    timeStart = DateTime.now().toString();
     super.initState();
   }
+
+  String timeStart;
 
   AudioPlayer advancedPlayer;
   Future loadMusic() async {
@@ -52,13 +57,24 @@ class _QuizState extends State<Quiz> {
         point++;
       }
     }
-    print(idQuestions);
+
+    List<int> ans = [];
+    List<String> ex = ["A", "B", "C", "D"];
+    this.userAns.forEach((element) {
+      ans.add(ex.indexOf(element));
+    });
+
+    UserService().updateUser(
+      widget.uidCurrentUser,
+      TestExamHistory(this.timeStart, DateTime.now().toString(), ans,
+          this.point * 10, this.testExam),
+    );
+
     Navigator.of(context).pushReplacement(MaterialPageRoute(
         builder: (context) => Result(
-              score: this.point,
-              total: userAns.length,
-              uidCurrentUser: widget.uidCurrentUser,
-            )));
+            score: this.point,
+            total: userAns.length,
+            uidCurrentUser: widget.uidCurrentUser)));
   }
 
   String _countDown = '00:00';
@@ -82,7 +98,7 @@ class _QuizState extends State<Quiz> {
 
   List<Question> questions = [];
   List<String> idQuestions = [];
-
+  TestExam testExam;
   bool isVolIconOnTap = true;
   @override
   Widget build(BuildContext context) {
@@ -92,6 +108,7 @@ class _QuizState extends State<Quiz> {
           builder: (BuildContext context, AsyncSnapshot<TestExam> snapshot) {
             if (snapshot.hasData) {
               questions = snapshot.data.questions;
+              testExam = snapshot.data;
               return DefaultTabController(
                 length: snapshot.data.questions.length,
                 child: Scaffold(
@@ -112,7 +129,6 @@ class _QuizState extends State<Quiz> {
                     actions: [
                       FlatButton(
                         onPressed: () {
-                          print(this.userAns);
                           checkCorrectAnswer();
                         },
                         child: Text('Finish',

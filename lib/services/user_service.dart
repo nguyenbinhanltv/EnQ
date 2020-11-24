@@ -3,6 +3,8 @@ import 'package:EnQ/models/user.dart';
 import 'package:EnQ/models/test_exam_history.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'dart:async';
+import 'package:flutter/material.dart';
 
 class UserService {
   Future<http.Response> createUser(String id, String userName, String photoURL,
@@ -25,7 +27,8 @@ class UserService {
     );
   }
 
-  Future<User> getUser(String id) async {
+  // ignore: missing_return
+  Future<User> getUser(String id, BuildContext context) async {
     // String url = Enviroment.prod + '/users/' + id;
     final response =
         await http.get(Uri.https('enq-server.herokuapp.com', '/v1/users/$id'));
@@ -33,13 +36,35 @@ class UserService {
       return User.fromJson(jsonDecode(response.body));
     } else {
       print('Fail to get user');
+      // setTimeout here
+      // god know if it works
+      Timer(Duration(seconds: 20), () => Navigator.pop(context));
     }
   }
 
-  Stream<User> userStream(String id) async* {
-    while (true) {
-      await Future.delayed(Duration(hours: 2));
-      yield await getUser(id);
-    }
+  // Stream<User> userStream(String id) async* {
+  //   while (true) {
+  //     await Future.delayed(Duration(hours: 2));
+  //     yield await getUser(id);
+  //   }
+  // }
+
+  // ignore: missing_return
+  Future<http.Response> updateUser(String id, TestExamHistory testHistory) {
+    Map<String, dynamic> testHistoryJson = testHistory.toJson();
+    List<Map<String, dynamic>> testHistoryList = [testHistoryJson];
+    print(testHistoryList.toString());
+    // print(testHistoryJson);
+    // convert this shit to json -> testExam and testHistory
+    return http.patch(
+      Uri.https('enq-server.herokuapp.com', '/v1/users/'),
+      // headers: <String, String>{
+      //   'Content-Type': 'application/json; charset=UTF-8',
+      // },
+      body: {
+        "_id": id,
+        "testExamHistory": testHistoryList.toString(),
+      },
+    ).whenComplete(() => print('update user done'));
   }
 }

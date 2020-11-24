@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 class AnswersBox extends StatefulWidget {
   final Answer ans;
   final int indexOfQuestion;
-  List<String> userAns;
+  final List<String> userAns;
 
   AnswersBox({Key key, this.ans, this.indexOfQuestion, this.userAns})
       : super(key: key);
@@ -29,6 +29,7 @@ class _AnswersBoxState extends State<AnswersBox>
   }
 
   @override
+  // ignore: must_call_super
   Widget build(BuildContext context) {
     return ListView.builder(
       itemCount: widget.ans.ans.length,
@@ -79,6 +80,5 @@ class _AnswersBoxState extends State<AnswersBox>
   }
 
   @override
-  // TODO: implement wantKeepAlive
   bool get wantKeepAlive => true;
 }

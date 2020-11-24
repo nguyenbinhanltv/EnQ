@@ -1,13 +1,12 @@
 import 'package:EnQ/components/categories_card.dart';
 import 'package:EnQ/const/style.dart';
 import 'package:EnQ/models/category.dart';
-import 'package:EnQ/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:EnQ/pages/home.dart';
 
 class Categories extends StatefulWidget {
-  String uidCurrentUser;
+  final String uidCurrentUser;
   Categories({Key key, @required this.uidCurrentUser});
 
   @override

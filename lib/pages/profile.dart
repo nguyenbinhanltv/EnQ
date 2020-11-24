@@ -10,7 +10,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class Profile extends StatefulWidget {
   final String uidCurrentUser;
-  Future<User> user;
+  final Future<User> user;
   Profile({Key key, @required this.uidCurrentUser, @required this.user})
       : super(key: key);
 
