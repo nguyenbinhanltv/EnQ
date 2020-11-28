@@ -7,6 +7,7 @@ import 'package:EnQ/models/answer.dart';
 import 'package:EnQ/models/test_exam_history.dart';
 import 'package:EnQ/pages/result.dart';
 import 'package:EnQ/services/history_service.dart';
+import 'package:EnQ/services/leader_service.dart';
 import 'package:audioplayers/audio_cache.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +31,7 @@ class _QuizState extends State<Quiz> {
     loadMusic();
     _startCountDown();
     generateListUserAns();
-    timeStart = DateTime.now().toString();
+    this.timeStart = DateTime.now().toString();
     super.initState();
   }
 
@@ -78,6 +79,8 @@ class _QuizState extends State<Quiz> {
       TestExamHistory(this.timeStart, DateTime.now().toString(), ans,
           this.point * 10, this.testExam),
     );
+
+    // LeaderService().updateLeadersDay(widget.uidCurrentUser);
   }
 
   String _countDown = '00:00';

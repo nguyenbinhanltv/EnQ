@@ -28,7 +28,7 @@ class UserService {
   }
 
   // ignore: missing_return
-  Future<User> getUser(String id, BuildContext context) async {
+  Future<User> getUser(String id, [BuildContext context]) async {
     // String url = Enviroment.prod + '/users/' + id;
     final response =
         await http.get(Uri.https('enq-server.herokuapp.com', '/v1/users/$id'));

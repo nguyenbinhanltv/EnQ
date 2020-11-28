@@ -4,13 +4,16 @@ import 'package:EnQ/const/size_config.dart';
 import 'package:EnQ/const/style.dart';
 import 'package:EnQ/models/test_exam_history.dart';
 import 'package:EnQ/models/user.dart';
+import 'package:EnQ/models/leader.dart';
 import 'package:EnQ/services/user_service.dart';
+import 'package:EnQ/services/leader_service.dart';
 import 'package:EnQ/utils/app_route.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:EnQ/pages/profile.dart';
 import 'package:EnQ/pages/categories.dart';
+import 'package:EnQ/pages/leader_board.dart';
 
 class Home extends StatefulWidget {
   final String uidCurrentUser;
@@ -28,7 +31,13 @@ class _Home extends State<Home> {
       _selectedIndex = index;
       switch (_selectedIndex) {
         case 1:
-          Navigator.of(context).pushNamed(AppRouting.leaderBoard);
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (BuildContext context) => LeaderBoard(
+                        uidCurrentUser: widget.uidCurrentUser,
+                        leadersDay: this.leadersDay,
+                      )));
           break;
         case 2:
           // Navigator.of(context).pushNamed(AppRouting.categories);
@@ -55,12 +64,20 @@ class _Home extends State<Home> {
   }
 
   Future<User> user;
+  Leader leadersDay;
   //Stream<User> stream;
   // StreamController<User> streamController = StreamController();
   @override
   void initState() {
     user = UserService().getUser(widget.uidCurrentUser, this.context);
+    getLeadersDay();
     super.initState();
+  }
+
+  getLeadersDay() async {
+    await LeaderService()
+        .getLeadersDay()
+        .then((value) => this.leadersDay = value);
   }
 
   @override

@@ -5,8 +5,18 @@ enum LeadersType { Week, Month }
 class Leader {
   final String id, startAt, endAt;
   final List<User> users;
-  final LeadersType type;
+  final int type;
   Leader(this.id, this.startAt, this.endAt, this.users, this.type);
+
+  factory Leader.fromJson(Map<dynamic, dynamic> json) {
+    return Leader(
+      json['data']['_id'],
+      json['data']['startAt'].toString(),
+      json['data']['endAt'].toString(),
+      json['data']['users'],
+      json['data']['type'],
+    );
+  }
 }
 
 Leader leaderMonth = Leader(
@@ -35,7 +45,7 @@ Leader leaderMonth = Leader(
       User("Raccon", "user 10", "assets/images/raccoon.jpg",
           'meerkat@gmail.com', 10, 1000, [], [], DateTime.now().toString()),
     ],
-    LeadersType.Month);
+    1);
 
 Leader leaderWeek = Leader(
     "id 1",
@@ -63,4 +73,4 @@ Leader leaderWeek = Leader(
       User("Raccon", "user 10", "assets/images/raccoon.jpg",
           'meerkat@gmail.com', 10, 1000, [], [], DateTime.now().toString()),
     ],
-    LeadersType.Week);
+    0);

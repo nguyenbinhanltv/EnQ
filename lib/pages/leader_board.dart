@@ -6,6 +6,11 @@ import 'package:EnQ/models/user.dart';
 import 'package:EnQ/components/show_leaders.dart';
 
 class LeaderBoard extends StatefulWidget {
+  final Leader leadersDay;
+  final String uidCurrentUser;
+  LeaderBoard(
+      {Key key, @required this.uidCurrentUser, @required this.leadersDay});
+
   @override
   _LeaderBoardState createState() => _LeaderBoardState();
 }
@@ -13,6 +18,7 @@ class LeaderBoard extends StatefulWidget {
 class _LeaderBoardState extends State<LeaderBoard> {
   List<User> subLeadersMonth = [];
   List<User> subLeadersWeek = [];
+
   void generateSubLeaders() {
     print(leaderMonth.users.length);
     for (int i = 3; i < leaderMonth.users.length; i++) {
@@ -24,6 +30,7 @@ class _LeaderBoardState extends State<LeaderBoard> {
   @override
   void initState() {
     generateSubLeaders();
+    print(widget.leadersDay.users);
     super.initState();
   }
 
@@ -58,10 +65,10 @@ class _LeaderBoardState extends State<LeaderBoard> {
               labelColor: Colors.black,
               tabs: [
                 Tab(
-                  child: Text('This week', style: TabsStyle),
+                  child: Text('Week', style: TabsStyle),
                 ),
                 Tab(
-                  child: Text('All time', style: TabsStyle),
+                  child: Text('Day', style: TabsStyle),
                 ),
               ],
             ),
