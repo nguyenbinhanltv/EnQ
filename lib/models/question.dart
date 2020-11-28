@@ -3,9 +3,9 @@ import 'package:EnQ/models/category.dart';
 
 class Question {
   final String id, title;
-  final Type type;
-  final Level rank;
-  final Answer answer;
+  String type;
+  String rank;
+  Answer answer;
 
   Question({this.id, this.rank, this.title, this.type, this.answer});
 
@@ -14,9 +14,9 @@ class Question {
   factory Question.fromJson(Map<dynamic, dynamic> json) {
     return Question(
         id: json['_id'],
-        rank: Level.values[int.parse(json['rank'])],
+        rank: json['rank'],
         title: json['title'],
-        type: Type.values[int.parse(json['type'])],
+        type: json['type'],
         answer: Answer.fromJson(json["answer"]));
   }
 }

@@ -130,10 +130,16 @@ class _ProfileState extends State<Profile> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
+                            StatisticalCard('assets/images/thunder.svg',
+                                'Scores', snapshot.data.point.toString()),
                             StatisticalCard(
-                                'assets/images/thunder.svg', 'Score', '216953'),
-                            StatisticalCard(
-                                'assets/images/fire.svg', 'Day', '30'),
+                                'assets/images/fire.svg',
+                                'Days',
+                                (DateTime.now()
+                                        .difference(DateTime.parse(
+                                            snapshot.data.timeCreate))
+                                        .inDays)
+                                    .toString()),
                           ],
                         ),
                       ],

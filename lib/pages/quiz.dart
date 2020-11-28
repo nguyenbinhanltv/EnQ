@@ -3,9 +3,10 @@ import 'package:EnQ/const/size_config.dart';
 import 'package:EnQ/const/style.dart';
 import 'package:EnQ/models/question.dart';
 import 'package:EnQ/models/test_exam.dart';
+import 'package:EnQ/models/answer.dart';
 import 'package:EnQ/models/test_exam_history.dart';
 import 'package:EnQ/pages/result.dart';
-import 'package:EnQ/services/user_service.dart';
+import 'package:EnQ/services/history_service.dart';
 import 'package:audioplayers/audio_cache.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
@@ -53,7 +54,9 @@ class _QuizState extends State<Quiz> {
     advancedPlayer.stop();
     for (int i = 0; i < userAns.length; i++) {
       if (userAns[i] ==
-          questions[i].answer.correctAnswer.toString().substring(11)) {
+          AnswerType.values[questions[i].answer.correctAnswer]
+              .toString()
+              .substring(11)) {
         point++;
       }
     }
@@ -64,7 +67,7 @@ class _QuizState extends State<Quiz> {
       ans.add(ex.indexOf(element));
     });
 
-    UserService().updateUser(
+    HistoryService().updateUserHistory(
       widget.uidCurrentUser,
       TestExamHistory(this.timeStart, DateTime.now().toString(), ans,
           this.point * 10, this.testExam),

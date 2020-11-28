@@ -25,9 +25,7 @@ class _HistoryState extends State<History> {
               'assets/images/arrow_back.svg',
             ),
             onPressed: () {
-              Navigator.of(context).popUntil(
-                ModalRoute.withName(AppRouting.home),
-              );
+              Navigator.of(context).pushNamed(AppRouting.home);
             },
           ),
         ),

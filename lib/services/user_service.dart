@@ -49,22 +49,4 @@ class UserService {
   //   }
   // }
 
-  // ignore: missing_return
-  Future<http.Response> updateUser(String id, TestExamHistory testHistory) {
-    Map<String, dynamic> testHistoryJson = testHistory.toJson();
-    List<Map<String, dynamic>> testHistoryList = [testHistoryJson];
-    print(testHistoryList.toString());
-    // print(testHistoryJson);
-    // convert this shit to json -> testExam and testHistory
-    return http.patch(
-      Uri.https('enq-server.herokuapp.com', '/v1/users/'),
-      // headers: <String, String>{
-      //   'Content-Type': 'application/json; charset=UTF-8',
-      // },
-      body: {
-        "_id": id,
-        "testExamHistory": testHistoryList.toString(),
-      },
-    ).whenComplete(() => print('update user done'));
-  }
 }
