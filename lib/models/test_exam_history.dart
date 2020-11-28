@@ -16,6 +16,7 @@ Map<String, dynamic> _testHistoryToJson(TestExamHistory instance) {
     'timeStart': instance.timeStart,
     'timeEnd': instance.timeEnd,
     'answers': instance.answers,
+    'point': instance.point,
     'testExam': instance.testExam != null ? instance.testExam.toJson() : null
   };
 }

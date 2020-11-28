@@ -8,18 +8,15 @@ class HistoryService {
       String id, TestExamHistory testHistory) async {
     Map<String, dynamic> testHistoryJson = testHistory.toJson();
     List<Map<String, dynamic>> testHistoryList = [testHistoryJson];
-    // print(testHistoryList.toString());
-    // print(testHistoryJson);
-    // convert this shit to json -> testExam and testHistory
-    print(jsonEncode({"testExamHistory": testHistoryList}));
-    http.Response response = await http.patch(
-      Uri.https('enq-server.herokuapp.com', '/v1/users'),
-      headers: {"Content-type": "application/json"},
+    var response = await http.patch(
+      Uri.https('enq-server.herokuapp.com', '/v1/users/?userId=$id'),
+      // Uri.https('e90a88023538.ngrok.io', '/v1/users/?userId=$id'),
       body: jsonEncode({
         "_id": id,
         "testExamHistory": testHistoryList,
       }),
     );
+    print(jsonDecode(response.body));
     print(response.statusCode);
     return response;
   }
@@ -28,5 +25,7 @@ class HistoryService {
     http.Response response = await http.post(
       Uri.https('enq-server.herokuapp.com', '/v1/test/history'),
     );
+
+    return response;
   }
 }

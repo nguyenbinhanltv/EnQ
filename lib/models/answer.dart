@@ -21,5 +21,11 @@ class Answer {
 }
 
 Map<String, dynamic> _answerToJson(Answer instance) {
-  return {'ans': instance.ans, 'correctAnswer': instance.correctAnswer};
+  return {
+    'A': instance.ans[0],
+    'B': instance.ans[1],
+    'correctAnswer': instance.correctAnswer,
+    'C': instance.ans[2],
+    'D': instance.ans[3]
+  };
 }

@@ -67,17 +67,17 @@ class _QuizState extends State<Quiz> {
       ans.add(ex.indexOf(element));
     });
 
-    HistoryService().updateUserHistory(
-      widget.uidCurrentUser,
-      TestExamHistory(this.timeStart, DateTime.now().toString(), ans,
-          this.point * 10, this.testExam),
-    );
-
     Navigator.of(context).pushReplacement(MaterialPageRoute(
         builder: (context) => Result(
             score: this.point,
             total: userAns.length,
             uidCurrentUser: widget.uidCurrentUser)));
+
+    HistoryService().updateUserHistory(
+      widget.uidCurrentUser,
+      TestExamHistory(this.timeStart, DateTime.now().toString(), ans,
+          this.point * 10, this.testExam),
+    );
   }
 
   String _countDown = '00:00';
