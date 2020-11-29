@@ -53,9 +53,10 @@ class _HistoryState extends State<History> {
                             currentUser: snapshot.data[0]),
                   ),
                 );
-              } else {
-                return SpinKitRotatingCircle();
               }
+              return SpinKitWave(
+                color: Colors.purple[50],
+              );
             }),
       ),
     );

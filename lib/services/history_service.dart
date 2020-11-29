@@ -55,4 +55,18 @@ class HistoryService {
     List<dynamic> result = data['data'];
     return result;
   }
+
+  Future<dynamic> getHistoryDetail(String uid, String historyId) async {
+    Map<String, String> header = {"Content-Type": "application/json"};
+
+    http.Response response = await http.post(
+      Uri.https('enq-server.herokuapp.com', '/v1/test/history/detail'),
+      headers: header,
+      body: jsonEncode({'user_id': uid, 'history_id': historyId}),
+    );
+
+    Map data = jsonDecode(response.body);
+    dynamic result = data['data'];
+    return result;
+  }
 }
