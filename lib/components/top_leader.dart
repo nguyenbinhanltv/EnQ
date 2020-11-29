@@ -19,7 +19,7 @@ class TopLeader extends StatelessWidget {
           width: DefaultPaddin * 3.0,
           height: DefaultPaddin * 3.0,
           child: CircleAvatar(
-            backgroundImage: AssetImage(this._picUrl),
+            backgroundImage: NetworkImage(this._picUrl),
           ),
         ),
         SizedBox(height: DefaultPaddin * 0.3),

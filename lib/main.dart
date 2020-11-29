@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: true,
       routes: {
         AppRouting.login: (context) => Login(),
+        // ignore: missing_required_param
         AppRouting.leaderBoard: (context) => LeaderBoard(),
         AppRouting.history: (context) => History(),
         // ignore: missing_required_param

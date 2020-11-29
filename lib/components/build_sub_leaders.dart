@@ -1,12 +1,12 @@
 import 'package:EnQ/const/size_config.dart';
 import 'package:EnQ/const/style.dart';
-import 'package:EnQ/models/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class BuildSubLeaders extends StatelessWidget {
-  final User user;
-  const BuildSubLeaders({Key key, this.user}) : super(key: key);
+  final dynamic user;
+  final int index;
+  const BuildSubLeaders({Key key, this.user, this.index}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,18 +32,18 @@ class BuildSubLeaders extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    Text(user.rank.toString()),
+                    Text(index.toString()),
                     CircleAvatar(
-                      backgroundImage: AssetImage(user.photoUrl),
+                      backgroundImage: NetworkImage(user['photoURL']),
                     ),
                     SizedBox(
                       width: DefaultPaddin * 4,
                       child: Text(
-                        user.userName,
+                        user['displayName'],
                         textAlign: TextAlign.left,
                       ),
                     ),
-                    Text(user.point.toString()),
+                    Text(user['point'].toString()),
                     SvgPicture.asset('assets/images/arrow_forward.svg'),
                   ],
                 ),

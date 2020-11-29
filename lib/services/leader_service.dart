@@ -1,7 +1,6 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
-import "dart:collection";
 import 'package:EnQ/services/user_service.dart';
 import 'package:EnQ/models/user.dart';
 import 'package:EnQ/models/leader.dart';
@@ -55,8 +54,11 @@ class LeaderService {
     return response;
   }
 
+  // ignore: missing_return
   Future<Leader> getLeadersDay() async {
     var response = await http.get(Enviroment.prod + '/leaders/day');
+    print('get leader week ${response.statusCode}');
+
     if (response.statusCode == 200) {
       return Leader.fromJson(jsonDecode(response.body));
     } else {
@@ -64,8 +66,10 @@ class LeaderService {
     }
   }
 
+  // ignore: missing_return
   Future<Leader> getLeadersWeek() async {
     var response = await http.get(Enviroment.prod + '/leaders/week');
+    print('get leader week ${response.statusCode}');
     if (response.statusCode == 200) {
       return Leader.fromJson(jsonDecode(response.body));
     } else {
