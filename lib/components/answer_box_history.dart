@@ -58,13 +58,17 @@ class _AnswersBoxHistoryState extends State<AnswersBoxHistory>
                   widget.correctAns == widget.userAns
                       ? Expanded(
                           flex: 1,
-                          child: Icon(widget.correctAns == index
-                              ? Icons.check_circle_outline
-                              : null),
+                          child: Icon(
+                            widget.correctAns == index
+                                ? Icons.check_circle_outline
+                                : null,
+                            color: Colors.green,
+                          ),
                         )
                       : Expanded(
                           child: Icon(
-                              widget.userAns == index ? Icons.cancel : null))
+                              widget.userAns == index ? Icons.cancel : null,
+                              color: Colors.red))
                 ],
               ),
             ),
