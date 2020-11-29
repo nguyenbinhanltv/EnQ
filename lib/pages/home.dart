@@ -5,6 +5,7 @@ import 'package:EnQ/const/style.dart';
 import 'package:EnQ/models/test_exam_history.dart';
 import 'package:EnQ/models/user.dart';
 import 'package:EnQ/models/leader.dart';
+import 'package:EnQ/services/history_service.dart';
 import 'package:EnQ/services/user_service.dart';
 import 'package:EnQ/services/leader_service.dart';
 import 'package:EnQ/utils/app_route.dart';
@@ -64,8 +65,10 @@ class _Home extends State<Home> {
   }
 
   Future<User> user;
+  Future<List<dynamic>> recentHistory;
   Leader leadersDay;
   Leader leadersWeek;
+  User currentUser;
   //Stream<User> stream;
   // StreamController<User> streamController = StreamController();
   @override
@@ -73,6 +76,7 @@ class _Home extends State<Home> {
     user = UserService().getUser(widget.uidCurrentUser, this.context);
     getLeadersDay();
     getLeadersWeek();
+    recentHistory = HistoryService().getRecentHistory(widget.uidCurrentUser);
     super.initState();
   }
 
@@ -94,8 +98,9 @@ class _Home extends State<Home> {
     return SafeArea(
       child: Scaffold(
         body: FutureBuilder(
-          future: user,
-          builder: (BuildContext context, AsyncSnapshot<User> snapshot) {
+          future: Future.wait([user, recentHistory]),
+          builder:
+              (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
             if (snapshot.hasData) {
               return Column(
                 children: [
@@ -110,13 +115,13 @@ class _Home extends State<Home> {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             Text(
-                              "Hello, ${snapshot.data.userName}",
+                              "Hello, ${snapshot.data[0].userName}",
                               style: ScriptStyle,
                             ),
                             CircleAvatar(
                               radius: 30,
                               backgroundImage:
-                                  NetworkImage(snapshot.data.photoUrl),
+                                  NetworkImage(snapshot.data[0].photoUrl),
                             )
                           ],
                         ),
@@ -167,11 +172,11 @@ class _Home extends State<Home> {
                             itemCount: 3,
                             itemBuilder: (BuildContext context, int index) =>
                                 HistoryReviewButton(
-                              histories: histories[index] ?? null,
-                              index: index,
-                            ),
+                                    histories: snapshot.data[1][index],
+                                    index: index,
+                                    currentUser: snapshot.data[0]),
                           ),
-                        ),
+                        )
                       ],
                     ),
                   ),

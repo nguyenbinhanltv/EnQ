@@ -24,11 +24,20 @@ class HistoryService {
     return response;
   }
 
-  Future<http.Response> getRecentHistory() async {
+  Future<List<dynamic>> getRecentHistory(String uid) async {
+    Map<String, String> header = {"Content-Type": "application/json"};
+
     http.Response response = await http.post(
       Uri.https('enq-server.herokuapp.com', '/v1/test/history'),
+      headers: header,
+      body: jsonEncode({'user_id': uid, 'isRecent': true}),
     );
 
-    return response;
+    // print(jsonDecode(response.body));
+    print('get recent history ${response.statusCode}');
+    Map data = jsonDecode(response.body);
+    List<dynamic> result = data['data'];
+    print(result);
+    return result;
   }
 }
