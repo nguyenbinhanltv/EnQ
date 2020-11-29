@@ -1,4 +1,5 @@
 import 'package:EnQ/const/style.dart';
+import 'package:EnQ/services/leader_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:EnQ/models/leader.dart';
@@ -20,7 +21,6 @@ class _LeaderBoardState extends State<LeaderBoard> {
   List<User> subLeadersWeek = [];
 
   void generateSubLeaders() {
-    print(leaderMonth.users.length);
     for (int i = 3; i < leaderMonth.users.length; i++) {
       subLeadersMonth.add(leaderMonth.users[i]);
       subLeadersWeek.add(leaderWeek.users[i]);
@@ -30,7 +30,7 @@ class _LeaderBoardState extends State<LeaderBoard> {
   @override
   void initState() {
     generateSubLeaders();
-    print(widget.leadersDay.users);
+    LeaderService().updateLeadersDay(widget.uidCurrentUser);
     super.initState();
   }
 

@@ -74,13 +74,14 @@ class _QuizState extends State<Quiz> {
             total: userAns.length,
             uidCurrentUser: widget.uidCurrentUser)));
 
-    HistoryService().updateUserHistory(
-      widget.uidCurrentUser,
-      TestExamHistory(this.timeStart, DateTime.now().toString(), ans,
-          this.point * 10, this.testExam),
-    );
-
-    // LeaderService().updateLeadersDay(widget.uidCurrentUser);
+    HistoryService()
+        .updateUserHistory(
+          widget.uidCurrentUser,
+          TestExamHistory(this.timeStart, DateTime.now().toString(), ans,
+              this.point * 10, this.testExam),
+        )
+        .whenComplete(
+            () => LeaderService().updateLeadersDay(widget.uidCurrentUser));
   }
 
   String _countDown = '00:00';

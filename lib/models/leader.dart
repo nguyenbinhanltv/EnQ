@@ -4,7 +4,7 @@ enum LeadersType { Week, Month }
 
 class Leader {
   final String id, startAt, endAt;
-  final List<User> users;
+  final List<dynamic> users;
   final int type;
   Leader(this.id, this.startAt, this.endAt, this.users, this.type);
 
