@@ -5,6 +5,7 @@ import 'package:EnQ/const/style.dart';
 import 'package:EnQ/models/test_exam_history.dart';
 import 'package:EnQ/models/user.dart';
 import 'package:EnQ/models/leader.dart';
+import 'package:EnQ/pages/history.dart';
 import 'package:EnQ/services/history_service.dart';
 import 'package:EnQ/services/user_service.dart';
 import 'package:EnQ/services/leader_service.dart';
@@ -50,7 +51,11 @@ class _Home extends State<Home> {
                       )));
           break;
         case 3:
-          Navigator.of(context).pushNamed(AppRouting.history);
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (BuildContext context) => History(
+                      uidCurrentUser: widget.uidCurrentUser, user: this.user)));
           break;
         case 4:
           Navigator.push(
@@ -68,9 +73,7 @@ class _Home extends State<Home> {
   Future<List<dynamic>> recentHistory;
   Leader leadersDay;
   Leader leadersWeek;
-  User currentUser;
-  //Stream<User> stream;
-  // StreamController<User> streamController = StreamController();
+
   @override
   void initState() {
     user = UserService().getUser(widget.uidCurrentUser, this.context);
