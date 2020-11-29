@@ -8,9 +8,13 @@ import 'package:EnQ/components/show_leaders.dart';
 
 class LeaderBoard extends StatefulWidget {
   final Leader leadersDay;
+  final Leader leadersWeek;
   final String uidCurrentUser;
   LeaderBoard(
-      {Key key, @required this.uidCurrentUser, @required this.leadersDay});
+      {Key key,
+      @required this.uidCurrentUser,
+      @required this.leadersDay,
+      @required this.leadersWeek});
 
   @override
   _LeaderBoardState createState() => _LeaderBoardState();
@@ -30,7 +34,6 @@ class _LeaderBoardState extends State<LeaderBoard> {
   @override
   void initState() {
     generateSubLeaders();
-    LeaderService().updateLeadersDay(widget.uidCurrentUser);
     super.initState();
   }
 

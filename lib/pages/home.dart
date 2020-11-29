@@ -35,9 +35,9 @@ class _Home extends State<Home> {
               context,
               MaterialPageRoute(
                   builder: (BuildContext context) => LeaderBoard(
-                        uidCurrentUser: widget.uidCurrentUser,
-                        leadersDay: this.leadersDay,
-                      )));
+                      uidCurrentUser: widget.uidCurrentUser,
+                      leadersDay: this.leadersDay,
+                      leadersWeek: this.leadersWeek)));
           break;
         case 2:
           // Navigator.of(context).pushNamed(AppRouting.categories);
@@ -65,12 +65,14 @@ class _Home extends State<Home> {
 
   Future<User> user;
   Leader leadersDay;
+  Leader leadersWeek;
   //Stream<User> stream;
   // StreamController<User> streamController = StreamController();
   @override
   void initState() {
     user = UserService().getUser(widget.uidCurrentUser, this.context);
     getLeadersDay();
+    getLeadersWeek();
     super.initState();
   }
 
@@ -78,6 +80,12 @@ class _Home extends State<Home> {
     await LeaderService()
         .getLeadersDay()
         .then((value) => this.leadersDay = value);
+  }
+
+  getLeadersWeek() async {
+    await LeaderService()
+        .getLeadersWeek()
+        .then((value) => this.leadersWeek = value);
   }
 
   @override

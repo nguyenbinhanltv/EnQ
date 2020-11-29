@@ -63,4 +63,60 @@ class LeaderService {
       print('Fail to get leaders day');
     }
   }
+
+  Future<Leader> getLeadersWeek() async {
+    var response = await http.get(Enviroment.prod + '/leaders/week');
+    if (response.statusCode == 200) {
+      return Leader.fromJson(jsonDecode(response.body));
+    } else {
+      print('Fail to get leaders week');
+    }
+  }
+
+  Future<http.Response> updateLeadersWeek(String uid) async {
+    Map<String, String> header = {"Content-Type": "application/json"};
+    User currentUser = await UserService().getUser(uid);
+
+    Leader leadersWeek = await getLeadersWeek();
+    bool flag = false;
+    if (leadersWeek.users.length > 0) {
+      for (var element in leadersWeek.users) {
+        if (element['_id'] == uid) {
+          element['point'] = currentUser.point;
+          flag = true;
+          break;
+        }
+      }
+      if (!flag) {
+        leadersWeek.users.add({
+          '_id': uid,
+          'displayName': currentUser.userName,
+          'email': currentUser.email,
+          'photoURL': currentUser.photoUrl,
+          'point': currentUser.point,
+          'rank': currentUser.rank
+        });
+      }
+    } else {
+      leadersWeek.users.add({
+        '_id': uid,
+        'displayName': currentUser.userName,
+        'email': currentUser.email,
+        'photoURL': currentUser.photoUrl,
+        'point': currentUser.point,
+        'rank': currentUser.rank
+      });
+    }
+
+    var response = await http.patch(
+      Enviroment.prod + '/leaders/week',
+      headers: header,
+      body: jsonEncode({
+        '_id': leadersWeek.id,
+        'users': leadersWeek.users.toSet().toList(),
+      }),
+    );
+    print('update leader week ${response.statusCode}');
+    return response;
+  }
 }
